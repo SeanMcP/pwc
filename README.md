@@ -7,6 +7,7 @@ An app for managing prayer requests
   - Name
   - Birthday
   - Notes
+  - Tag (group)
 - View neighbor
   - Edit information
   - Remove neighbor
