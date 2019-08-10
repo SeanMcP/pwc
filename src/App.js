@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import useLocalStorage from './useLocalStorage'
+import Recommendations from './Recommendations'
 
 function App() {
     const [
@@ -26,13 +27,7 @@ function App() {
                 <input id="neighbor-input" name="name" type="text" />
                 <button>Add</button>
             </form>
-            <div>
-                <ol>
-                    {findLastPrayed(2).map(id => (
-                        <li key={id}>{state[id].name}</li>
-                    ))}
-                </ol>
-            </div>
+            <Recommendations />
         </div>
     )
 }
