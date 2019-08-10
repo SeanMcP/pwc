@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import useLocalStorage from './useLocalStorage'
 import Recommendations from './Recommendations'
+import NeighborsList from './NeighborsList'
 
 function App() {
     const [state, { addNeighbor, getPrayerRecommendations }] = useLocalStorage()
@@ -17,7 +18,7 @@ function App() {
     }
     return (
         <div className="App">
-            <code>{JSON.stringify(state, null, 2)}</code>pwc
+            <NeighborsList neighbors={state} />
             <form onSubmit={handleSubmit}>
                 <label htmlFor="neighbor-input">Neighbor</label>
                 <input id="neighbor-input" name="name" type="text" />
