@@ -4,13 +4,10 @@ import useLocalStorage from './useLocalStorage'
 import Recommendations from './Recommendations'
 
 function App() {
-    const [
-        state,
-        { addNeighbor, findLastPrayed, findTodaysBirthdays }
-    ] = useLocalStorage()
+    const [state, { addNeighbor, getPrayerRecommendations }] = useLocalStorage()
     function handleSubmit(event) {
-        const form = event.target
         event.preventDefault()
+        const form = event.target
         const formData = new FormData(form)
         const name = formData.get('name')
         if (name) {
@@ -21,13 +18,15 @@ function App() {
     return (
         <div className="App">
             <code>{JSON.stringify(state, null, 2)}</code>pwc
-            <code>{JSON.stringify(findTodaysBirthdays(), null, 2)}</code>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="neighbor-input">Neighbor</label>
                 <input id="neighbor-input" name="name" type="text" />
                 <button>Add</button>
             </form>
-            <Recommendations />
+            <Recommendations
+                neighbors={state}
+                {...getPrayerRecommendations()}
+            />
         </div>
     )
 }

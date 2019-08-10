@@ -76,9 +76,14 @@ export default function useLocalStorage() {
     }
 
     function getPrayerRecommendations(length) {
+        const birthdays = findTodaysBirthdays()
         return {
-            birthdays: findTodaysBirthdays(),
-            lastPrayed: findLastPrayed(length)
+            birthdays,
+            // I don't love looping three times here, but I don't know
+            // of a better way
+            lastPrayed: findLastPrayed(length - birthdays.length).filter(
+                id => !birthdays.includes(id)
+            )
         }
     }
 
