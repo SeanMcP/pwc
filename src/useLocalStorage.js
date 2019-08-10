@@ -2,11 +2,9 @@ import React from 'react'
 import uuid from 'uuid/v4'
 import { name, version } from '../package.json'
 
-const initialState = {
-    neighbors: {}
-}
+const initialState = {}
 
-const storageId = `${name}@${version}`
+const storageId = `${name}@${version}-neighbors`
 
 function getLocalStorage() {
     const valueFromStorage = JSON.parse(localStorage.getItem(storageId))
@@ -36,7 +34,7 @@ export default function useLocalStorage() {
     ) {
         const id = uuid()
         const shallow = { ...state }
-        shallow.neighbors[id] = {
+        shallow[id] = {
             name,
             birthday,
             notes,
@@ -47,21 +45,21 @@ export default function useLocalStorage() {
     }
 
     function getNeighbor(id) {
-        return state.neighbors[id]
+        return state[id]
     }
 
     function findTodaysBirthdays() {
         const [todaysMonth, todaysDate] = getMonthAndDate(new Date())
         const birthdays = []
-        for (const id in state.neighbors) {
-            const neighbor = state.neighbors[id]
+        for (const id in state) {
+            const neighbor = state[id]
             const [month, date] = getMonthAndDate(neighbor.birthday)
             if (month === todaysMonth && date === todaysDate) birthdays.push(id)
         }
         return birthdays
     }
 
-    return [state, setState, { addNeighbor, findTodaysBirthdays, getNeighbor }]
+    return [state, { addNeighbor, findTodaysBirthdays, getNeighbor }]
 }
 
 function getMonthAndDate(date) {
