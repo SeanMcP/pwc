@@ -3,7 +3,10 @@ import './App.css'
 import useLocalStorage from './useLocalStorage'
 
 function App() {
-    const [state, { addNeighbor, findTodaysBirthdays }] = useLocalStorage()
+    const [
+        state,
+        { addNeighbor, findLastPrayed, findTodaysBirthdays }
+    ] = useLocalStorage()
     function handleSubmit(event) {
         const form = event.target
         event.preventDefault()
@@ -23,6 +26,13 @@ function App() {
                 <input id="neighbor-input" name="name" type="text" />
                 <button>Add</button>
             </form>
+            <div>
+                <ol>
+                    {findLastPrayed(2).map(id => (
+                        <li key={id}>{state[id].name}</li>
+                    ))}
+                </ol>
+            </div>
         </div>
     )
 }

@@ -27,10 +27,10 @@ export default function useLocalStorage() {
 
     function addNeighbor(
         name,
-        birthday = null,
+        birthday = new Date(),
         notes = '',
         tags = [],
-        lastPrayed = null
+        lastPrayed = new Date()
     ) {
         const id = uuid()
         const shallow = { ...state }
@@ -59,7 +59,39 @@ export default function useLocalStorage() {
         return birthdays
     }
 
-    return [state, { addNeighbor, findTodaysBirthdays, getNeighbor }]
+    function findLastPrayed(length) {
+        const ids = Object.keys(state)
+        const sorted = ids.sort((a, b) => {
+            const aTime = new Date(state[a].lastPrayed).getTime()
+            const bTime = new Date(state[b].lastPrayed).getTime()
+            if (aTime < bTime) {
+                return +1
+            } else if (aTime > bTime) {
+                return -1
+            } else {
+                return 0
+            }
+        })
+        return length ? sorted.slice(0, length) : sorted
+    }
+
+    function getPrayerRecommendations(length) {
+        return {
+            birthdays: findTodaysBirthdays(),
+            lastPrayed: findLastPrayed(length)
+        }
+    }
+
+    return [
+        state,
+        {
+            addNeighbor,
+            findLastPrayed,
+            findTodaysBirthdays,
+            getNeighbor,
+            getPrayerRecommendations
+        }
+    ]
 }
 
 function getMonthAndDate(date) {
