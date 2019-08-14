@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from '@reach/router'
 
 function NeighborsList({ neighbors, sortBy = 'name' }) {
     const sortByMap = {
@@ -19,7 +20,11 @@ function NeighborsList({ neighbors, sortBy = 'name' }) {
         <ul className="NeighborsList">
             {orderedList.map(id => {
                 const neighbor = neighbors[id]
-                return <li key={id}>{neighbor.name}</li>
+                return (
+                    <li key={id}>
+                        <Link to={`/neighbor/${id}`}>{neighbor.name}</Link>
+                    </li>
+                )
             })}
         </ul>
     )
