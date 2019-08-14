@@ -25,18 +25,18 @@ function useLocalStorageHook() {
         setLocalStorage(state)
     }, [state])
 
-    function addNeighbor(
+    function addNeighbor({
         name,
-        birthday = new Date(),
+        birthday,
         notes = '',
         tags = [],
         lastPrayed = new Date()
-    ) {
+    }) {
         const id = uuid()
         const shallow = { ...state }
         shallow[id] = {
             name,
-            birthday,
+            birthday: new Date(birthday),
             notes,
             tags,
             lastPrayed
