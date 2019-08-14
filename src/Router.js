@@ -1,18 +1,16 @@
 import React from 'react'
-import { Router as _Router } from '@reach/router'
+import { Router } from '@reach/router'
 
 const Home = () => <div>Home</div>
 const AddNeighbor = () => <div>Add</div>
 const ViewNeighbor = () => <div>Neighbor</div>
 
-function Router() {
+export default function() {
     return (
-        <_Router>
+        <Router>
             <Home path="/" />
             <AddNeighbor path="/neighbor/add" />
             <ViewNeighbor path="/neighbor/:id" />
-        </_Router>
+        </Router>
     )
 }
-
-export default Router
