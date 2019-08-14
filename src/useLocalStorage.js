@@ -48,6 +48,14 @@ function useLocalStorageHook() {
         return state[id]
     }
 
+    function deleteNeighbor(id) {
+        if (state.hasOwnProperty(id)) {
+            const shallow = { ...state }
+            delete shallow[id]
+            setState(shallow)
+        }
+    }
+
     function findTodaysBirthdays() {
         const [todaysMonth, todaysDate] = getMonthAndDate(new Date())
         const birthdays = []
@@ -91,6 +99,7 @@ function useLocalStorageHook() {
         state,
         {
             addNeighbor,
+            deleteNeighbor,
             findLastPrayed,
             findTodaysBirthdays,
             getNeighbor,
