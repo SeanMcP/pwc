@@ -1,7 +1,10 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
+import { useLocalStorage } from './useLocalStorage'
 
-function Recommendations({ birthdays, lastPrayed, neighbors }) {
+function Recommendations({ count = 5 }) {
+    const [neighbors, { getPrayerRecommendations }] = useLocalStorage()
+    const { birthdays, lastPrayed } = getPrayerRecommendations(count)
     return (
         <ol>
             {birthdays.map(id => (
