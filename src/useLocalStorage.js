@@ -19,7 +19,7 @@ function setLocalStorage(valueToStore) {
     localStorage.setItem(storageId, JSON.stringify(valueToStore))
 }
 
-export default function useLocalStorage() {
+function useLocalStorageHook() {
     const [state, setState] = React.useState(getLocalStorage)
     React.useEffect(() => {
         setLocalStorage(state)
@@ -102,4 +102,23 @@ export default function useLocalStorage() {
 function getMonthAndDate(date) {
     const parsed = new Date(date)
     return parsed ? [parsed.getMonth(), parsed.getDate()] : []
+}
+
+const LocalStorageContext = React.createContext()
+
+export function LocalStorageProvider({ children }) {
+    return (
+        <LocalStorageContext.Provider value={useLocalStorageHook()}>
+            {children}
+        </LocalStorageContext.Provider>
+    )
+}
+
+export function useLocalStorage() {
+    const context = React.useContext(LocalStorageContext)
+    if (!context)
+        throw Error(
+            'Called `useLocalStorage()` outside of LocalStorageProvider'
+        )
+    return context
 }
