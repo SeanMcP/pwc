@@ -1,14 +1,17 @@
 import React from 'react'
 import './App.css'
 import { LocalStorageProvider } from './useLocalStorage'
+import { IndividualsProvider } from 'store/useIndividuals'
 import Router from './Router'
 
 function App() {
     return (
         <div className="App">
-            <LocalStorageProvider>
-                <Router />
-            </LocalStorageProvider>
+            <IndividualsProvider>
+                <LocalStorageProvider>
+                    <Router />
+                </LocalStorageProvider>
+            </IndividualsProvider>
         </div>
     )
 }

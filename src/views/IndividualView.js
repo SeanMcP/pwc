@@ -1,18 +1,18 @@
 import React from 'react'
-import { useLocalStorage } from 'useLocalStorage'
 import { navigate } from '@reach/router'
 import ROUTES from 'constants/routes'
+import { useIndividuals } from 'store/useIndividuals'
 
 function IndividualView(props) {
-    const [, { deleteNeighbor, getNeighbor }] = useLocalStorage()
-    const neighbor = getNeighbor(props.id)
+    const [, { get, remove }] = useIndividuals()
+    const data = get(props.id)
     function handleDelete() {
-        deleteNeighbor(props.id)
+        remove(props.id)
         navigate(ROUTES.all)
     }
     return (
         <div className="IndividualView">
-            <pre>{JSON.stringify(neighbor, null, 2)}</pre>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
             <button onClick={handleDelete}>Delete</button>
         </div>
     )
