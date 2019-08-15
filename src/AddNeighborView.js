@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocalStorage } from './useLocalStorage'
 import { navigate } from '@reach/router'
+import ROUTES from './constants/routes'
 
 function AddNeighborView(props) {
     const [, { addNeighbor }] = useLocalStorage()
@@ -14,7 +15,7 @@ function AddNeighborView(props) {
         if (name) {
             addNeighbor({ name, birthday, notes })
             form.reset()
-            navigate('/neighbors')
+            navigate(ROUTES.all)
         }
     }
     return (

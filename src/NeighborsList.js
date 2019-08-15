@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from '@reach/router'
+import { buildRoute } from './constants/routes'
 
 function NeighborsList({ neighbors, sortBy = 'name' }) {
     const sortByMap = {
@@ -22,7 +23,9 @@ function NeighborsList({ neighbors, sortBy = 'name' }) {
                 const neighbor = neighbors[id]
                 return (
                     <li key={id}>
-                        <Link to={`/neighbor/${id}`}>{neighbor.name}</Link>
+                        <Link to={buildRoute.individual(id)}>
+                            {neighbor.name}
+                        </Link>
                     </li>
                 )
             })}

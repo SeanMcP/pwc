@@ -1,13 +1,14 @@
 import React from 'react'
 import { useLocalStorage } from './useLocalStorage'
 import { navigate } from '@reach/router'
+import ROUTES from './constants/routes'
 
 function NeighborView(props) {
     const [, { deleteNeighbor, getNeighbor }] = useLocalStorage()
     const neighbor = getNeighbor(props.id)
     function handleDelete() {
         deleteNeighbor(props.id)
-        navigate('/neighbors')
+        navigate(ROUTES.all)
     }
     return (
         <div className="NeighborView">
