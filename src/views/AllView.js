@@ -1,14 +1,14 @@
 import React from 'react'
-import { useLocalStorage } from 'useLocalStorage'
 import NeighborsList from 'NeighborsList'
 import { Link } from '@reach/router'
 import ROUTES from 'constants/routes'
+import { useIndividuals } from 'store/useIndividuals'
 
-function AllView(props) {
-    const [neighbors] = useLocalStorage()
+function AllView() {
+    const [individuals] = useIndividuals()
     return (
         <div className="AllView">
-            <NeighborsList neighbors={neighbors} />
+            <NeighborsList neighbors={individuals} />
             <Link to={ROUTES.add}>Add</Link>
         </div>
     )

@@ -1,11 +1,11 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
-import { useLocalStorage } from 'useLocalStorage'
 import { Link } from '@reach/router'
 import { buildRoute } from 'constants/routes'
+import { useIndividuals } from 'store/useIndividuals'
 
 function Recommendations({ count = 5 }) {
-    const [neighbors, { getPrayerRecommendations }] = useLocalStorage()
+    const [individuals, { getPrayerRecommendations }] = useIndividuals()
     const { birthdays, lastPrayed } = getPrayerRecommendations(count)
     return (
         <ol>
@@ -13,7 +13,7 @@ function Recommendations({ count = 5 }) {
                 <li key={id}>
                     <Emoji symbol="🎂" />
                     <Link to={buildRoute.individual(id)}>
-                        {neighbors[id].name}
+                        {individuals[id].name}
                     </Link>
                 </li>
             ))}
@@ -21,7 +21,7 @@ function Recommendations({ count = 5 }) {
                 <li key={id}>
                     <Emoji symbol="⏳" />
                     <Link to={buildRoute.individual(id)}>
-                        {neighbors[id].name}
+                        {individuals[id].name}
                     </Link>
                 </li>
             ))}

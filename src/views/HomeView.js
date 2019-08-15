@@ -3,7 +3,7 @@ import Recommendations from 'Recommendations'
 import { Link } from '@reach/router'
 import ROUTES from 'constants/routes'
 
-function HomeView(props) {
+function HomeView() {
     return (
         <div className="HomeView">
             <Recommendations />

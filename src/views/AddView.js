@@ -1,10 +1,10 @@
 import React from 'react'
-import { useLocalStorage } from 'useLocalStorage'
 import { navigate } from '@reach/router'
 import ROUTES from 'constants/routes'
+import { useIndividuals } from 'store/useIndividuals'
 
-function AddView(props) {
-    const [, { addNeighbor }] = useLocalStorage()
+function AddView() {
+    const [, { add }] = useIndividuals()
     function handleSubmit(event) {
         event.preventDefault()
         const form = event.target
@@ -13,7 +13,7 @@ function AddView(props) {
             birthday = formData.get('birthday'),
             notes = formData.get('notes')
         if (name) {
-            addNeighbor({ name, birthday, notes })
+            add({ name, birthday, notes })
             form.reset()
             navigate(ROUTES.all)
         }
