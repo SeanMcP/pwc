@@ -1,8 +1,8 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
-import { useLocalStorage } from './useLocalStorage'
+import { useLocalStorage } from 'useLocalStorage'
 import { Link } from '@reach/router'
-import { buildRoute } from './constants/routes'
+import { buildRoute } from 'constants/routes'
 
 function Recommendations({ count = 5 }) {
     const [neighbors, { getPrayerRecommendations }] = useLocalStorage()

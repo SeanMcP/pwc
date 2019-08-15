@@ -1,9 +1,9 @@
 import React from 'react'
-import { useLocalStorage } from './useLocalStorage'
+import { useLocalStorage } from 'useLocalStorage'
 import { navigate } from '@reach/router'
-import ROUTES from './constants/routes'
+import ROUTES from 'constants/routes'
 
-function AddNeighborView(props) {
+function AddView(props) {
     const [, { addNeighbor }] = useLocalStorage()
     function handleSubmit(event) {
         event.preventDefault()
@@ -19,7 +19,7 @@ function AddNeighborView(props) {
         }
     }
     return (
-        <div className="AddNeighborView">
+        <div className="AddView">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="neighbor-input">Neighbor</label>
                 <input id="neighbor-input" name="name" type="text" />
@@ -33,4 +33,4 @@ function AddNeighborView(props) {
     )
 }
 
-export default AddNeighborView
+export default AddView

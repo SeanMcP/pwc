@@ -1,7 +1,7 @@
 import React from 'react'
-import Recommendations from './Recommendations'
+import Recommendations from 'Recommendations'
 import { Link } from '@reach/router'
-import ROUTES from './constants/routes'
+import ROUTES from 'constants/routes'
 
 function HomeView(props) {
     return (

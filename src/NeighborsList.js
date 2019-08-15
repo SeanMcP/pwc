@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import { buildRoute } from './constants/routes'
+import { buildRoute } from 'constants/routes'
 
 function NeighborsList({ neighbors, sortBy = 'name' }) {
     const sortByMap = {
