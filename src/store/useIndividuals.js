@@ -40,6 +40,12 @@ function useIndividualsHook() {
         return state[id]
     }
 
+    function prayFor(id) {
+        const shallow = { ...state }
+        shallow[id].lastPrayed = new Date()
+        setState(shallow)
+    }
+
     function remove(id) {
         if (state.hasOwnProperty(id)) {
             const shallow = { ...state }
@@ -94,6 +100,7 @@ function useIndividualsHook() {
             edit,
             get,
             getPrayerRecommendations,
+            prayFor,
             remove
         }
     ]
