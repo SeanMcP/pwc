@@ -1,11 +1,14 @@
 import React from 'react'
 import { navigate } from '@reach/router'
+import useToggle from 'react-use-toggle'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import Emoji from 'a11y-react-emoji'
 
 function IndividualView(props) {
     const [, { get, remove }] = useIndividuals()
+    const [editing, toggleEditing] = useToggle(false)
+    const disabled = !editing
     const data = get(props.id)
     function handleDelete() {
         remove(props.id)
@@ -21,21 +24,45 @@ function IndividualView(props) {
     }
     return (
         <div className="IndividualView">
-            <header>
-                <h1>{data.name}</h1>
-                <section>
-                    <div>
-                        <Emoji symbol="🙏" />
-                        <span>{formatLastPrayed()}</span>
-                    </div>
-                    <div>
-                        <Emoji symbol="🎂" />
-                        <span>{formatBirthday()}</span>
-                    </div>
-                </section>
-            </header>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-            <button onClick={handleDelete}>Delete</button>
+            <form>
+                <header>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={editing}
+                            onChange={toggleEditing}
+                        />{' '}
+                        Edit
+                    </label>
+                    <h1>
+                        {editing && <label htmlFor="name">Name</label>}
+                        <input
+                            id="name"
+                            name="name"
+                            defaultValue={data.name}
+                            disabled={disabled}
+                        />
+                    </h1>
+                    <section>
+                        <div>
+                            <Emoji symbol="🙏" />
+                            <span>{formatLastPrayed()}</span>
+                        </div>
+                        <div>
+                            <Emoji symbol="🎂" />
+                            <span>{formatBirthday()}</span>
+                        </div>
+                    </section>
+                </header>
+                <label htmlFor="notes">Notes</label>
+                <textarea
+                    id="notes"
+                    defaultValue={data.notes}
+                    disabled={disabled}
+                />
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+                <button onClick={handleDelete}>Delete</button>
+            </form>
         </div>
     )
 }
