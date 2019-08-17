@@ -71,9 +71,9 @@ function useIndividualsHook() {
             const aTime = new Date(state[a].lastPrayed).getTime()
             const bTime = new Date(state[b].lastPrayed).getTime()
             if (aTime < bTime) {
-                return +1
-            } else if (aTime > bTime) {
                 return -1
+            } else if (aTime > bTime) {
+                return +1
             } else {
                 return 0
             }
