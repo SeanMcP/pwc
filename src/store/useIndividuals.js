@@ -54,18 +54,18 @@ function useIndividualsHook() {
         }
     }
 
-    function findTodaysBirthdays() {
+    function getBirthdays() {
         const [todaysMonth, todaysDate] = getMonthAndDate(new Date())
         const birthdays = []
         for (const id in state) {
-            const neighbor = state[id]
-            const [month, date] = getMonthAndDate(neighbor.birthday)
+            const { birthday } = state[id]
+            const [month, date] = getMonthAndDate(birthday)
             if (month === todaysMonth && date === todaysDate) birthdays.push(id)
         }
         return birthdays
     }
 
-    function findLastPrayed(length) {
+    function getLastPrayed(length) {
         const ids = Object.keys(state)
         const sorted = ids.sort((a, b) => {
             const aTime = new Date(state[a].lastPrayed).getTime()
@@ -81,29 +81,43 @@ function useIndividualsHook() {
         return length ? sorted.slice(0, length) : sorted
     }
 
-    function getPrayerRecommendations(length) {
-        const birthdays = findTodaysBirthdays()
+    function getRecommendations(length) {
+        const birthdays = getBirthdays()
         return {
             birthdays,
             // I don't love looping three times here, but I don't know
             // of a better way
-            lastPrayed: findLastPrayed(length - birthdays.length).filter(
+            lastPrayed: getLastPrayed(length).filter(
                 id => !birthdays.includes(id)
             )
         }
     }
 
-    return [
+    function ___DEV___setBirthday(id) {
+        const shallow = { ...state }
+        shallow[id].birthday = new Date()
+        setState(shallow)
+    }
+
+    const output = [
         state,
         {
             add,
             edit,
             get,
-            getPrayerRecommendations,
+            getRecommendations,
             recordPrayer,
             remove
         }
     ]
+
+    if (process.env.NODE_ENV === 'development') {
+        output.push({
+            ___DEV___setBirthday
+        })
+    }
+
+    return output
 }
 
 const IndividualsContext = React.createContext()
