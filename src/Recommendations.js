@@ -1,31 +1,15 @@
 import React from 'react'
-import Emoji from 'a11y-react-emoji'
-import { Link } from '@reach/router'
-import { buildRoute } from 'constants/routes'
+import PrayForList from 'PrayForList'
 import { useIndividuals } from 'store/useIndividuals'
 
 function Recommendations({ count = 5 }) {
-    const [individuals, { getPrayerRecommendations }] = useIndividuals()
-    const { birthdays, lastPrayed } = getPrayerRecommendations(count)
+    const [, { getRecommendations }] = useIndividuals()
+    const { birthdays, lastPrayed } = getRecommendations(count)
     return (
-        <ol>
-            {birthdays.map(id => (
-                <li key={id}>
-                    <Emoji symbol="🎂" />
-                    <Link to={buildRoute.individual(id)}>
-                        {individuals[id].name}
-                    </Link>
-                </li>
-            ))}
-            {lastPrayed.map(id => (
-                <li key={id}>
-                    <Emoji symbol="⏳" />
-                    <Link to={buildRoute.individual(id)}>
-                        {individuals[id].name}
-                    </Link>
-                </li>
-            ))}
-        </ol>
+        <div className="Recommendations">
+            <PrayForList ids={birthdays} type="birthdays" symbol="🎂" />
+            <PrayForList ids={lastPrayed} type="last-prayed" symbol="⏳" />
+        </div>
     )
 }
 
