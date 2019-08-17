@@ -61,8 +61,8 @@ function IndividualView(props) {
                     disabled={disabled}
                 />
                 <pre>{JSON.stringify(data, null, 2)}</pre>
-                <button onClick={handleDelete}>Delete</button>
             </form>
+            {editing && <button onClick={handleDelete}>Delete</button>}
             {disabled && (
                 <button onClick={() => recordPrayer(props.id)}>
                     Record prayer
