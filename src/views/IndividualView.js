@@ -16,11 +16,18 @@ function IndividualView(props) {
     }
     function formatBirthday() {
         const date = new Date(data.birthday)
-        return date.getMonth() + '/' + date.getDate()
+        return date.getMonth() + 1 + '/' + date.getDate()
     }
     function formatLastPrayed() {
         const date = new Date(data.lastPrayed)
-        return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear()
+        return (
+            date.getMonth() +
+            1 +
+            '/' +
+            date.getDate() +
+            '/' +
+            date.getFullYear()
+        )
     }
     return (
         <div className="IndividualView">
