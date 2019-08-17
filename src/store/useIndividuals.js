@@ -27,6 +27,15 @@ function useIndividualsHook() {
         setState(shallow)
     }
 
+    function edit(id, updates) {
+        const shallow = { ...state }
+        shallow[id] = {
+            ...shallow[id],
+            ...updates
+        }
+        setState(shallow)
+    }
+
     function get(id) {
         return state[id]
     }
@@ -82,6 +91,7 @@ function useIndividualsHook() {
         state,
         {
             add,
+            edit,
             get,
             getPrayerRecommendations,
             remove
