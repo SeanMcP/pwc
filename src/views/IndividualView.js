@@ -6,7 +6,7 @@ import { useIndividuals } from 'store/useIndividuals'
 import Emoji from 'a11y-react-emoji'
 
 function IndividualView(props) {
-    const [, { get, remove }] = useIndividuals()
+    const [, { get, recordPrayer, remove }] = useIndividuals()
     const [editing, toggleEditing] = useToggle(false)
     const disabled = !editing
     const data = get(props.id)
@@ -63,6 +63,11 @@ function IndividualView(props) {
                 <pre>{JSON.stringify(data, null, 2)}</pre>
                 <button onClick={handleDelete}>Delete</button>
             </form>
+            {disabled && (
+                <button onClick={() => recordPrayer(props.id)}>
+                    Record prayer
+                </button>
+            )}
         </div>
     )
 }

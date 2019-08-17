@@ -40,7 +40,7 @@ function useIndividualsHook() {
         return state[id]
     }
 
-    function prayFor(id) {
+    function recordPrayer(id) {
         const shallow = { ...state }
         shallow[id].lastPrayed = new Date()
         setState(shallow)
@@ -100,7 +100,7 @@ function useIndividualsHook() {
             edit,
             get,
             getPrayerRecommendations,
-            prayFor,
+            recordPrayer,
             remove
         }
     ]
