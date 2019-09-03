@@ -1,16 +1,19 @@
 import React from 'react'
-import NeighborsList from 'NeighborsList'
-import { Link } from '@reach/router'
+import IndividualsList from 'IndividualsList'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
+import ViewContainer from 'ViewContainer'
+import AppLink from 'AppLink'
 
 function AllView() {
     const [individuals] = useIndividuals()
     return (
-        <div className="AllView">
-            <NeighborsList neighbors={individuals} />
-            <Link to={ROUTES.add}>Add</Link>
-        </div>
+        <ViewContainer title="All">
+            <IndividualsList individuals={individuals} />
+            <AppLink to={ROUTES.add} iconBefore="add">
+                Add
+            </AppLink>
+        </ViewContainer>
     )
 }
 

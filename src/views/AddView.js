@@ -1,8 +1,16 @@
 import React from 'react'
 import { navigate } from '@reach/router'
-import { Button, Label, Pane, Textarea, TextInputField } from 'evergreen-ui'
+import {
+    Button,
+    Label,
+    Pane,
+    Textarea,
+    TextInputField,
+    majorScale
+} from 'evergreen-ui'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
+import ViewContainer from 'ViewContainer'
 
 function AddView() {
     const [, { add }] = useIndividuals()
@@ -20,25 +28,25 @@ function AddView() {
         }
     }
     return (
-        <div className="AddView">
+        <ViewContainer title="Add">
             <form onSubmit={handleSubmit}>
                 <TextInputField label="Name" name="name" required />
-                {/* <label htmlFor="neighbor-input">Neighbor</label>
-                <input id="neighbor-input" name="name" type="text" /> */}
                 <TextInputField label="Birthday" name="birthday" type="date" />
-                {/* <label htmlFor="neighbor-birthday">Birthday</label>
-                <input id="neighbor-birthday" name="birthday" type="date" /> */}
                 <Pane>
                     <Label htmlFor="notes" marginBottom={4} display="block">
                         Notes
                     </Label>
                     <Textarea id="notes" name="notes" />
                 </Pane>
-                {/* <label htmlFor="neighbor-notes">Notes</label>
-                <textarea id="neighbor-notes" name="notes" /> */}
-                <Button marginTop={16}>Add</Button>
+                <Button
+                    appearance="primary"
+                    iconBefore="add"
+                    marginTop={majorScale(3)}
+                >
+                    Add
+                </Button>
             </form>
-        </div>
+        </ViewContainer>
     )
 }
 
