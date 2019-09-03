@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 import ROUTES from 'constants/routes'
 import ViewContainer from 'ViewContainer'
 import { SearchInput } from 'evergreen-ui'
+import AppLink from 'AppLink'
 
 function HomeView() {
     return (
@@ -12,7 +13,8 @@ function HomeView() {
                 <SearchInput placeholder="Search names or tags" width="100%" />
             </Link>
             <Recommendations />
-            <Link to={ROUTES.all}>View all</Link>
+            <AppLink to={ROUTES.all}>View All</AppLink>
+            {/* <Link to={ROUTES.all}>View all</Link> */}
         </ViewContainer>
     )
 }
