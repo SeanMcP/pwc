@@ -14,7 +14,6 @@ function HomeView() {
             </Link>
             <Recommendations />
             <AppLink to={ROUTES.all}>View All</AppLink>
-            {/* <Link to={ROUTES.all}>View all</Link> */}
         </ViewContainer>
     )
 }

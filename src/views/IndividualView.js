@@ -1,50 +1,58 @@
 import React from 'react'
-import { Link } from '@reach/router'
+import Emoji from 'a11y-react-emoji'
+import { Text, Button, minorScale, Pane } from 'evergreen-ui'
+import day from 'dayjs'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
-import Emoji from 'a11y-react-emoji'
+import ViewContainer from 'ViewContainer'
+import AppLink from 'AppLink'
+import { H1, H2 } from 'Headings'
 
 function IndividualView(props) {
     const [, { get, recordPrayer }] = useIndividuals()
     const data = get(props.id)
     function formatBirthday() {
-        const date = new Date(data.birthday)
-        return date.getMonth() + 1 + '/' + date.getDate()
+        return day(data.birthday).format('M/D')
     }
     function formatLastPrayed() {
-        const date = new Date(data.lastPrayed)
-        return (
-            date.getMonth() +
-            1 +
-            '/' +
-            date.getDate() +
-            '/' +
-            date.getFullYear()
-        )
+        return day(data.lastPrayed).format('M/D/YYYY')
     }
     return (
-        <div className="IndividualView">
+        <ViewContainer title={data.name}>
             <header>
-                <Link to={buildRoute.edit(props.id)}>Edit</Link>
-                <h1>{data.name}</h1>
+                <AppLink iconBefore="edit" to={buildRoute.edit(props.id)}>
+                    Edit
+                </AppLink>
+                <H1>{data.name}</H1>
                 <section>
-                    <div>
+                    <Pane>
                         <Emoji symbol="🙏" />
-                        <span>{formatLastPrayed()}</span>
-                    </div>
-                    <div>
+                        <Text is="span" marginLeft={minorScale(1)}>
+                            {formatLastPrayed()}
+                        </Text>
+                    </Pane>
+                    <Pane>
                         <Emoji symbol="🎂" />
-                        <span>{formatBirthday()}</span>
-                    </div>
+                        <Text is="span" marginLeft={minorScale(1)}>
+                            {formatBirthday()}
+                        </Text>
+                    </Pane>
                 </section>
             </header>
-            <h2>Notes</h2>
-            <p>{data.notes}</p>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-            <button onClick={() => recordPrayer(props.id)}>
+            <H2>Notes</H2>
+            <Text
+                is="p"
+                dangerouslySetInnerHTML={{
+                    __html: data.notes.replace(/\n/g, '<br/>')
+                }}
+            />
+            {process.env.NODE_ENV === 'development' && (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+            )}
+            <Button onClick={() => recordPrayer(props.id)}>
                 Record prayer
-            </button>
-        </div>
+            </Button>
+        </ViewContainer>
     )
 }
 

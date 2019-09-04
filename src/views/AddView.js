@@ -1,16 +1,11 @@
 import React from 'react'
 import { navigate } from '@reach/router'
-import {
-    Button,
-    Label,
-    Pane,
-    Textarea,
-    TextInputField,
-    majorScale
-} from 'evergreen-ui'
+import { Button, TextInputField, majorScale } from 'evergreen-ui'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
+import { H1 } from 'Headings'
+import { TextareaField } from 'Forms'
 
 function AddView() {
     const [, { add }] = useIndividuals()
@@ -29,15 +24,11 @@ function AddView() {
     }
     return (
         <ViewContainer title="Add">
+            <H1 marginBottom={majorScale(2)}>Add</H1>
             <form onSubmit={handleSubmit}>
                 <TextInputField label="Name" name="name" required />
                 <TextInputField label="Birthday" name="birthday" type="date" />
-                <Pane>
-                    <Label htmlFor="notes" marginBottom={4} display="block">
-                        Notes
-                    </Label>
-                    <Textarea id="notes" name="notes" />
-                </Pane>
+                <TextareaField label="Notes" name="notes" />
                 <Button
                     appearance="primary"
                     iconBefore="add"
