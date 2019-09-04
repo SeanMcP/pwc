@@ -1,8 +1,14 @@
 import React from 'react'
 import day from 'dayjs'
 import { useIndividuals } from 'store/useIndividuals'
-import { Link, navigate } from '@reach/router'
+import { navigate } from '@reach/router'
 import ROUTES, { buildRoute } from 'constants/routes'
+import ViewContainer from 'ViewContainer'
+import { Button } from 'evergreen-ui'
+import AppLink from 'AppLink'
+import { H1 } from 'Headings'
+import { TextInputField } from 'evergreen-ui/commonjs/text-input'
+import { TextareaField } from 'Forms'
 
 function EditView(props) {
     const [, { edit, get, remove }, DEV] = useIndividuals()
@@ -33,11 +39,15 @@ function EditView(props) {
             })
         }
     }
-    console.log('validationErrors', validationErrors)
     return (
-        <div className="EditView">
-            <Link to={buildRoute.individual(props.id)}>Back</Link>
-            <h1>Edit</h1>
+        <ViewContainer title={`Edit ${data.name}`}>
+            <AppLink
+                iconBefore="arrow-left"
+                to={buildRoute.individual(props.id)}
+            >
+                Back
+            </AppLink>
+            <H1>Edit</H1>
             <form
                 onSubmit={handleSave}
                 className={validationErrors.length && '--error'}
@@ -48,29 +58,41 @@ function EditView(props) {
                             {error}
                         </p>
                     ))}
-                <label htmlFor="name">Name</label>
-                <input id="name" name="name" defaultValue={data.name} />
-                <label htmlFor="birthday">Birthday</label>
-                <input
-                    id="birthday"
+                <TextInputField
+                    label="Name"
+                    name="name"
+                    defaultValue={data.name}
+                    required
+                />
+                <TextInputField
+                    label="Birthday"
                     name="birthday"
                     type="date"
-                    defaultValue={day(data.birthday).format('YYYY-MM-DD')}
+                    defaultValue={
+                        day(data.birthday).format('YYYY-MM-DD') || null
+                    }
                 />
-                <label htmlFor="notes">Notes</label>
-                <textarea id="notes" name="notes" defaultValue={data.notes} />
-                <pre>{JSON.stringify(data, null, 2)}</pre>
-                <button>Save changes</button>
-                <button type="button" onClick={handleDelete}>
+                <TextareaField
+                    label="Notes"
+                    name="notes"
+                    defaultValue={data.notes}
+                />
+                {process.env.NODE_ENV === 'development' && (
+                    <pre>{JSON.stringify(data, null, 2)}</pre>
+                )}
+                <Button appearance="primary" iconBefore="save">
+                    Save changes
+                </Button>
+                <Button intent="danger" type="button" onClick={handleDelete}>
                     Remove
-                </button>
+                </Button>
             </form>
             {process.env.NODE_ENV === 'development' && (
-                <button onClick={() => DEV.___DEV___setBirthday(props.id)}>
+                <Button onClick={() => DEV.___DEV___setBirthday(props.id)}>
                     Set birthday to today
-                </button>
+                </Button>
             )}
-        </div>
+        </ViewContainer>
     )
 }
 
