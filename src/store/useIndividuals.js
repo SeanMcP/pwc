@@ -1,9 +1,19 @@
 import React from 'react'
 import uuid from 'uuid/v4'
+import dayjs from 'dayjs'
 import useLocalStorage from 'store/useLocalStorage'
-import { getMonthAndDate } from 'utils'
 
 const initialState = {}
+
+function wasToday(dateString) {
+    return dayjs().isSame(dayjs(dateString), 'day')
+}
+
+function isYourBirthday(birthDateString) {
+    const today = dayjs()
+    const birthday = dayjs(birthDateString)
+    return today.isSame(birthday, 'month') && today.isSame(birthday, 'day')
+}
 
 function useIndividualsHook() {
     const [state, setState] = useLocalStorage('individuals', initialState)
@@ -63,12 +73,11 @@ function useIndividualsHook() {
     }
 
     function getBirthdays() {
-        const [todaysMonth, todaysDate] = getMonthAndDate(new Date())
         const birthdays = []
         for (const id in state) {
-            const { birthday } = state[id]
-            const [month, date] = getMonthAndDate(birthday)
-            if (month === todaysMonth && date === todaysDate) birthdays.push(id)
+            const { birthday, lastPrayed } = state[id]
+            if (isYourBirthday(birthday) && !wasToday(lastPrayed))
+                birthdays.push(id)
         }
         return birthdays
     }
@@ -76,13 +85,17 @@ function useIndividualsHook() {
     function getFavorites() {
         const favorites = []
         for (const id in state) {
-            if (state[id].favorite) favorites.push(id)
+            const { lastPrayed, favorite } = state[id]
+            // Favorited and today's date is not the same as the last prayed date
+            if (favorite && !wasToday(lastPrayed)) favorites.push(id)
         }
         return favorites
     }
 
     function getLastPrayed(length) {
-        const ids = Object.keys(state)
+        const ids = Object.keys(state).filter(
+            id => !wasToday(state[id].lastPrayed)
+        )
         const sorted = ids.sort((a, b) => {
             const aTime = new Date(state[a].lastPrayed).getTime()
             const bTime = new Date(state[b].lastPrayed).getTime()
