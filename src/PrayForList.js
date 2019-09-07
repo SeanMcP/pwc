@@ -10,6 +10,7 @@ import {
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import { H2 } from 'Headings'
+import AppCard from 'AppCard'
 import AppLink from 'AppLink'
 
 function PrayForList({ icon, ids, title }) {
@@ -38,13 +39,13 @@ function PrayForList({ icon, ids, title }) {
     })
 
     return (
-        <div className="PrayForList">
+        <AppCard marginBottom={majorScale(2)}>
             <Pane display="flex" alignItems="center">
                 <Icon icon={icon} marginRight={majorScale(1)} />
                 <H2>{title}</H2>
             </Pane>
             <OrderedList>{list}</OrderedList>
-        </div>
+        </AppCard>
     )
 }
 
