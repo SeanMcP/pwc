@@ -1,30 +1,49 @@
 import React from 'react'
-import Emoji from 'a11y-react-emoji'
-import { Link } from '@reach/router'
-import { Button } from 'evergreen-ui'
+import {
+    Button,
+    OrderedList,
+    ListItem,
+    Pane,
+    Icon,
+    majorScale
+} from 'evergreen-ui'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
+import { H2 } from 'Headings'
+import AppLink from 'AppLink'
 
-function PrayForList({ ids, type, symbol }) {
+function PrayForList({ icon, ids, title }) {
     const [state, { recordPrayer }] = useIndividuals()
+
+    if (ids.length === 0) return null
+
+    const type = title.toLowerCase().replace(/ /g, '-')
+
     const list = ids.map(id => {
         const individual = state[id]
         return (
-            <li key={`${type}-${id}`}>
-                <Emoji symbol={symbol} />
-                <Link to={buildRoute.individual(id)}>{individual.name}</Link>
-                <Button onClick={() => recordPrayer(id)}>
-                    <Emoji symbol="🙏" label="Record prayer" />
+            <ListItem key={`${type}-${id}`}>
+                <AppLink to={buildRoute.individual(id)}>
+                    {individual.name}
+                </AppLink>
+                <Button
+                    onClick={() => recordPrayer(id)}
+                    aria-label="Record prayer"
+                >
+                    <Icon icon="tick" />
                 </Button>
                 {/* Include dismiss icon */}
-            </li>
+            </ListItem>
         )
     })
-    if (list.length === 0) return null
+
     return (
         <div className="PrayForList">
-            <h3>{type}</h3>
-            <ol>{list}</ol>
+            <Pane display="flex" alignItems="center">
+                <Icon icon={icon} marginRight={majorScale(1)} />
+                <H2>{title}</H2>
+            </Pane>
+            <OrderedList>{list}</OrderedList>
         </div>
     )
 }
