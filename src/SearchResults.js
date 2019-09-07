@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from '@reach/router'
+import { Text, Pane, UnorderedList, ListItem } from 'evergreen-ui'
 import { buildRoute } from 'constants/routes'
+import AppLink from 'AppLink'
 
 function SearchResults({ data, query }) {
     let output
@@ -10,29 +11,28 @@ function SearchResults({ data, query }) {
             const item = data[id]
             // This vvvvvv is a costly procedure. Consider revising.
             const tagMatch = item.tags.some(tag => tag.includes(query))
-            if (item.name.includes(query) || tagMatch) {
+            if (
+                item.name.toLowerCase().includes(query.toLowerCase()) ||
+                tagMatch
+            ) {
                 results.push(
-                    <li key={id} className="SearchResults__item">
-                        <Link to={buildRoute.individual(id)}>{item.name}</Link>
-                    </li>
+                    <ListItem key={id} className="SearchResults__item">
+                        <AppLink to={buildRoute.individual(id)}>
+                            {item.name}
+                        </AppLink>
+                    </ListItem>
                 )
             }
         }
         if (results.length === 0) {
-            output = (
-                <p className="SearchResults__none-found">
-                    No results found for "{query}"
-                </p>
-            )
+            output = <Text>No results found for "{query}"</Text>
         } else {
-            output = <ul className="SearchResults__list">{results}</ul>
+            output = <UnorderedList>{results}</UnorderedList>
         }
     } else {
-        output = (
-            <p className="SearchResults__help-text">Search for a contact</p>
-        )
+        output = <Text>Search for a contact</Text>
     }
-    return <div className="SearchResults">{output}</div>
+    return <Pane>{output}</Pane>
 }
 
 export default SearchResults
