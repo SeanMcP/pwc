@@ -98,8 +98,9 @@ function useIndividualsHook() {
     }
 
     function getRecommendations(length) {
+        const birthdays = getBirthdays()
         return {
-            birthdays: getBirthdays(),
+            birthdays,
             favorites: getFavorites(),
             // I don't love looping three times here, but I don't know
             // of a better way
