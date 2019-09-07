@@ -73,6 +73,14 @@ function useIndividualsHook() {
         return birthdays
     }
 
+    function getFavorites() {
+        const favorites = []
+        for (const id in state) {
+            if (state[id].favorite) favorites.push(id)
+        }
+        return favorites
+    }
+
     function getLastPrayed(length) {
         const ids = Object.keys(state)
         const sorted = ids.sort((a, b) => {
@@ -90,9 +98,9 @@ function useIndividualsHook() {
     }
 
     function getRecommendations(length) {
-        const birthdays = getBirthdays()
         return {
-            birthdays,
+            birthdays: getBirthdays(),
+            favorites: getFavorites(),
             // I don't love looping three times here, but I don't know
             // of a better way
             lastPrayed: getLastPrayed(length).filter(
