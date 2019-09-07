@@ -11,6 +11,7 @@ function useIndividualsHook() {
     function add({
         name,
         birthday,
+        favorite = false,
         notes = '',
         tags = [],
         lastPrayed = new Date()
@@ -20,6 +21,7 @@ function useIndividualsHook() {
         shallow[id] = {
             name,
             birthday: new Date(birthday),
+            favorite,
             notes,
             tags,
             lastPrayed
@@ -38,6 +40,12 @@ function useIndividualsHook() {
 
     function get(id) {
         return state[id]
+    }
+
+    function toggleFavorite(id) {
+        const shallow = { ...state }
+        shallow[id].favorite = !shallow[id].favorite
+        setState(shallow)
     }
 
     function recordPrayer(id) {
@@ -107,7 +115,8 @@ function useIndividualsHook() {
             get,
             getRecommendations,
             recordPrayer,
-            remove
+            remove,
+            toggleFavorite
         }
     ]
 
