@@ -1,6 +1,6 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
-import { Text, Button, minorScale, Pane } from 'evergreen-ui'
+import { Text, Button, minorScale, Pane, Icon } from 'evergreen-ui'
 import day from 'dayjs'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
@@ -9,7 +9,7 @@ import AppLink from 'AppLink'
 import { H1, H2 } from 'Headings'
 
 function IndividualView(props) {
-    const [, { get, recordPrayer }] = useIndividuals()
+    const [, { get, recordPrayer, toggleFavorite }] = useIndividuals()
     const data = get(props.id)
     function formatBirthday() {
         return day(data.birthday).format('M/D')
@@ -37,6 +37,13 @@ function IndividualView(props) {
                             {formatBirthday()}
                         </Text>
                     </Pane>
+                    <Button
+                        onClick={() => toggleFavorite(props.id)}
+                        aria-label="Toggle favorite"
+                        aria-pressed={Boolean(data.favorite)}
+                    >
+                        <Icon icon={data.favorite ? 'star' : 'star-empty'} />
+                    </Button>
                 </section>
             </header>
             <H2>Notes</H2>

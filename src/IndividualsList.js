@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import { Card, majorScale, Pane } from 'evergreen-ui'
+import { Card, Icon, majorScale, Pane, minorScale } from 'evergreen-ui'
 import { buildRoute } from 'constants/routes'
 
 function IndividualsList({ individuals, sortBy = 'name' }) {
@@ -32,6 +32,13 @@ function IndividualsList({ individuals, sortBy = 'name' }) {
                                     marginBottom={majorScale(1)}
                                 >
                                     {individual.name}
+                                    {individual.favorite && (
+                                        <Icon
+                                            icon="star"
+                                            marginLeft={minorScale(1)}
+                                            aria-label="Favorited"
+                                        />
+                                    )}
                                 </Card>
                             </Link>
                         </li>

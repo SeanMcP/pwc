@@ -11,6 +11,7 @@ function useIndividualsHook() {
     function add({
         name,
         birthday,
+        favorite = false,
         notes = '',
         tags = [],
         lastPrayed = new Date()
@@ -20,6 +21,7 @@ function useIndividualsHook() {
         shallow[id] = {
             name,
             birthday: new Date(birthday),
+            favorite,
             notes,
             tags,
             lastPrayed
@@ -38,6 +40,12 @@ function useIndividualsHook() {
 
     function get(id) {
         return state[id]
+    }
+
+    function toggleFavorite(id) {
+        const shallow = { ...state }
+        shallow[id].favorite = !shallow[id].favorite
+        setState(shallow)
     }
 
     function recordPrayer(id) {
@@ -65,6 +73,14 @@ function useIndividualsHook() {
         return birthdays
     }
 
+    function getFavorites() {
+        const favorites = []
+        for (const id in state) {
+            if (state[id].favorite) favorites.push(id)
+        }
+        return favorites
+    }
+
     function getLastPrayed(length) {
         const ids = Object.keys(state)
         const sorted = ids.sort((a, b) => {
@@ -82,14 +98,16 @@ function useIndividualsHook() {
     }
 
     function getRecommendations(length) {
+        // I don't love all this looping. Find a better way.
         const birthdays = getBirthdays()
+        const favorites = getFavorites().filter(id => !birthdays.includes(id))
+        const lastPrayed = getLastPrayed(length).filter(
+            id => !birthdays.includes(id) && !favorites.includes(id)
+        )
         return {
             birthdays,
-            // I don't love looping three times here, but I don't know
-            // of a better way
-            lastPrayed: getLastPrayed(length).filter(
-                id => !birthdays.includes(id)
-            )
+            favorites,
+            lastPrayed
         }
     }
 
@@ -107,7 +125,8 @@ function useIndividualsHook() {
             get,
             getRecommendations,
             recordPrayer,
-            remove
+            remove,
+            toggleFavorite
         }
     ]
 
