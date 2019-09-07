@@ -98,15 +98,16 @@ function useIndividualsHook() {
     }
 
     function getRecommendations(length) {
+        // I don't love all this looping. Find a better way.
         const birthdays = getBirthdays()
+        const favorites = getFavorites().filter(id => !birthdays.includes(id))
+        const lastPrayed = getLastPrayed(length).filter(
+            id => !birthdays.includes(id) && !favorites.includes(id)
+        )
         return {
             birthdays,
-            favorites: getFavorites(),
-            // I don't love looping three times here, but I don't know
-            // of a better way
-            lastPrayed: getLastPrayed(length).filter(
-                id => !birthdays.includes(id)
-            )
+            favorites,
+            lastPrayed
         }
     }
 
