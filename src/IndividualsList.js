@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import { Card, Icon, majorScale, Pane, minorScale } from 'evergreen-ui'
+import { Icon, majorScale, Pane, minorScale } from 'evergreen-ui'
 import { buildRoute } from 'constants/routes'
+import AppCard from 'AppCard'
 
 function IndividualsList({ individuals, sortBy = 'name' }) {
     const sortByMap = {
@@ -26,11 +27,7 @@ function IndividualsList({ individuals, sortBy = 'name' }) {
                     return (
                         <li key={id}>
                             <Link to={buildRoute.individual(id)}>
-                                <Card
-                                    border="default"
-                                    padding={majorScale(1)}
-                                    marginBottom={majorScale(1)}
-                                >
+                                <AppCard marginBottom={majorScale(2)}>
                                     {individual.name}
                                     {individual.favorite && (
                                         <Icon
@@ -39,7 +36,7 @@ function IndividualsList({ individuals, sortBy = 'name' }) {
                                             aria-label="Favorited"
                                         />
                                     )}
-                                </Card>
+                                </AppCard>
                             </Link>
                         </li>
                     )
