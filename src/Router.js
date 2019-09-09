@@ -7,6 +7,7 @@ import HomeView from 'views/HomeView'
 import IndividualView from 'views/IndividualView'
 import ROUTES from 'constants/routes'
 import SearchView from 'views/SearchView'
+import SettingsView from 'views/SettingsView'
 
 export default function() {
     return (
@@ -17,6 +18,7 @@ export default function() {
             <EditView path={ROUTES.edit} />
             <AllView path={ROUTES.all} />
             <SearchView path={ROUTES.search} />
+            <SettingsView path={ROUTES.settings} />
         </Router>
     )
 }

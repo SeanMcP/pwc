@@ -4,7 +4,8 @@ const ROUTES = {
     all: '/all',
     individual: '/i/:id',
     edit: '/e/:id',
-    search: '/search'
+    search: '/search',
+    settings: '/settings'
 }
 
 export const buildRoute = {
