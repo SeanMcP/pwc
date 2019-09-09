@@ -14,5 +14,12 @@ export default function useSettings() {
         setState(shallow)
     }
 
-    return [state, { setValue, setAll: setState }]
+    function setAll(changes) {
+        setState({
+            ...state,
+            ...changes
+        })
+    }
+
+    return [state, { setValue, setAll }]
 }
