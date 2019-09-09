@@ -1,8 +1,10 @@
 import React from 'react'
 import PrayForList from 'PrayForList'
 import { useIndividuals } from 'store/useIndividuals'
+import useSettings from 'store/useSettings'
 
-function Recommendations({ count = 3 }) {
+function Recommendations() {
+    const [{ recommendationCount: count }] = useSettings()
     const [, { getRecommendations }] = useIndividuals()
     const { birthdays, favorites, lastPrayed } = getRecommendations(count)
     return (
