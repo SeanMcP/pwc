@@ -1,6 +1,6 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
-import { Text, Button, minorScale, Pane, Icon, IconButton } from 'evergreen-ui'
+import { Text, Button, minorScale, Pane, IconButton } from 'evergreen-ui'
 import day from 'dayjs'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
