@@ -1,6 +1,7 @@
 import React from 'react'
 import { Pane, majorScale } from 'evergreen-ui'
 import ViewHeader from 'ViewHeader'
+import ViewContent from 'ViewContent'
 
 const appName = 'PWC'
 
@@ -11,7 +12,7 @@ function ViewContainer({ children, hideHeader, title }) {
     return (
         <Pane padding={majorScale(2)}>
             {!hideHeader && <ViewHeader appName={appName} title={title} />}
-            {children}
+            <ViewContent>{children}</ViewContent>
         </Pane>
     )
 }
