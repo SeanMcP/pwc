@@ -1,11 +1,11 @@
 import React from 'react'
 import {
-    Button,
     OrderedList,
     ListItem,
     Pane,
     Icon,
-    majorScale
+    majorScale,
+    IconButton
 } from 'evergreen-ui'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
@@ -27,12 +27,11 @@ function PrayForList({ icon, ids, title }) {
                 <AppLink to={buildRoute.individual(id)}>
                     {individual.name}
                 </AppLink>
-                <Button
+                <IconButton
                     onClick={() => recordPrayer(id)}
                     aria-label="Record prayer"
-                >
-                    <Icon icon="tick" />
-                </Button>
+                    icon="tick"
+                />
                 {/* Include dismiss icon */}
             </ListItem>
         )
