@@ -1,6 +1,6 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
-import { Text, Button, minorScale, Pane, Icon } from 'evergreen-ui'
+import { Text, Button, minorScale, Pane, Icon, IconButton } from 'evergreen-ui'
 import day from 'dayjs'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
@@ -37,13 +37,12 @@ function IndividualView(props) {
                             {formatBirthday()}
                         </Text>
                     </Pane>
-                    <Button
+                    <IconButton
                         onClick={() => toggleFavorite(props.id)}
                         aria-label="Toggle favorite"
                         aria-pressed={Boolean(data.favorite)}
-                    >
-                        <Icon icon={data.favorite ? 'star' : 'star-empty'} />
-                    </Button>
+                        icon={data.favorite ? 'star' : 'star-empty'}
+                    />
                 </section>
             </header>
             <H2>Notes</H2>
