@@ -8,7 +8,7 @@ function SearchView(props) {
     const [data] = useIndividuals()
     const [query, setQuery] = React.useState('')
     return (
-        <ViewContainer title="Search">
+        <ViewContainer title="Search" hideHeader>
             <header>
                 <SearchInput
                     type="search"

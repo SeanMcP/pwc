@@ -1,11 +1,20 @@
 import React from 'react'
 import { Pane, majorScale } from 'evergreen-ui'
+import ViewHeader from 'ViewHeader'
+import ViewContent from 'ViewContent'
 
-function ViewContainer(props) {
+const appName = 'PWC'
+
+function ViewContainer({ children, hideHeader, title }) {
     React.useEffect(() => {
-        document.title = props.title ? `${props.title} - PWC` : 'PWC'
-    }, [props.title])
-    return <Pane padding={majorScale(2)}>{props.children}</Pane>
+        document.title = title ? `${title} - ${appName}` : appName
+    }, [title])
+    return (
+        <Pane padding={majorScale(2)}>
+            {!hideHeader && <ViewHeader appName={appName} title={title} />}
+            <ViewContent>{children}</ViewContent>
+        </Pane>
+    )
 }
 
 export default ViewContainer

@@ -4,7 +4,6 @@ import { Button, TextInputField, majorScale } from 'evergreen-ui'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
-import { H1 } from 'Headings'
 import { TextareaField } from 'Forms'
 
 function AddView() {
@@ -24,7 +23,6 @@ function AddView() {
     }
     return (
         <ViewContainer title="Add">
-            <H1 marginBottom={majorScale(2)}>Add</H1>
             <form onSubmit={handleSubmit}>
                 <TextInputField label="Name" name="name" required />
                 <TextInputField label="Birthday" name="birthday" type="date" />
