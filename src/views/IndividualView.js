@@ -5,7 +5,6 @@ import dayjs from 'dayjs'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
-import { H2 } from 'Headings'
 import ButtonLink from 'ButtonLink'
 
 function IndividualView(props) {
@@ -41,7 +40,7 @@ function IndividualView(props) {
                     />
                 </section>
             </header>
-            <H2>Notes</H2>
+            <h2>Notes</h2>
             <Text
                 is="p"
                 dangerouslySetInnerHTML={{

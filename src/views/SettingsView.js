@@ -2,7 +2,6 @@ import React from 'react'
 import ViewContainer from 'ViewContainer'
 import useSettings from 'store/useSettings'
 import { TextInputField, Button } from 'evergreen-ui'
-import { H1 } from 'Headings'
 
 function SettingsView(props) {
     const [settings, { setAll }] = useSettings()
@@ -16,7 +15,7 @@ function SettingsView(props) {
     }
     return (
         <ViewContainer title="Settings">
-            <H1>Settings</H1>
+            <h1>Settings</h1>
             <form onSubmit={handleSubmit}>
                 <TextInputField
                     description="Default is three"

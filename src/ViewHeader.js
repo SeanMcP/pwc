@@ -1,5 +1,4 @@
 import React from 'react'
-import { H1 } from 'Headings'
 import ViewContent from 'ViewContent'
 import ButtonLink from 'ButtonLink'
 
@@ -12,7 +11,7 @@ function ViewHeader({ appName, backTo = '/', title }) {
                         Back
                     </ButtonLink>
                 )}
-                <H1>{title || appName}</H1>
+                <h1>{title || appName}</h1>
             </ViewContent>
         </header>
     )
