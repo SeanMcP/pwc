@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@reach/router": "^1.2.1",
+        "@seanmcp/class-list": "^1.0.1",
         "a11y-react-emoji": "^1.0.2",
         "dayjs": "^1.8.15",
         "evergreen-ui": "^4.18.3",
