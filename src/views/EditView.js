@@ -1,11 +1,11 @@
 import React from 'react'
-import day from 'dayjs'
-import { useIndividuals } from 'store/useIndividuals'
 import { navigate } from '@reach/router'
+import day from 'dayjs'
+import { Button } from 'evergreen-ui'
+import { useIndividuals } from 'store/useIndividuals'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'ViewContainer'
-import { Button, TextInputField } from 'evergreen-ui'
-import { TextareaField } from 'Forms'
+import { InputField, TextareaField } from 'Form'
 
 function EditView(props) {
     const [, { edit, get, remove }, DEV] = useIndividuals()
@@ -48,13 +48,13 @@ function EditView(props) {
                             {error}
                         </p>
                     ))}
-                <TextInputField
+                <InputField
                     label="Name"
                     name="name"
                     defaultValue={data.name}
                     required
                 />
-                <TextInputField
+                <InputField
                     label="Birthday"
                     name="birthday"
                     type="date"

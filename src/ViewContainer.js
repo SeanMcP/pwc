@@ -1,5 +1,4 @@
 import React from 'react'
-import { Pane, majorScale } from 'evergreen-ui'
 import ViewHeader from 'ViewHeader'
 import ViewContent from 'ViewContent'
 
@@ -10,12 +9,12 @@ function ViewContainer({ backTo, children, hideHeader, title }) {
         document.title = title ? `${title} - ${appName}` : appName
     }, [title])
     return (
-        <Pane padding={majorScale(2)}>
+        <div className="ViewContainer">
             {!hideHeader && (
                 <ViewHeader appName={appName} backTo={backTo} title={title} />
             )}
             <ViewContent>{children}</ViewContent>
-        </Pane>
+        </div>
     )
 }
 
