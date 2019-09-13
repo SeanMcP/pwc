@@ -4,10 +4,7 @@ import { useIndividuals } from 'store/useIndividuals'
 import { navigate } from '@reach/router'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'ViewContainer'
-import { Button } from 'evergreen-ui'
-import AppLink from 'AppLink'
-import { H1 } from 'Headings'
-import { TextInputField } from 'evergreen-ui/commonjs/text-input'
+import { Button, TextInputField } from 'evergreen-ui'
 import { TextareaField } from 'Forms'
 
 function EditView(props) {
@@ -40,14 +37,7 @@ function EditView(props) {
         }
     }
     return (
-        <ViewContainer title={`Edit ${data.name}`}>
-            <AppLink
-                iconBefore="arrow-left"
-                to={buildRoute.individual(props.id)}
-            >
-                Back
-            </AppLink>
-            <H1>Edit</H1>
+        <ViewContainer title="Edit" backTo={buildRoute.individual(props.id)}>
             <form
                 onSubmit={handleSave}
                 className={validationErrors.length && '--error'}

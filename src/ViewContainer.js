@@ -5,13 +5,15 @@ import ViewContent from 'ViewContent'
 
 const appName = 'PWC'
 
-function ViewContainer({ children, hideHeader, title }) {
+function ViewContainer({ backTo, children, hideHeader, title }) {
     React.useEffect(() => {
         document.title = title ? `${title} - ${appName}` : appName
     }, [title])
     return (
         <Pane padding={majorScale(2)}>
-            {!hideHeader && <ViewHeader appName={appName} title={title} />}
+            {!hideHeader && (
+                <ViewHeader appName={appName} backTo={backTo} title={title} />
+            )}
             <ViewContent>{children}</ViewContent>
         </Pane>
     )

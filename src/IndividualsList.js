@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import { Icon, majorScale, Pane, minorScale } from 'evergreen-ui'
+import { Icon, majorScale, Pane, Text, minorScale } from 'evergreen-ui'
 import { buildRoute } from 'constants/routes'
 import AppCard from 'AppCard'
 
@@ -28,7 +28,7 @@ function IndividualsList({ individuals, sortBy = 'name' }) {
                         <li key={id}>
                             <Link to={buildRoute.individual(id)}>
                                 <AppCard marginBottom={majorScale(2)}>
-                                    {individual.name}
+                                    <Text>{individual.name}</Text>
                                     {individual.favorite && (
                                         <Icon
                                             icon="star"
