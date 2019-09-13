@@ -1,29 +1,25 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
 import { Text, Button, minorScale, Pane, IconButton } from 'evergreen-ui'
-import day from 'dayjs'
-import { buildRoute } from 'constants/routes'
+import dayjs from 'dayjs'
+import ROUTES, { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
-import AppLink from 'AppLink'
-import { H1, H2 } from 'Headings'
+import { H2 } from 'Headings'
+import ButtonLink from 'ButtonLink'
 
 function IndividualView(props) {
     const [, { get, recordPrayer, toggleFavorite }] = useIndividuals()
     const data = get(props.id)
     function formatBirthday() {
-        return day(data.birthday).format('M/D')
+        return dayjs(data.birthday).format('M/D')
     }
     function formatLastPrayed() {
-        return day(data.lastPrayed).format('M/D/YYYY')
+        return dayjs(data.lastPrayed).format('M/D/YYYY')
     }
     return (
-        <ViewContainer title={data.name}>
+        <ViewContainer title={data.name} backTo={ROUTES.all}>
             <header>
-                <AppLink iconBefore="edit" to={buildRoute.edit(props.id)}>
-                    Edit
-                </AppLink>
-                <H1>{data.name}</H1>
                 <section>
                     <Pane>
                         <Emoji symbol="🙏" />
@@ -55,9 +51,14 @@ function IndividualView(props) {
             {process.env.NODE_ENV === 'development' && (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}
-            <Button onClick={() => recordPrayer(props.id)}>
-                Record prayer
-            </Button>
+            <Pane is="footer">
+                <Button onClick={() => recordPrayer(props.id)}>
+                    Record prayer
+                </Button>
+                <ButtonLink to={buildRoute.edit(props.id)} iconBefore="edit">
+                    Edit
+                </ButtonLink>
+            </Pane>
         </ViewContainer>
     )
 }

@@ -3,8 +3,8 @@ import IndividualsList from 'IndividualsList'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
-import AppButtonLink from 'AppButtonLink'
 import MockSearchbar from 'MockSearchbar'
+import ButtonLink from 'ButtonLink'
 
 function AllView() {
     const [individuals] = useIndividuals()
@@ -12,9 +12,9 @@ function AllView() {
         <ViewContainer title="All">
             <MockSearchbar />
             <IndividualsList individuals={individuals} />
-            <AppButtonLink to={ROUTES.add} iconBefore="add">
+            <ButtonLink to={ROUTES.add} iconBefore="add">
                 Add
-            </AppButtonLink>
+            </ButtonLink>
         </ViewContainer>
     )
 }
