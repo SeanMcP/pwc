@@ -1,7 +1,8 @@
 import React from 'react'
 import ViewContainer from 'ViewContainer'
 import useSettings from 'store/useSettings'
-import { TextInputField, Button } from 'evergreen-ui'
+import { Button } from 'evergreen-ui'
+import { InputField } from 'Form'
 
 function SettingsView(props) {
     const [settings, { setAll }] = useSettings()
@@ -17,7 +18,7 @@ function SettingsView(props) {
         <ViewContainer title="Settings">
             <h1>Settings</h1>
             <form onSubmit={handleSubmit}>
-                <TextInputField
+                <InputField
                     description="Default is three"
                     label="Number of recommendations"
                     name="recommendationCount"
