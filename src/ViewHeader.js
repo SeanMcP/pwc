@@ -1,13 +1,13 @@
 import React from 'react'
+import { Link } from '@reach/router'
 import ViewContent from 'ViewContent'
-import ButtonLink from 'ButtonLink'
 
 function ViewHeader({ appName, backTo = '/', title }) {
     return (
         <header className="ViewHeader">
             <ViewContent>
                 {window.location.pathname !== '/' && (
-                    <ButtonLink to={backTo}>Back</ButtonLink>
+                    <Link to={backTo}>Back</Link>
                 )}
                 <h1>{title || appName}</h1>
             </ViewContent>

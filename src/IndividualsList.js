@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import { Icon, majorScale, Pane, Text, minorScale } from 'evergreen-ui'
+import Emoji from 'a11y-react-emoji'
 import { buildRoute } from 'constants/routes'
-import AppCard from 'AppCard'
 
 function IndividualsList({ individuals, sortBy = 'name' }) {
     const sortByMap = {
@@ -20,29 +19,25 @@ function IndividualsList({ individuals, sortBy = 'name' }) {
         sortByMap[sortBy](individuals[a], individuals[b])
     )
     return (
-        <Pane>
+        <div className="IndividualsList">
             <ul className="reset">
                 {orderedList.map(id => {
                     const individual = individuals[id]
                     return (
                         <li key={id}>
                             <Link to={buildRoute.individual(id)}>
-                                <AppCard marginBottom={majorScale(2)}>
-                                    <Text>{individual.name}</Text>
+                                <div>
+                                    <p>{individual.name}</p>
                                     {individual.favorite && (
-                                        <Icon
-                                            icon="star"
-                                            marginLeft={minorScale(1)}
-                                            aria-label="Favorited"
-                                        />
+                                        <Emoji label="Favorited" symbol="⭐️" />
                                     )}
-                                </AppCard>
+                                </div>
                             </Link>
                         </li>
                     )
                 })}
             </ul>
-        </Pane>
+        </div>
     )
 }
 

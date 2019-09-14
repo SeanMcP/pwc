@@ -1,7 +1,6 @@
 import React from 'react'
 import { navigate } from '@reach/router'
-import day from 'dayjs'
-import { Button } from 'evergreen-ui'
+import dayjs from 'dayjs'
 import { useIndividuals } from 'store/useIndividuals'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'ViewContainer'
@@ -59,7 +58,7 @@ function EditView(props) {
                     name="birthday"
                     type="date"
                     defaultValue={
-                        day(data.birthday).format('YYYY-MM-DD') || null
+                        dayjs(data.birthday).format('YYYY-MM-DD') || null
                     }
                 />
                 <TextareaField
@@ -70,17 +69,15 @@ function EditView(props) {
                 {process.env.NODE_ENV === 'development' && (
                     <pre>{JSON.stringify(data, null, 2)}</pre>
                 )}
-                <Button appearance="primary" iconBefore="save">
-                    Save changes
-                </Button>
-                <Button intent="danger" type="button" onClick={handleDelete}>
+                <button>Save changes</button>
+                <button type="button" onClick={handleDelete}>
                     Remove
-                </Button>
+                </button>
             </form>
             {process.env.NODE_ENV === 'development' && (
-                <Button onClick={() => DEV.___DEV___setBirthday(props.id)}>
+                <button onClick={() => DEV.___DEV___setBirthday(props.id)}>
                     Set birthday to today
-                </Button>
+                </button>
             )}
         </ViewContainer>
     )

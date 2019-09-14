@@ -1,6 +1,5 @@
 import React from 'react'
 import { navigate } from '@reach/router'
-import { Button, majorScale } from 'evergreen-ui'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
@@ -27,13 +26,7 @@ function AddView() {
                 <InputField label="Name" name="name" required />
                 <InputField label="Birthday" name="birthday" type="date" />
                 <TextareaField label="Notes" name="notes" />
-                <Button
-                    appearance="primary"
-                    iconBefore="add"
-                    marginTop={majorScale(3)}
-                >
-                    Add
-                </Button>
+                <button>Add</button>
             </form>
         </ViewContainer>
     )
