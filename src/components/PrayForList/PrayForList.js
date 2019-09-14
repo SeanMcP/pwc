@@ -3,6 +3,7 @@ import Emoji from 'a11y-react-emoji'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import AppLink from 'components/AppLink/AppLink'
+import './PrayForList.scss'
 
 function PrayForList({ ids, symbol, title }) {
     const [state, { recordPrayer }] = useIndividuals()
@@ -14,16 +15,19 @@ function PrayForList({ ids, symbol, title }) {
     const list = ids.map(id => {
         const individual = state[id]
         return (
-            <li key={`${type}-${id}`}>
-                <AppLink to={buildRoute.individual(id)}>
+            <li className="PrayForList__item" key={`${type}-${id}`}>
+                <AppLink
+                    className="PrayForList__link"
+                    to={buildRoute.individual(id)}
+                >
                     {individual.name}
                 </AppLink>
                 <button
+                    className="PrayForList__record-button"
                     onClick={() => recordPrayer(id)}
-                    aria-label="Record prayer"
-                    icon="tick"
                 >
-                    <Emoji symbol="✔️" />
+                    Record prayer
+                    {/* <Emoji symbol="✔️" /> */}
                 </button>
                 {/* Include dismiss icon */}
             </li>
@@ -32,11 +36,11 @@ function PrayForList({ ids, symbol, title }) {
 
     return (
         <div className="PrayForList">
-            <div>
+            <header className="PrayForList__header">
                 <Emoji symbol={symbol} />
-                <h2 style={{ display: 'inline' }}>{title}</h2>
-            </div>
-            <ol>{list}</ol>
+                <h3 className="PrayForList__heading">{title}</h3>
+            </header>
+            <ul className="PrayForList__list">{list}</ul>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Recommendations from 'Recommendations'
+import Recommendations from 'components/Recommendations/Recommendations'
 import ROUTES from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import AppLink from 'components/AppLink/AppLink'
