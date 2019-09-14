@@ -4,7 +4,7 @@ import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
 import MockSearchbar from 'MockSearchbar'
-import ButtonLink from 'ButtonLink'
+import ButtonLink from 'components/ButtonLink/ButtonLink'
 
 function AllView() {
     const [individuals] = useIndividuals()
