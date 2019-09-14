@@ -1,7 +1,7 @@
 import React from 'react'
 import { useIndividuals } from 'store/useIndividuals'
 import SearchResults from 'SearchResults'
-import ViewContainer from 'ViewContainer'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { SearchField } from 'Form'
 
 function SearchView(props) {

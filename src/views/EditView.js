@@ -3,7 +3,7 @@ import { navigate } from '@reach/router'
 import dayjs from 'dayjs'
 import { useIndividuals } from 'store/useIndividuals'
 import ROUTES, { buildRoute } from 'constants/routes'
-import ViewContainer from 'ViewContainer'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { InputField, TextareaField } from 'Form'
 
 function EditView(props) {

@@ -2,7 +2,7 @@ import React from 'react'
 import IndividualsList from 'IndividualsList'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
-import ViewContainer from 'ViewContainer'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
 import MockSearchbar from 'MockSearchbar'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
 

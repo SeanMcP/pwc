@@ -1,4 +1,5 @@
 import React from 'react'
+import './ViewContent.scss'
 
 function ViewContent({ children, ...props }) {
     return (

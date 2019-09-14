@@ -1,7 +1,7 @@
 import React from 'react'
 import Recommendations from 'Recommendations'
 import ROUTES from 'constants/routes'
-import ViewContainer from 'ViewContainer'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
 import AppLink from 'components/AppLink/AppLink'
 import MockSearchbar from 'MockSearchbar'
 

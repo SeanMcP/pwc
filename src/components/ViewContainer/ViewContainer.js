@@ -1,6 +1,7 @@
 import React from 'react'
-import ViewHeader from 'ViewHeader'
-import ViewContent from 'ViewContent'
+import ViewHeader from 'components/ViewHeader/ViewHeader'
+import ViewContent from 'components/ViewContent/ViewContent'
+import './ViewContainer.scss'
 
 const appName = 'PWC'
 

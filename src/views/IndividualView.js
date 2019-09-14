@@ -3,7 +3,7 @@ import Emoji from 'a11y-react-emoji'
 import dayjs from 'dayjs'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
-import ViewContainer from 'ViewContainer'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
 
 function IndividualView(props) {
