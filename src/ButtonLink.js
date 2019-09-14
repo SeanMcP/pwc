@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from '@reach/router'
+import AppLink from 'AppLink'
 
 function ButtonLink({ children, to, ...props }) {
     return (
-        <Link to={to}>
+        <AppLink to={to}>
             <button {...props}>{children}</button>
-        </Link>
+        </AppLink>
     )
 }
 

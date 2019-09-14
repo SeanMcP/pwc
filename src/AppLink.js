@@ -1,23 +1,12 @@
 import React from 'react'
-import { Link as ReachLink } from '@reach/router'
-import { Icon, Link as EvergreenLink, Pane } from 'evergreen-ui'
-import { minorScale } from 'evergreen-ui/commonjs/scales'
+import { Link } from '@reach/router'
+import classList from '@seanmcp/class-list'
 
-function AppLink({ color, children, iconAfter, iconBefore, ...props }) {
+function AppLink({ children, className, ...props }) {
     return (
-        <ReachLink {...props}>
-            <Pane display="inline-flex" alignItems="center">
-                {iconBefore && (
-                    <Icon icon={iconBefore} marginRight={minorScale(1)} />
-                )}
-                <EvergreenLink is="span" color={color}>
-                    {children}
-                </EvergreenLink>
-                {iconAfter && (
-                    <Icon icon={iconAfter} marginRight={minorScale(1)} />
-                )}
-            </Pane>
-        </ReachLink>
+        <Link className={classList('AppLink', className)} {...props}>
+            {children}
+        </Link>
     )
 }
 
