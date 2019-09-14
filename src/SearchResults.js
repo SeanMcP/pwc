@@ -1,5 +1,4 @@
 import React from 'react'
-import { Text, Pane, UnorderedList, ListItem } from 'evergreen-ui'
 import { buildRoute } from 'constants/routes'
 import AppLink from 'AppLink'
 
@@ -16,23 +15,23 @@ function SearchResults({ data, query }) {
                 tagMatch
             ) {
                 results.push(
-                    <ListItem key={id} className="SearchResults__item">
+                    <li key={id} className="SearchResults__item">
                         <AppLink to={buildRoute.individual(id)}>
                             {item.name}
                         </AppLink>
-                    </ListItem>
+                    </li>
                 )
             }
         }
         if (results.length === 0) {
-            output = <Text>No results found for "{query}"</Text>
+            output = <p>No results found for "{query}"</p>
         } else {
-            output = <UnorderedList>{results}</UnorderedList>
+            output = <ul>{results}</ul>
         }
     } else {
-        output = <Text>Search for a contact</Text>
+        output = <p>Search for a contact</p>
     }
-    return <Pane>{output}</Pane>
+    return <div className="SearchResults">{output}</div>
 }
 
 export default SearchResults

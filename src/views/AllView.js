@@ -12,9 +12,7 @@ function AllView() {
         <ViewContainer title="All">
             <MockSearchbar />
             <IndividualsList individuals={individuals} />
-            <ButtonLink to={ROUTES.add} iconBefore="add">
-                Add
-            </ButtonLink>
+            <ButtonLink to={ROUTES.add}>Add</ButtonLink>
         </ViewContainer>
     )
 }

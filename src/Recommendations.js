@@ -9,9 +9,9 @@ function Recommendations() {
     const { birthdays, favorites, lastPrayed } = getRecommendations(count)
     return (
         <div className="Recommendations">
-            <PrayForList icon="crown" ids={birthdays} title="Birthdays" />
-            <PrayForList icon="star" ids={favorites} title="Favorites" />
-            <PrayForList icon="time" ids={lastPrayed} title="Last prayed" />
+            <PrayForList symbol="🎂" ids={birthdays} title="Birthdays" />
+            <PrayForList symbol="⭐️" ids={favorites} title="Favorites" />
+            <PrayForList symbol="⏰" ids={lastPrayed} title="Last prayed" />
         </div>
     )
 }

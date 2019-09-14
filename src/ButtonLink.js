@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from '@reach/router'
-import { Button } from 'evergreen-ui'
+import AppLink from 'AppLink'
 
-function ButtonLink({ children, label, to, ...props }) {
+function ButtonLink({ children, to, ...props }) {
     return (
-        <Link to={to}>
-            <Button {...props} aria-label={label}>
-                {children}
-            </Button>
-        </Link>
+        <AppLink to={to}>
+            <button {...props}>{children}</button>
+        </AppLink>
     )
 }
 

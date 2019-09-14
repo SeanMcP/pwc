@@ -1,7 +1,6 @@
 import React from 'react'
 import ViewContainer from 'ViewContainer'
 import useSettings from 'store/useSettings'
-import { Button } from 'evergreen-ui'
 import { InputField } from 'Form'
 
 function SettingsView(props) {
@@ -26,8 +25,8 @@ function SettingsView(props) {
                     defaultValue={settings.recommendationCount}
                     required
                 />
-                <Button appearance="primary">Save</Button>
-                <Button type="reset">Reset</Button>
+                <button>Save</button>
+                <button type="reset">Reset</button>
             </form>
         </ViewContainer>
     )

@@ -42,6 +42,14 @@ export function InputField(props) {
     return <FieldFactory element="input" {...props} />
 }
 
+export function SearchField(props) {
+    return (
+        <div className="Field SearchField">
+            <input aria-label="Search" type="search" {...props} />
+        </div>
+    )
+}
+
 export function TextareaField(props) {
     return <FieldFactory element="textarea" {...props} />
 }

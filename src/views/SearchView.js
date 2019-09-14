@@ -1,8 +1,8 @@
 import React from 'react'
 import { useIndividuals } from 'store/useIndividuals'
 import SearchResults from 'SearchResults'
-import { SearchInput } from 'evergreen-ui'
 import ViewContainer from 'ViewContainer'
+import { SearchField } from 'Form'
 
 function SearchView(props) {
     const [data] = useIndividuals()
@@ -10,13 +10,10 @@ function SearchView(props) {
     return (
         <ViewContainer title="Search" hideHeader>
             <header>
-                <SearchInput
-                    type="search"
-                    aria-label="Search"
+                <SearchField
                     onChange={e => setQuery(e.target.value)}
-                    placeholder="Search names or tags"
+                    placeholder="Search names"
                     value={query}
-                    width="100%"
                     autoFocus
                 />
             </header>

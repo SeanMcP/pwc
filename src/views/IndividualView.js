@@ -1,6 +1,5 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
-import { Text, Button, minorScale, Pane, IconButton } from 'evergreen-ui'
 import dayjs from 'dayjs'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
@@ -20,29 +19,26 @@ function IndividualView(props) {
         <ViewContainer title={data.name} backTo={ROUTES.all}>
             <header>
                 <section>
-                    <Pane>
+                    <div>
                         <Emoji symbol="🙏" />
-                        <Text is="span" marginLeft={minorScale(1)}>
-                            {formatLastPrayed()}
-                        </Text>
-                    </Pane>
-                    <Pane>
+                        <span>{formatLastPrayed()}</span>
+                    </div>
+                    <div>
                         <Emoji symbol="🎂" />
-                        <Text is="span" marginLeft={minorScale(1)}>
-                            {formatBirthday()}
-                        </Text>
-                    </Pane>
-                    <IconButton
+                        <span>{formatBirthday()}</span>
+                    </div>
+                    <button
                         onClick={() => toggleFavorite(props.id)}
                         aria-label="Toggle favorite"
                         aria-pressed={Boolean(data.favorite)}
-                        icon={data.favorite ? 'star' : 'star-empty'}
-                    />
+                    >
+                        <Emoji symbol="⭐️" />
+                        <span>{data.favorite ? 'Favorited' : 'Favorite'}</span>
+                    </button>
                 </section>
             </header>
             <h2>Notes</h2>
-            <Text
-                is="p"
+            <p
                 dangerouslySetInnerHTML={{
                     __html: data.notes.replace(/\n/g, '<br/>')
                 }}
@@ -50,14 +46,12 @@ function IndividualView(props) {
             {process.env.NODE_ENV === 'development' && (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}
-            <Pane is="footer">
-                <Button onClick={() => recordPrayer(props.id)}>
+            <footer>
+                <button onClick={() => recordPrayer(props.id)}>
                     Record prayer
-                </Button>
-                <ButtonLink to={buildRoute.edit(props.id)} iconBefore="edit">
-                    Edit
-                </ButtonLink>
-            </Pane>
+                </button>
+                <ButtonLink to={buildRoute.edit(props.id)}>Edit</ButtonLink>
+            </footer>
         </ViewContainer>
     )
 }
