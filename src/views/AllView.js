@@ -1,10 +1,10 @@
 import React from 'react'
-import IndividualsList from 'IndividualsList'
-import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
-import ViewContainer from 'ViewContainer'
-import MockSearchbar from 'MockSearchbar'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
+import IndividualsList from 'components/IndividualsList/IndividualsList'
+import MockSearchbar from 'MockSearchbar'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
+import ROUTES from 'constants/routes'
 
 function AllView() {
     const [individuals] = useIndividuals()

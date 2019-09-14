@@ -3,13 +3,16 @@ import { navigate } from '@reach/router'
 import dayjs from 'dayjs'
 import { useIndividuals } from 'store/useIndividuals'
 import ROUTES, { buildRoute } from 'constants/routes'
-import ViewContainer from 'ViewContainer'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { InputField, TextareaField } from 'Form'
 
 function EditView(props) {
     const [, { edit, get, remove }, DEV] = useIndividuals()
     const [validationErrors, setValidationErrors] = React.useState([])
     const data = get(props.id)
+    if (!data) {
+        return null
+    }
     function handleDelete() {
         remove(props.id)
         navigate(ROUTES.all)

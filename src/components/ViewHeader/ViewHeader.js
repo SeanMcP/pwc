@@ -1,15 +1,16 @@
 import React from 'react'
-import { Link } from '@reach/router'
-import ViewContent from 'ViewContent'
+import ViewContent from 'components/ViewContent/ViewContent'
+import AppLink from 'components/AppLink/AppLink'
+import './ViewHeader.scss'
 
 function ViewHeader({ appName, backTo = '/', title }) {
     return (
         <header className="ViewHeader">
             <ViewContent>
                 {window.location.pathname !== '/' && (
-                    <Link to={backTo}>Back</Link>
+                    <AppLink to={backTo}>Back</AppLink>
                 )}
-                <h1>{title || appName}</h1>
+                <h1 className="ViewHeader__heading">{title || appName}</h1>
             </ViewContent>
         </header>
     )

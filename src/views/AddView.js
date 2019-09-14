@@ -2,7 +2,7 @@ import React from 'react'
 import { navigate } from '@reach/router'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
-import ViewContainer from 'ViewContainer'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { InputField, TextareaField } from 'Form'
 
 function AddView() {
@@ -23,7 +23,7 @@ function AddView() {
     return (
         <ViewContainer title="Add">
             <form onSubmit={handleSubmit}>
-                <InputField label="Name" name="name" required />
+                <InputField label="Name" name="name" autoFocus />
                 <InputField label="Birthday" name="birthday" type="date" />
                 <TextareaField label="Notes" name="notes" />
                 <button>Add</button>

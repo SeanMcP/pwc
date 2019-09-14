@@ -1,6 +1,8 @@
 import React from 'react'
-import ViewHeader from 'ViewHeader'
-import ViewContent from 'ViewContent'
+import ViewHeader from 'components/ViewHeader/ViewHeader'
+import ViewContent from 'components/ViewContent/ViewContent'
+import './ViewContainer.scss'
+import ViewFooter from 'components/ViewFooter/ViewFooter'
 
 const appName = 'PWC'
 
@@ -13,7 +15,10 @@ function ViewContainer({ backTo, children, hideHeader, title }) {
             {!hideHeader && (
                 <ViewHeader appName={appName} backTo={backTo} title={title} />
             )}
-            <ViewContent>{children}</ViewContent>
+            <main id="main" role="main" className="ViewContainer__main">
+                <ViewContent>{children}</ViewContent>
+            </main>
+            <ViewFooter />
         </div>
     )
 }
