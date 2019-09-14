@@ -23,7 +23,7 @@ function AddView() {
     return (
         <ViewContainer title="Add">
             <form onSubmit={handleSubmit}>
-                <InputField label="Name" name="name" required />
+                <InputField label="Name" name="name" autoFocus />
                 <InputField label="Birthday" name="birthday" type="date" />
                 <TextareaField label="Notes" name="notes" />
                 <button>Add</button>
