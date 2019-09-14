@@ -2,7 +2,7 @@ import React from 'react'
 import Recommendations from 'Recommendations'
 import ROUTES from 'constants/routes'
 import ViewContainer from 'ViewContainer'
-import AppLink from 'AppLink'
+import AppLink from 'components/AppLink/AppLink'
 import MockSearchbar from 'MockSearchbar'
 
 function HomeView() {

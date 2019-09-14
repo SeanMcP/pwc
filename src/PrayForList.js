@@ -2,7 +2,7 @@ import React from 'react'
 import Emoji from 'a11y-react-emoji'
 import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
-import AppLink from 'AppLink'
+import AppLink from 'components/AppLink/AppLink'
 
 function PrayForList({ ids, symbol, title }) {
     const [state, { recordPrayer }] = useIndividuals()

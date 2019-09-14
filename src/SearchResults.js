@@ -1,6 +1,6 @@
 import React from 'react'
 import { buildRoute } from 'constants/routes'
-import AppLink from 'AppLink'
+import AppLink from 'components/AppLink/AppLink'
 
 function SearchResults({ data, query }) {
     let output

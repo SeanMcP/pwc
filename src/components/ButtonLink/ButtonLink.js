@@ -1,5 +1,5 @@
 import React from 'react'
-import AppLink from 'AppLink'
+import AppLink from 'components/AppLink/AppLink'
 
 function ButtonLink({ children, to, ...props }) {
     return (

@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'ViewContainer'
-import ButtonLink from 'ButtonLink'
+import ButtonLink from 'components/ButtonLink/ButtonLink'
 
 function IndividualView(props) {
     const [, { get, recordPrayer, toggleFavorite }] = useIndividuals()
