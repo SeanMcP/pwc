@@ -54,9 +54,7 @@ function IndividualView(props) {
                 <Button onClick={() => recordPrayer(props.id)}>
                     Record prayer
                 </Button>
-                <ButtonLink to={buildRoute.edit(props.id)} iconBefore="edit">
-                    Edit
-                </ButtonLink>
+                <ButtonLink to={buildRoute.edit(props.id)}>Edit</ButtonLink>
             </Pane>
         </ViewContainer>
     )
