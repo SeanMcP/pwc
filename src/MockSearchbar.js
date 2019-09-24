@@ -3,10 +3,10 @@ import { Link } from '@reach/router'
 import ROUTES from 'constants/routes'
 import { SearchField } from 'Form'
 
-function MockSearchbar() {
+function MockSearchbar(props) {
     return (
         <Link to={ROUTES.search}>
-            <SearchField placeholder="Search for a name" />
+            <SearchField {...props} />
         </Link>
     )
 }
