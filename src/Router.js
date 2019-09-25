@@ -6,7 +6,6 @@ import EditView from 'views/EditView'
 import HomeView from 'views/HomeView'
 import IndividualView from 'views/IndividualView'
 import ROUTES from 'constants/routes'
-import SearchView from 'views/SearchView'
 import SettingsView from 'views/SettingsView'
 
 export default function() {
@@ -17,7 +16,6 @@ export default function() {
             <IndividualView path={ROUTES.individual} />
             <EditView path={ROUTES.edit} />
             <AllView path={ROUTES.all} />
-            <SearchView path={ROUTES.search} />
             <SettingsView path={ROUTES.settings} />
         </Router>
     )

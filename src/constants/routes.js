@@ -4,7 +4,6 @@ const ROUTES = {
     all: '/all',
     individual: '/i/:id',
     edit: '/e/:id',
-    search: '/search',
     settings: '/settings'
 }
 

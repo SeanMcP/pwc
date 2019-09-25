@@ -13,9 +13,6 @@ function ViewFooter() {
                     <NavLink className="ViewFooter__link" to={ROUTES.home}>
                         Home
                     </NavLink>
-                    <NavLink className="ViewFooter__link" to={ROUTES.search}>
-                        Search
-                    </NavLink>
                     <NavLink className="ViewFooter__link" to={ROUTES.all}>
                         All
                     </NavLink>
