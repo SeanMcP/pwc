@@ -4,7 +4,7 @@ import ViewContainer from 'components/ViewContainer/ViewContainer'
 
 function HomeView() {
     return (
-        <ViewContainer withSearch>
+        <ViewContainer>
             <Recommendations />
         </ViewContainer>
     )

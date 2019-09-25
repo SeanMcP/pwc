@@ -8,7 +8,7 @@ import ROUTES from 'constants/routes'
 function AllView() {
     const [individuals] = useIndividuals()
     return (
-        <ViewContainer title="All" withSearch>
+        <ViewContainer title="All">
             <IndividualsList individuals={individuals} />
             <ButtonLink to={ROUTES.add}>Add</ButtonLink>
         </ViewContainer>
