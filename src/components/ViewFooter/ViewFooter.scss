@@ -3,7 +3,7 @@
 
     &__nav {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
 
         // Break out of ViewContent
         margin-left: -1rem;

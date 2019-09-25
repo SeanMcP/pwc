@@ -1,5 +1,9 @@
 @import 'styles/variables.scss';
 
 .SearchBar {
-    border-top: 1px solid $border-color;
+    padding-bottom: 1rem;
+
+    input {
+        width: 100%;
+    }
 }

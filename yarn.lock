@@ -4934,6 +4934,10 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
+isobject@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/isobject/-/isobject-4.0.0.tgz#3f1c9155e73b192022a80819bacd0343711697b0"
+
 isomorphic-fetch@^2.1.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
@@ -6379,6 +6383,12 @@ onetime@^2.0.0:
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-2.0.1.tgz#067428230fd67443b2794b22bba528b6867962d4"
   dependencies:
     mimic-fn "^1.0.0"
+
+onkey-event-manager@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/onkey-event-manager/-/onkey-event-manager-1.0.0.tgz#33f98b2ebca26a6798e8e448d6a8ada60f491c08"
+  dependencies:
+    isobject "^4.0.0"
 
 opn@5.4.0, opn@^5.1.0:
   version "5.4.0"
