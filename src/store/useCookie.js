@@ -1,5 +1,5 @@
 import React from 'react'
-import package from '../../package.json'
+import pkg from '../../package.json'
 
 function getCookie(name, initialValue, durationInHours) {
     const valueFromCookie = JSON.parse(browser.cookies.get(name))
@@ -19,7 +19,7 @@ function setCookie(name, valueToStore, durationInHours) {
 }
 
 export default function useCookie(name, initialValue, durationInHours = 12) {
-    const cookieName = `${package.name}@${package.version}-${name}`
+    const cookieName = `${pkg.name}@${pkg.version}-${name}`
     const [state, setState] = React.useState(
         getCookie(cookieName, initialValue, durationInHours)
     )
