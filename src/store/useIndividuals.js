@@ -2,6 +2,7 @@ import React from 'react'
 import uuid from 'uuid/v4'
 import dayjs from 'dayjs'
 import useLocalStorage from 'store/useLocalStorage'
+import usePrayerRecord from './usePrayerRecord'
 
 const initialState = {}
 
@@ -16,6 +17,7 @@ function isYourBirthday(birthDateString) {
 }
 
 function useIndividualsHook() {
+    const [, addPrayer] = usePrayerRecord()
     const [state, setState] = useLocalStorage('individuals', initialState)
 
     function add({
@@ -62,6 +64,7 @@ function useIndividualsHook() {
         const shallow = { ...state }
         shallow[id].lastPrayed = new Date()
         setState(shallow)
+        addPrayer()
     }
 
     function remove(id) {
@@ -114,6 +117,7 @@ function useIndividualsHook() {
         // I don't love all this looping. Find a better way.
         const birthdays = getBirthdays()
         const favorites = getFavorites().filter(id => !birthdays.includes(id))
+        console.log(birthdays)
         const lastPrayed = getLastPrayed(length).filter(
             id => !birthdays.includes(id) && !favorites.includes(id)
         )

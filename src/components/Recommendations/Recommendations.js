@@ -3,11 +3,15 @@ import PrayForList from 'components/PrayForList/PrayForList'
 import { useIndividuals } from 'store/useIndividuals'
 import useSettings from 'store/useSettings'
 import './Recommendations.scss'
+import usePrayerRecord from 'store/usePrayerRecord'
 
 function Recommendations() {
+    const [prayerCount] = usePrayerRecord()
     const [{ recommendationCount: count }] = useSettings()
     const [, { getRecommendations }] = useIndividuals()
-    const { birthdays, favorites, lastPrayed } = getRecommendations(count)
+    const { birthdays, favorites, lastPrayed } = getRecommendations(
+        count - prayerCount || 0
+    )
     return (
         <div className="Recommendations">
             <h2 className="Recommendations__heading">Recommendations</h2>
