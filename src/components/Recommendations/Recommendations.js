@@ -1,13 +1,21 @@
 import React from 'react'
 import PrayForList from 'components/PrayForList/PrayForList'
 import { useIndividuals } from 'store/useIndividuals'
+import usePrayerRecord from 'store/usePrayerRecord'
 import useSettings from 'store/useSettings'
 import './Recommendations.scss'
 
 function Recommendations() {
+    const [prayerCount] = usePrayerRecord()
     const [{ recommendationCount: count }] = useSettings()
     const [, { getRecommendations }] = useIndividuals()
-    const { birthdays, favorites, lastPrayed } = getRecommendations(count)
+    const { birthdays, favorites, lastPrayed } = getRecommendations(
+        count - prayerCount || 0
+    )
+
+    if (!birthdays.length && !favorites.length && !lastPrayed.length)
+        return null
+
     return (
         <div className="Recommendations">
             <h2 className="Recommendations__heading">Recommendations</h2>
