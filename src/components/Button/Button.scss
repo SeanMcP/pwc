@@ -1,0 +1,19 @@
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
+
+.Button {
+    @include form-focus-styles;
+
+    background: transparent;
+    border: 1px solid $border-color;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.5rem 1rem;
+
+    &--primary {
+        background: $accent-color;
+        border-color: $accent-color;
+        color: white;
+    }
+}
