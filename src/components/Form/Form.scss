@@ -1,3 +1,4 @@
+@import 'styles/mixins.scss';
 @import 'styles/variables.scss';
 
 .Form {
@@ -19,16 +20,13 @@
     }
 
     &__input {
+        @include form-focus-styles;
+
         border: 1px solid $border-color;
         font-family: inherit;
         font-size: inherit;
         padding: 0.5rem;
         width: calc(100% - 1rem);
-
-        &:focus {
-            border-color: $accent-color;
-            box-shadow: 0 0 0 2px $accent-color;
-        }
     }
 
     &.TextareaField {
