@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .IndividualsList {
     &__list {
         list-style-type: none;
@@ -26,7 +28,7 @@
         $size: 1.5rem;
 
         align-items: center;
-        background: dodgerblue;
+        background: $accent-color;
         border-radius: $size;
         color: white;
         display: flex;

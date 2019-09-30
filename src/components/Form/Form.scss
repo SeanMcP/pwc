@@ -21,8 +21,8 @@
         width: calc(100% - 1rem);
 
         &:focus {
-            border-color: dodgerblue;
-            box-shadow: 0 0 0 2px dodgerblue;
+            border-color: $accent-color;
+            box-shadow: 0 0 0 2px $accent-color;
         }
     }
 
