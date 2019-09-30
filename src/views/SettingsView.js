@@ -1,7 +1,7 @@
 import React from 'react'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import useSettings from 'store/useSettings'
-import { InputField } from 'components/Form/Form'
+import { Form, InputField } from 'components/Form/Form'
 
 function SettingsView(props) {
     const [settings, { setAll }] = useSettings()
@@ -16,7 +16,7 @@ function SettingsView(props) {
     return (
         <ViewContainer title="Settings">
             <h1>Settings</h1>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <InputField
                     description="Default is three"
                     label="Number of recommendations"
@@ -25,9 +25,11 @@ function SettingsView(props) {
                     defaultValue={settings.recommendationCount}
                     required
                 />
-                <button>Save</button>
-                <button type="reset">Reset</button>
-            </form>
+                <footer>
+                    <button>Save</button>
+                    <button type="reset">Reset</button>
+                </footer>
+            </Form>
         </ViewContainer>
     )
 }

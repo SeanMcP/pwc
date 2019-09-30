@@ -3,7 +3,7 @@ import { navigate } from '@reach/router'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { InputField, TextareaField } from 'components/Form/Form'
+import { Form, InputField, TextareaField } from 'components/Form/Form'
 
 function AddView() {
     const [, { add }] = useIndividuals()
@@ -22,12 +22,12 @@ function AddView() {
     }
     return (
         <ViewContainer title="Add">
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <InputField label="Name" name="name" autoFocus />
                 <InputField label="Birthday" name="birthday" type="date" />
                 <TextareaField label="Notes" name="notes" />
                 <button>Add</button>
-            </form>
+            </Form>
         </ViewContainer>
     )
 }
