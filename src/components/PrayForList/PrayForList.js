@@ -4,6 +4,7 @@ import { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import AppLink from 'components/AppLink/AppLink'
 import './PrayForList.scss'
+import Button from 'components/Button/Button'
 
 function PrayForList({ ids, symbol, title }) {
     const [state, { recordPrayer }] = useIndividuals()
@@ -22,13 +23,13 @@ function PrayForList({ ids, symbol, title }) {
                 >
                     {individual.name}
                 </AppLink>
-                <button
+                <Button
                     className="PrayForList__record-button"
                     onClick={() => recordPrayer(id)}
                 >
                     Record prayer
                     {/* <Emoji symbol="✔️" /> */}
-                </button>
+                </Button>
                 {/* Include dismiss icon */}
             </li>
         )

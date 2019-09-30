@@ -4,7 +4,8 @@ import dayjs from 'dayjs'
 import { useIndividuals } from 'store/useIndividuals'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { InputField, TextareaField } from 'Form'
+import { InputField, TextareaField } from 'components/Form/Form'
+import Button from 'components/Button/Button'
 
 function EditView(props) {
     const [, { edit, get, remove }, DEV] = useIndividuals()
@@ -72,15 +73,15 @@ function EditView(props) {
                 {process.env.NODE_ENV === 'development' && (
                     <pre>{JSON.stringify(data, null, 2)}</pre>
                 )}
-                <button>Save changes</button>
-                <button type="button" onClick={handleDelete}>
+                <Button>Save changes</Button>
+                <Button type="button" onClick={handleDelete}>
                     Remove
-                </button>
+                </Button>
             </form>
             {process.env.NODE_ENV === 'development' && (
-                <button onClick={() => DEV.___DEV___setBirthday(props.id)}>
+                <Button onClick={() => DEV.___DEV___setBirthday(props.id)}>
                     Set birthday to today
-                </button>
+                </Button>
             )}
         </ViewContainer>
     )

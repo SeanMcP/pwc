@@ -1,6 +1,8 @@
 import React from 'react'
 import classList from '@seanmcp/class-list'
 
+import './Form.scss'
+
 function FieldFactory({ description, element, error, label, ...props }) {
     const id = `${props.name}-${String(Math.random()).slice(-5)}`
     const descriptionId = description ? `${id}-description` : undefined
@@ -14,19 +16,24 @@ function FieldFactory({ description, element, error, label, ...props }) {
                 error && `${className}--error`
             )}
         >
-            <label className={`Field__label ${className}__label`} htmlFor={id}>
-                {label}
-            </label>
+            {label && (
+                <label
+                    className={`Field__label ${className}__label`}
+                    htmlFor={id}
+                >
+                    {label}
+                </label>
+            )}
             {description && (
-                <p
+                <small
                     className={`Field__description ${className}__description`}
                     id={descriptionId}
                 >
                     {description}
-                </p>
+                </small>
             )}
             <Element
-                className={`Field ${className}__field`}
+                className={`Field__input ${className}__input`}
                 id={id}
                 aria-describedby={descriptionId}
                 {...props}
@@ -44,12 +51,23 @@ export function InputField(props) {
 
 export function SearchField(props) {
     return (
-        <div className="Field SearchField">
-            <input aria-label="Search" type="search" {...props} />
-        </div>
+        <FieldFactory
+            aria-label="Search"
+            element="input"
+            type="search"
+            {...props}
+        />
     )
 }
 
 export function TextareaField(props) {
     return <FieldFactory element="textarea" {...props} />
+}
+
+export function Form({ className, children, props }) {
+    return (
+        <form className={classList('Form', className)} {...props}>
+            {children}
+        </form>
+    )
 }
