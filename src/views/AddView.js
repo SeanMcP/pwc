@@ -3,7 +3,7 @@ import { navigate } from '@reach/router'
 import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { InputField, TextareaField } from 'Form'
+import { InputField, TextareaField } from 'components/Form/Form'
 
 function AddView() {
     const [, { add }] = useIndividuals()

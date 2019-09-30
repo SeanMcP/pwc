@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { useIndividuals } from 'store/useIndividuals'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { InputField, TextareaField } from 'Form'
+import { InputField, TextareaField } from 'components/Form/Form'
 
 function EditView(props) {
     const [, { edit, get, remove }, DEV] = useIndividuals()

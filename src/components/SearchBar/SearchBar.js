@@ -1,5 +1,5 @@
 import React from 'react'
-import { SearchField } from 'Form'
+import { SearchField } from 'components/Form/Form'
 
 import './SearchBar.scss'
 

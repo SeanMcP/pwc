@@ -1,7 +1,7 @@
 import React from 'react'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import useSettings from 'store/useSettings'
-import { InputField } from 'Form'
+import { InputField } from 'components/Form/Form'
 
 function SettingsView(props) {
     const [settings, { setAll }] = useSettings()
