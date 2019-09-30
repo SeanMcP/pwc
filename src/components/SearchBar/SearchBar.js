@@ -13,8 +13,7 @@ function SearchBar(props) {
 
 SearchBar.defaultProps = {
     'aria-label': 'Search',
-    placeholder: 'Search for a name',
-    type: 'search'
+    placeholder: 'Search for a name'
 }
 
 export default SearchBar
