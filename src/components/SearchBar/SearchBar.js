@@ -1,5 +1,5 @@
 import React from 'react'
-import { SearchField } from 'Form'
+import { SearchField } from 'components/Form/Form'
 
 import './SearchBar.scss'
 
@@ -13,8 +13,7 @@ function SearchBar(props) {
 
 SearchBar.defaultProps = {
     'aria-label': 'Search',
-    placeholder: 'Search for a name',
-    type: 'search'
+    placeholder: 'Search for a name'
 }
 
 export default SearchBar

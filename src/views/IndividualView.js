@@ -5,6 +5,7 @@ import ROUTES, { buildRoute } from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
+import Button from 'components/Button/Button'
 
 function IndividualView(props) {
     const [, { get, recordPrayer, toggleFavorite }] = useIndividuals()
@@ -27,14 +28,14 @@ function IndividualView(props) {
                         <Emoji symbol="🎂" />
                         <span>{formatBirthday()}</span>
                     </div>
-                    <button
+                    <Button
                         onClick={() => toggleFavorite(props.id)}
                         aria-label="Toggle favorite"
                         aria-pressed={Boolean(data.favorite)}
                     >
                         <Emoji symbol="⭐️" />
                         <span>{data.favorite ? 'Favorited' : 'Favorite'}</span>
-                    </button>
+                    </Button>
                 </section>
             </header>
             <h2>Notes</h2>
@@ -47,9 +48,9 @@ function IndividualView(props) {
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}
             <footer>
-                <button onClick={() => recordPrayer(props.id)}>
+                <Button onClick={() => recordPrayer(props.id)}>
                     Record prayer
-                </button>
+                </Button>
                 <ButtonLink to={buildRoute.edit(props.id)}>Edit</ButtonLink>
             </footer>
         </ViewContainer>

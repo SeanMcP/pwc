@@ -1,0 +1,14 @@
+@import 'styles/variables.scss';
+
+@mixin form-focus-styles {
+    &:focus {
+        border-color: $accent-color;
+        box-shadow: 0 0 0 4px $faint-accent-color;
+
+        outline: 4px solid transparent;
+    }
+
+    &::-moz-focus-inner {
+        border: none;
+    }
+}
