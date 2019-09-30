@@ -57,12 +57,13 @@ export function SearchField(props) {
             type="search"
             {...props}
         />
-        // <div className="Field SearchField">
-        //     <input aria-label="Search" type="search" {...props} />
-        // </div>
     )
 }
 
 export function TextareaField(props) {
     return <FieldFactory element="textarea" {...props} />
+}
+
+export function Form({ className, props }) {
+    return <form classList={classList('Form', className)} {...props} />
 }
