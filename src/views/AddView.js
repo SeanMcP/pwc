@@ -4,6 +4,7 @@ import ROUTES from 'constants/routes'
 import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { Form, InputField, TextareaField } from 'components/Form/Form'
+import Button from 'components/Button/Button'
 
 function AddView() {
     const [, { add }] = useIndividuals()
@@ -26,7 +27,7 @@ function AddView() {
                 <InputField label="Name" name="name" autoFocus />
                 <InputField label="Birthday" name="birthday" type="date" />
                 <TextareaField label="Notes" name="notes" />
-                <button>Add</button>
+                <Button>Add</Button>
             </Form>
         </ViewContainer>
     )
