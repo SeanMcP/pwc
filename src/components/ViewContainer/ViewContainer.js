@@ -3,6 +3,7 @@ import ViewHeader from 'components/ViewHeader/ViewHeader'
 import ViewContent from 'components/ViewContent/ViewContent'
 import './ViewContainer.scss'
 import ViewFooter from 'components/ViewFooter/ViewFooter'
+import AlphaBanner from 'components/AlphaBanner/AlphaBanner'
 
 const appName = 'PWC'
 
@@ -12,6 +13,7 @@ function ViewContainer({ backTo, children, hideHeader, title }) {
     }, [title])
     return (
         <div className="ViewContainer">
+            <AlphaBanner />
             {!hideHeader && (
                 <ViewHeader appName={appName} backTo={backTo} title={title} />
             )}
