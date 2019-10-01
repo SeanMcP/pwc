@@ -7,7 +7,13 @@ import AlphaBanner from 'components/AlphaBanner/AlphaBanner'
 
 const appName = 'PWC'
 
-function ViewContainer({ backTo, children, hideHeader, title }) {
+function ViewContainer({
+    backTo,
+    children,
+    hideHeader,
+    searchBar = null,
+    title
+}) {
     React.useEffect(() => {
         document.title = title ? `${title} - ${appName}` : appName
     }, [title])
@@ -17,6 +23,7 @@ function ViewContainer({ backTo, children, hideHeader, title }) {
             {!hideHeader && (
                 <ViewHeader appName={appName} backTo={backTo} title={title} />
             )}
+            {searchBar}
             <main id="main" role="main" className="ViewContainer__main">
                 <ViewContent>{children}</ViewContent>
             </main>

@@ -2,12 +2,19 @@ import React from 'react'
 import { SearchField } from 'components/Form/Form'
 
 import './SearchBar.scss'
+import ViewContent from 'components/ViewContent/ViewContent'
 
 function SearchBar(props) {
     return (
-        <section className="SearchBar">
-            <SearchField {...props} />
-        </section>
+        <form
+            className="SearchBar"
+            onSubmit={e => e.preventDefault()}
+            role="search"
+        >
+            <ViewContent>
+                <SearchField {...props} />
+            </ViewContent>
+        </form>
     )
 }
 
