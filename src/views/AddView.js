@@ -22,7 +22,7 @@ function AddView() {
         }
     }
     return (
-        <ViewContainer title="Add">
+        <ViewContainer backTo={ROUTES.all} title="Add">
             <Form onSubmit={handleSubmit}>
                 <InputField label="Name" name="name" autoFocus />
                 <InputField label="Birthday" name="birthday" type="date" />

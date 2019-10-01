@@ -7,10 +7,14 @@ function ViewHeader({ appName, backTo = '/', title }) {
     return (
         <header className="ViewHeader">
             <ViewContent>
-                {window.location.pathname !== '/' && (
-                    <AppLink to={backTo}>Back</AppLink>
-                )}
-                <h1 className="ViewHeader__heading">{title || appName}</h1>
+                <div className="ViewHeader__container">
+                    {window.location.pathname !== '/' && (
+                        <AppLink className="ViewHeader__link" to={backTo}>
+                            Back
+                        </AppLink>
+                    )}
+                    <h1 className="ViewHeader__heading">{title || appName}</h1>
+                </div>
             </ViewContent>
         </header>
     )
