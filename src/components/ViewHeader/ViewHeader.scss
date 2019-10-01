@@ -1,5 +1,8 @@
+@import 'styles/variables.scss';
+
 .ViewHeader {
     background: #f1f1f1;
+    border-bottom: 1px solid $border-color;
 
     &__container {
         align-items: center;
