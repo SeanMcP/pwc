@@ -11,12 +11,16 @@ function AllView() {
     const [query, setQuery] = React.useState('')
     const [individuals] = useIndividuals()
     return (
-        <ViewContainer title="All">
-            <SearchBar
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                onKeyDown={onKey({ Escape: () => setQuery('') })}
-            />
+        <ViewContainer
+            searchBar={
+                <SearchBar
+                    value={query}
+                    onChange={e => setQuery(e.target.value)}
+                    onKeyDown={onKey({ Escape: () => setQuery('') })}
+                />
+            }
+            title="All"
+        >
             <IndividualsList individuals={individuals} query={query} />
             <ButtonLink to={ROUTES.add}>Add</ButtonLink>
         </ViewContainer>
