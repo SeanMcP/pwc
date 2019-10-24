@@ -6,13 +6,13 @@
     padding: 1rem 0;
     width: 100%;
 
-    @media screen and (max-width: calc(600px + 2rem)) {
+    @media screen and (max-width: 632px) {
         margin-left: 1rem;
         margin-right: 1rem;
         width: calc(100% - 2rem);
     }
 
-    &.ViewContent__squish {
+    &__squish {
         height: 100%;
         padding: 0;
     }

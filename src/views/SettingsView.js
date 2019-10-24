@@ -26,7 +26,7 @@ function SettingsView(props) {
                     required
                 />
                 <footer>
-                    <Button modifier="primary">Save</Button>
+                    <Button modifier={['primary']}>Save</Button>
                     <Button type="reset">Reset</Button>
                 </footer>
             </Form>

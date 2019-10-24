@@ -16,4 +16,14 @@
         border-color: $accent-color;
         color: white;
     }
+
+    &--fab {
+        // I think 4px offsets this button's and the navbar's
+        // border width
+        bottom: calc(3rem + 4px);
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.125),
+            0 0.125rem 0.25rem rgba(0, 0, 0, 0.125);
+        right: 1rem;
+        position: fixed;
+    }
 }

@@ -22,7 +22,9 @@ function AllView() {
             title="All"
         >
             <IndividualsList individuals={individuals} query={query} />
-            <ButtonLink to={ROUTES.add}>Add</ButtonLink>
+            <ButtonLink to={ROUTES.add} modifiers={['fab', 'primary']}>
+                Add
+            </ButtonLink>
         </ViewContainer>
     )
 }
