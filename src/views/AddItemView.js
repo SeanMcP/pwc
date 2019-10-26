@@ -5,8 +5,9 @@ import { useIndividuals } from 'store/useIndividuals'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { Form, InputField, TextareaField } from 'components/Form/Form'
 import Button from 'components/Button/Button'
+import ITEMS from 'constants/items'
 
-function AddView() {
+function AddItemView(props) {
     const [, { add }] = useIndividuals()
     function handleSubmit(event) {
         event.preventDefault()
@@ -22,7 +23,10 @@ function AddView() {
         }
     }
     return (
-        <ViewContainer backTo={ROUTES.all} title="Add">
+        <ViewContainer
+            backTo={ROUTES.add}
+            title={`Add ${ITEMS.types[props.type].display}`}
+        >
             <Form onSubmit={handleSubmit}>
                 <InputField label="Name" name="name" autoFocus />
                 <InputField label="Birthday" name="birthday" type="date" />
@@ -33,4 +37,4 @@ function AddView() {
     )
 }
 
-export default AddView
+export default AddItemView

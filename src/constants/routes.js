@@ -1,6 +1,7 @@
 const ROUTES = {
     home: '/',
     add: '/add',
+    addItem: '/add/:type',
     all: '/all',
     individual: '/i/:id',
     edit: '/e/:id',
@@ -8,6 +9,9 @@ const ROUTES = {
 }
 
 export const buildRoute = {
+    addItem(type) {
+        return ROUTES.addItem.replace(/:type/, type)
+    },
     individual(id) {
         return ROUTES.individual.replace(/:id/, id)
     },
