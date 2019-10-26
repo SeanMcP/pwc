@@ -64,6 +64,10 @@ export function TextareaField(props) {
     return <FieldFactory element="textarea" {...props} />
 }
 
+export function SelectField(props) {
+    return <FieldFactory element="select" {...props} />
+}
+
 export function Form({ className, children, ...props }) {
     return (
         <form className={classList('Form', className)} {...props}>
