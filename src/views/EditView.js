@@ -16,7 +16,7 @@ function EditView(props) {
     }
     function handleDelete() {
         remove(props.id)
-        navigate(ROUTES.all)
+        navigate(ROUTES.list)
     }
     function handleSave(e) {
         e.preventDefault()

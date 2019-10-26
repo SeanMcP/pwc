@@ -2,13 +2,13 @@ import React from 'react'
 import Emoji from 'a11y-react-emoji'
 import dayjs from 'dayjs'
 import ROUTES, { buildRoute } from 'constants/routes'
-import { useIndividuals } from 'store/useIndividuals'
+import { useItems } from 'store/useItems'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
 import Button from 'components/Button/Button'
 
-function IndividualView(props) {
-    const [, { get, recordPrayer, toggleFavorite }] = useIndividuals()
+function ItemView(props) {
+    const [, { get, recordPrayer, toggleFavorite }] = useItems()
     const data = get(props.id)
     function formatBirthday() {
         return dayjs(data.birthday).format('M/D')
@@ -17,7 +17,7 @@ function IndividualView(props) {
         return dayjs(data.lastPrayed).format('M/D/YYYY')
     }
     return (
-        <ViewContainer title={data.name} backTo={ROUTES.all}>
+        <ViewContainer title={data.name} backTo={ROUTES.list}>
             <header>
                 <section>
                     <div>
@@ -57,4 +57,4 @@ function IndividualView(props) {
     )
 }
 
-export default IndividualView
+export default ItemView

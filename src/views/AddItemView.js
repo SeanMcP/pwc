@@ -25,7 +25,7 @@ function AddItemView({ type }) {
         if (name) {
             add({ date, dateType: date ? dateType : null, name, notes, type })
             form.reset()
-            navigate(ROUTES.all)
+            navigate(ROUTES.list)
         }
     }
     return (
