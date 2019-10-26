@@ -19,17 +19,17 @@ function Recommendations() {
         <div className="Recommendations">
             <h2 className="Recommendations__heading">Recommendations</h2>
             <RecommendationsList
-                symbol="🎂"
+                icon="Calendar"
                 ids={dates}
                 title="Special dates"
             />
             <RecommendationsList
-                symbol="⭐️"
+                icon="Star"
                 ids={favorites}
                 title="Favorites"
             />
             <RecommendationsList
-                symbol="⏰"
+                icon="Clock"
                 ids={lastPrayed}
                 title="Last prayed"
             />

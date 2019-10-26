@@ -1,12 +1,13 @@
 import React from 'react'
-import Emoji from 'a11y-react-emoji'
 import { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 import AppLink from 'components/AppLink/AppLink'
-import './RecommendationsList.scss'
 import Button from 'components/Button/Button'
+import Icon from 'components/Icon/Icon'
 
-function RecommendationsList({ ids, symbol, title }) {
+import './RecommendationsList.scss'
+
+function RecommendationsList({ icon, ids, title }) {
     const [state, { recordPrayer }] = useItems()
 
     if (ids.length === 0) return null
@@ -28,9 +29,8 @@ function RecommendationsList({ ids, symbol, title }) {
                     onClick={() => recordPrayer(id)}
                 >
                     Record prayer
-                    {/* <Emoji symbol="✔️" /> */}
                 </Button>
-                {/* Include dismiss icon */}
+                {/* Include dismiss icon? */}
             </li>
         )
     })
@@ -38,7 +38,7 @@ function RecommendationsList({ ids, symbol, title }) {
     return (
         <div className="RecommendationsList">
             <header className="RecommendationsList__header">
-                <Emoji symbol={symbol} />
+                <Icon icon={icon} />
                 <h3 className="RecommendationsList__heading">{title}</h3>
             </header>
             <ul className="RecommendationsList__list">{list}</ul>
