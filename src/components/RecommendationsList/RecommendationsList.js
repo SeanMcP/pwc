@@ -3,10 +3,10 @@ import Emoji from 'a11y-react-emoji'
 import { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 import AppLink from 'components/AppLink/AppLink'
-import './PrayForList.scss'
+import './RecommendationsList.scss'
 import Button from 'components/Button/Button'
 
-function PrayForList({ ids, symbol, title }) {
+function RecommendationsList({ ids, symbol, title }) {
     const [state, { recordPrayer }] = useItems()
 
     if (ids.length === 0) return null
@@ -14,17 +14,17 @@ function PrayForList({ ids, symbol, title }) {
     const type = title.toLowerCase().replace(/ /g, '-')
 
     const list = ids.map(id => {
-        const individual = state[id]
+        const item = state[id]
         return (
-            <li className="PrayForList__item" key={`${type}-${id}`}>
+            <li className="RecommendationsList__item" key={`${type}-${id}`}>
                 <AppLink
-                    className="PrayForList__link"
-                    to={buildRoute.individual(id)}
+                    className="RecommendationsList__link"
+                    to={buildRoute.item(id)}
                 >
-                    {individual.name}
+                    {item.name}
                 </AppLink>
                 <Button
-                    className="PrayForList__record-button"
+                    className="RecommendationsList__record-button"
                     onClick={() => recordPrayer(id)}
                 >
                     Record prayer
@@ -36,14 +36,14 @@ function PrayForList({ ids, symbol, title }) {
     })
 
     return (
-        <div className="PrayForList">
-            <header className="PrayForList__header">
+        <div className="RecommendationsList">
+            <header className="RecommendationsList__header">
                 <Emoji symbol={symbol} />
-                <h3 className="PrayForList__heading">{title}</h3>
+                <h3 className="RecommendationsList__heading">{title}</h3>
             </header>
-            <ul className="PrayForList__list">{list}</ul>
+            <ul className="RecommendationsList__list">{list}</ul>
         </div>
     )
 }
 
-export default PrayForList
+export default RecommendationsList
