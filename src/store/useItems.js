@@ -15,6 +15,7 @@ function wasToday(dateString) {
 function isTodaysDate(dateString) {
     const today = dayjs()
     const date = dayjs(dateString)
+
     return today.isSame(date, 'month') && today.isSame(date, 'day')
 }
 
@@ -36,7 +37,7 @@ function useItemsHook() {
         const shallow = { ...state }
         shallow[id] = {
             name,
-            date: new Date(date),
+            date: dayjs(date),
             dateType,
             favorite,
             notes,
@@ -68,7 +69,7 @@ function useItemsHook() {
 
     function recordPrayer(id) {
         const shallow = { ...state }
-        shallow[id].prayerRecord = [new Date(), ...shallow[id].prayerRecord]
+        shallow[id].prayerRecord = [dayjs(), ...shallow[id].prayerRecord]
         setState(shallow)
         addPrayer()
     }
@@ -137,7 +138,7 @@ function useItemsHook() {
 
     function ___DEV___setDateToToday(id) {
         const shallow = { ...state }
-        shallow[id].date = new Date()
+        shallow[id].date = dayjs()
         setState(shallow)
     }
 
