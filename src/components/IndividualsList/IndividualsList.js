@@ -46,7 +46,7 @@ function IndividualsList({ individuals, sortBy = 'name', query }) {
                 <li className="IndividualsList__item" key={id}>
                     <AppLink
                         className="IndividualsList__link"
-                        to={buildRoute.individual(id)}
+                        to={buildRoute.item(id)}
                     >
                         <span className="IndividualsList__icon">
                             {individual.name[0]}

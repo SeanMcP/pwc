@@ -1,15 +1,15 @@
 import React from 'react'
 import onKey from 'onkey-event-manager'
-import { useIndividuals } from 'store/useIndividuals'
+import { useItems } from 'store/useItems'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
 import IndividualsList from 'components/IndividualsList/IndividualsList'
 import SearchBar from 'components/SearchBar/SearchBar'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ROUTES from 'constants/routes'
 
-function AllView() {
+function ListView() {
     const [query, setQuery] = React.useState('')
-    const [individuals] = useIndividuals()
+    const [items] = useItems()
     return (
         <ViewContainer
             searchBar={
@@ -19,9 +19,9 @@ function AllView() {
                     onKeyDown={onKey({ Escape: () => setQuery('') })}
                 />
             }
-            title="All"
+            title="All Items"
         >
-            <IndividualsList individuals={individuals} query={query} />
+            <IndividualsList individuals={items} query={query} />
             <ButtonLink to={ROUTES.add} modifiers={['fab', 'primary']}>
                 Add
             </ButtonLink>
@@ -29,4 +29,4 @@ function AllView() {
     )
 }
 
-export default AllView
+export default ListView

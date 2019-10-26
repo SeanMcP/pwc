@@ -1,21 +1,24 @@
 import React from 'react'
 import { Router } from '@reach/router'
-import AddView from 'views/AddView'
-import AllView from 'views/AllView'
+import ROUTES from 'constants/routes'
+
+import AddItemView from 'views/AddItemView'
 import EditView from 'views/EditView'
 import HomeView from 'views/HomeView'
-import IndividualView from 'views/IndividualView'
-import ROUTES from 'constants/routes'
+import ItemView from 'views/ItemView'
+import ListView from 'views/ListView'
+import SelectTypeToAddView from 'views/SelectTypeToAddView'
 import SettingsView from 'views/SettingsView'
 
 export default function() {
     return (
         <Router>
             <HomeView path={ROUTES.home} />
-            <AddView path={ROUTES.add} />
-            <IndividualView path={ROUTES.individual} />
+            <AddItemView path={ROUTES.addItem} />
+            <SelectTypeToAddView path={ROUTES.add} />
+            <ItemView path={ROUTES.item} />
             <EditView path={ROUTES.edit} />
-            <AllView path={ROUTES.all} />
+            <ListView path={ROUTES.list} />
             <SettingsView path={ROUTES.settings} />
         </Router>
     )

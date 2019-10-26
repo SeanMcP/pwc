@@ -16,9 +16,7 @@ function SearchResults({ data, query }) {
             ) {
                 results.push(
                     <li key={id} className="SearchResults__item">
-                        <AppLink to={buildRoute.individual(id)}>
-                            {item.name}
-                        </AppLink>
+                        <AppLink to={buildRoute.item(id)}>{item.name}</AppLink>
                     </li>
                 )
             }

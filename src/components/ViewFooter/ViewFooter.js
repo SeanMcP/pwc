@@ -15,9 +15,9 @@ function ViewFooter() {
                         <Icon icon="Home" block />
                         <small>Home</small>
                     </NavLink>
-                    <NavLink className="ViewFooter__link" to={ROUTES.all}>
-                        <Icon icon="Users" block />
-                        <small>All</small>
+                    <NavLink className="ViewFooter__link" to={ROUTES.list}>
+                        <Icon icon="List" block />
+                        <small>List</small>
                     </NavLink>
                     <NavLink className="ViewFooter__link" to={ROUTES.settings}>
                         <Icon icon="Settings" block />
