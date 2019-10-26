@@ -7,6 +7,8 @@ import usePrayerRecord from './usePrayerRecord'
 const initialState = {}
 
 function wasToday(dateString) {
+    if (!dateString) return false
+
     return dayjs().isSame(dayjs(dateString), 'day')
 }
 
@@ -79,56 +81,58 @@ function useItemsHook() {
         }
     }
 
-    function getBirthdays() {
-        const birthdays = []
-        for (const id in state) {
-            const { birthday, prayerRecord } = state[id]
-            if (isTodaysDate(birthday) && !wasToday(prayerRecord[0]))
-                birthdays.push(id)
-        }
-        return birthdays
-    }
-
-    function getFavorites() {
-        const favorites = []
-        for (const id in state) {
-            const { prayerRecord, favorite } = state[id]
-            // Favorited and today's date is not the same as the last prayed date
-            if (favorite && !wasToday(prayerRecord[0])) favorites.push(id)
-        }
-        return favorites
-    }
-
-    function getLastPrayed(length) {
-        const ids = Object.keys(state).filter(
-            id => !wasToday(state[id].prayerRecord[0])
-        )
-        const sorted = ids.sort((a, b) => {
-            const aTime = new Date(state[a].prayerRecord[0]).getTime()
-            const bTime = new Date(state[b].prayerRecord[0]).getTime()
-            if (aTime < bTime) {
-                return -1
-            } else if (aTime > bTime) {
-                return +1
-            } else {
-                return 0
-            }
-        })
-        return length ? sorted.slice(0, length) : sorted
-    }
-
     function getRecommendations(length) {
-        // I don't love all this looping. Find a better way.
-        const birthdays = getBirthdays()
-        const favorites = getFavorites().filter(id => !birthdays.includes(id))
-        const lastPrayed = getLastPrayed(length).filter(
-            id => !birthdays.includes(id) && !favorites.includes(id)
-        )
-        return {
-            birthdays,
-            favorites,
-            lastPrayed
+        let count = 0
+        const toBeSorted = []
+
+        const recommendations = {
+            dates: [],
+            favorites: [],
+            lastPrayed: []
         }
+
+        for (const id in state) {
+            const item = state[id]
+
+            // If the item was last prayed for today, then it shouldn't be in any list
+            if (wasToday(item.prayerRecord[0])) continue
+
+            // Special dates have first priority...
+            if (isTodaysDate(item.date)) {
+                recommendations.dates.push(id)
+                count++
+                continue
+            }
+
+            // Favorited items has second...
+            if (item.favorite) {
+                recommendations.favorites.push(id)
+                count++
+                continue
+            }
+
+            // ...and everything else gets added to a queue
+            toBeSorted.push(id)
+        }
+
+        // If recommendation count is less than the provided length, then sort.
+        if (count < length && toBeSorted.length > 0) {
+            recommendations.lastPrayed = toBeSorted
+                .sort((a, b) => {
+                    const aTime = new Date(state[a].prayerRecord[0]).getTime()
+                    const bTime = new Date(state[b].prayerRecord[0]).getTime()
+                    if (aTime < bTime) {
+                        return -1
+                    } else if (aTime > bTime) {
+                        return +1
+                    } else {
+                        return 0
+                    }
+                })
+                .slice(0, length - count)
+        }
+
+        return recommendations
     }
 
     function ___DEV___setDateToToday(id) {
