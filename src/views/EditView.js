@@ -40,7 +40,7 @@ function EditView(props) {
         }
     }
     return (
-        <ViewContainer title="Edit" backTo={buildRoute.individual(props.id)}>
+        <ViewContainer title="Edit" backTo={buildRoute.item(props.id)}>
             <form
                 onSubmit={handleSave}
                 className={validationErrors.length && '--error'}

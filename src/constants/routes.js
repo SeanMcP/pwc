@@ -12,11 +12,11 @@ export const buildRoute = {
     addItem(type) {
         return ROUTES.addItem.replace(/:type/, type)
     },
-    individual(id) {
-        return ROUTES.item.replace(/:id/, id)
-    },
     edit(id) {
         return ROUTES.edit.replace(/:id/, id)
+    },
+    item(id) {
+        return ROUTES.item.replace(/:id/, id)
     }
 }
 
