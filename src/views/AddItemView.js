@@ -35,7 +35,7 @@ function AddItemView({ type }) {
         >
             <Form onSubmit={handleSubmit}>
                 <InputField label="Name" name="name" autoFocus />
-                <InputField label="Important date" name="date" type="date" />
+                <InputField label="Special date" name="date" type="date" />
                 <SelectField label="Date type" name="dateType">
                     {['Birthday', 'Anniversary', 'Memorial'].map(option => (
                         <option key={option} value={option.toLowerCase()}>
