@@ -1,6 +1,6 @@
 import React from 'react'
 import PrayForList from 'components/PrayForList/PrayForList'
-import { useIndividuals } from 'store/useIndividuals'
+import { useItems } from 'store/useItems'
 import usePrayerRecord from 'store/usePrayerRecord'
 import useSettings from 'store/useSettings'
 import './Recommendations.scss'
@@ -8,7 +8,7 @@ import './Recommendations.scss'
 function Recommendations() {
     const [prayerCount] = usePrayerRecord()
     const [{ recommendationCount: count }] = useSettings()
-    const [, { getRecommendations }] = useIndividuals()
+    const [, { getRecommendations }] = useItems()
     const { birthdays, favorites, lastPrayed } = getRecommendations(
         count - prayerCount || 0
     )

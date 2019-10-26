@@ -1,13 +1,13 @@
 import React from 'react'
 import Emoji from 'a11y-react-emoji'
 import { buildRoute } from 'constants/routes'
-import { useIndividuals } from 'store/useIndividuals'
+import { useItems } from 'store/useItems'
 import AppLink from 'components/AppLink/AppLink'
 import './PrayForList.scss'
 import Button from 'components/Button/Button'
 
 function PrayForList({ ids, symbol, title }) {
-    const [state, { recordPrayer }] = useIndividuals()
+    const [state, { recordPrayer }] = useItems()
 
     if (ids.length === 0) return null
 

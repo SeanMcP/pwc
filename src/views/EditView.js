@@ -1,14 +1,14 @@
 import React from 'react'
 import { navigate } from '@reach/router'
 import dayjs from 'dayjs'
-import { useIndividuals } from 'store/useIndividuals'
+import { useItems } from 'store/useItems'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { InputField, TextareaField } from 'components/Form/Form'
 import Button from 'components/Button/Button'
 
 function EditView(props) {
-    const [, { edit, get, remove }, DEV] = useIndividuals()
+    const [, { edit, get, remove }, DEV] = useItems()
     const [validationErrors, setValidationErrors] = React.useState([])
     const data = get(props.id)
     if (!data) {
