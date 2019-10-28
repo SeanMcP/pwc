@@ -1,6 +1,6 @@
 @import 'styles/variables.scss';
 
-.IndividualsList {
+.ItemsList {
     &__list {
         list-style-type: none;
     }
@@ -8,7 +8,7 @@
     &__item {
         margin: 0;
 
-        + .IndividualsList__item {
+        + .ItemsList__item {
             margin-top: 0.5rem;
         }
     }

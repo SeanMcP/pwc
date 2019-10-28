@@ -2,7 +2,7 @@ import React from 'react'
 import onKey from 'onkey-event-manager'
 import { useItems } from 'store/useItems'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
-import IndividualsList from 'components/IndividualsList/IndividualsList'
+import ItemsList from 'components/ItemsList/ItemsList'
 import SearchBar from 'components/SearchBar/SearchBar'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ROUTES from 'constants/routes'
@@ -21,7 +21,7 @@ function ListView() {
             }
             title="All Items"
         >
-            <IndividualsList individuals={items} query={query} />
+            <ItemsList individuals={items} query={query} />
             <ButtonLink to={ROUTES.add} modifiers={['fab', 'primary']}>
                 Add
             </ButtonLink>

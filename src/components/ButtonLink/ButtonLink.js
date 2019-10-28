@@ -1,11 +1,23 @@
 import React from 'react'
+import classList from '@seanmcp/class-list'
 import AppLink from 'components/AppLink/AppLink'
 import Button from 'components/Button/Button'
 
-function ButtonLink({ children, to, ...props }) {
+import './ButtonLink.scss'
+
+function ButtonLink({ children, className, full = false, to, ...props }) {
     return (
-        <AppLink className="ButtonLink" to={to}>
-            <Button {...props}>{children}</Button>
+        <AppLink
+            className={classList(
+                'ButtonLink',
+                className,
+                full && 'ButtonLink--full'
+            )}
+            to={to}
+        >
+            <Button {...props} tabIndex="-1">
+                {children}
+            </Button>
         </AppLink>
     )
 }
