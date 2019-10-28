@@ -1,17 +1,19 @@
 import React from 'react'
+import Grid from 'components/Grid/Grid'
+import ItemTypeButtonLink from 'components/ItemTypeButtonLink/ItemTypeButtonLink'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import ButtonLink from 'components/ButtonLink/ButtonLink'
-import { buildRoute } from 'constants/routes'
+
 import ITEMS from 'constants/items'
 
 function SelectTypeToAddView() {
     return (
         <ViewContainer title="Add">
-            {ITEMS.order.map(type => (
-                <ButtonLink key={type} to={buildRoute.addItem(type)}>
-                    {ITEMS.types[type].display}
-                </ButtonLink>
-            ))}
+            <h2>What type of item would you like to add?</h2>
+            <Grid columns={2} gap="1rem">
+                {ITEMS.order.map(type => (
+                    <ItemTypeButtonLink key={type} type={type} />
+                ))}
+            </Grid>
         </ViewContainer>
     )
 }
