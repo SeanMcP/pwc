@@ -2,7 +2,7 @@ import React from 'react'
 import Emoji from 'a11y-react-emoji'
 import { buildRoute } from 'constants/routes'
 import AppLink from 'components/AppLink/AppLink'
-import './IndividualsList.scss'
+import './ItemsList.scss'
 
 const sortByMap = {
     name: (a, b) => {
@@ -34,7 +34,7 @@ function shouldAdd(individual, query) {
     return false
 }
 
-function IndividualsList({ individuals, sortBy = 'name', query }) {
+function ItemsList({ individuals, sortBy = 'name', query }) {
     const list = Object.keys(individuals).sort((a, b) =>
         sortByMap[sortBy](individuals[a], individuals[b])
     )
@@ -43,15 +43,15 @@ function IndividualsList({ individuals, sortBy = 'name', query }) {
         const individual = individuals[id]
         if (shouldAdd(individual, query)) {
             acc.push(
-                <li className="IndividualsList__item" key={id}>
+                <li className="ItemsList__item" key={id}>
                     <AppLink
-                        className="IndividualsList__link"
+                        className="ItemsList__link"
                         to={buildRoute.item(id)}
                     >
-                        <span className="IndividualsList__icon">
+                        <span className="ItemsList__icon">
                             {individual.name[0]}
                         </span>
-                        <span className="IndividualsList__name">
+                        <span className="ItemsList__name">
                             {individual.name}
                         </span>
                         {individual.favorite && (
@@ -65,10 +65,10 @@ function IndividualsList({ individuals, sortBy = 'name', query }) {
     }, [])
 
     return (
-        <div className="IndividualsList">
-            <ul className="IndividualsList__list reset">
+        <div className="ItemsList">
+            <ul className="ItemsList__list reset">
                 {query && items.length === 0 ? (
-                    <li className="IndividualsList__no-matches">
+                    <li className="ItemsList__no-matches">
                         No matches found for "{query}"
                     </li>
                 ) : (
@@ -79,4 +79,4 @@ function IndividualsList({ individuals, sortBy = 'name', query }) {
     )
 }
 
-export default IndividualsList
+export default ItemsList
