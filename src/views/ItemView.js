@@ -1,39 +1,49 @@
 import React from 'react'
-import Emoji from 'a11y-react-emoji'
 import dayjs from 'dayjs'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
 import Button from 'components/Button/Button'
+import Icon from 'components/Icon/Icon'
 
 function ItemView(props) {
     const [, { get, recordPrayer, toggleFavorite }] = useItems()
     const data = get(props.id)
-    function formatBirthday() {
-        return dayjs(data.birthday).format('M/D')
+    function formateSpecialDate() {
+        const day = dayjs(data.date).format('M/D')
+        return day === 'Invalid Date' ? 'None saved' : day
     }
     function formatLastPrayed() {
-        return dayjs(data.lastPrayed).format('M/D/YYYY')
+        const date = data.prayerRecord[0]
+        return date
+            ? dayjs(data.prayerRecord[0]).format('M/D/YYYY')
+            : 'None recorded'
     }
     return (
         <ViewContainer title={data.name} backTo={ROUTES.list}>
             <header>
                 <section>
                     <div>
-                        <Emoji symbol="🙏" />
-                        <span>{formatLastPrayed()}</span>
+                        <div>
+                            <Icon icon="Clock" />
+                            <b>Last prayer</b>
+                        </div>
+                        <div>{formatLastPrayed()}</div>
                     </div>
                     <div>
-                        <Emoji symbol="🎂" />
-                        <span>{formatBirthday()}</span>
+                        <div>
+                            <Icon icon="Calendar" />
+                            <b>Special date</b>
+                        </div>
+                        <div>{formateSpecialDate()}</div>
                     </div>
                     <Button
                         onClick={() => toggleFavorite(props.id)}
                         aria-label="Toggle favorite"
                         aria-pressed={Boolean(data.favorite)}
                     >
-                        <Emoji symbol="⭐️" />
+                        <Icon icon="Star" />
                         <span>{data.favorite ? 'Favorited' : 'Favorite'}</span>
                     </Button>
                 </section>
@@ -44,7 +54,7 @@ function ItemView(props) {
                     __html: data.notes.replace(/\n/g, '<br/>')
                 }}
             />
-            {process.env.NODE_ENV === 'development' && (
+            {false && process.env.NODE_ENV === 'development' && (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}
             <footer>
