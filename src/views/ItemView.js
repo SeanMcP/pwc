@@ -6,38 +6,35 @@ import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ButtonLink from 'components/ButtonLink/ButtonLink'
 import Button from 'components/Button/Button'
 import Icon from 'components/Icon/Icon'
+import ItemAttributes from 'components/ItemAttributes/ItemAttributes'
 
 function ItemView(props) {
     const [, { get, recordPrayer, toggleFavorite }] = useItems()
     const data = get(props.id)
-    function formateSpecialDate() {
+    function formatSpecialDate() {
         const day = dayjs(data.date).format('M/D')
-        return day === 'Invalid Date' ? 'None saved' : day
+        return day === 'Invalid Date' ? 'None' : day
     }
     function formatLastPrayed() {
         const date = data.prayerRecord[0]
-        return date
-            ? dayjs(data.prayerRecord[0]).format('M/D/YYYY')
-            : 'None recorded'
+        return date ? dayjs(data.prayerRecord[0]).format('M/D') : 'Never'
     }
     return (
         <ViewContainer title={data.name} backTo={ROUTES.list}>
             <header>
                 <section>
-                    <div>
-                        <div>
-                            <Icon icon="Clock" />
-                            <b>Last prayer</b>
-                        </div>
-                        <div>{formatLastPrayed()}</div>
-                    </div>
-                    <div>
-                        <div>
-                            <Icon icon="Calendar" />
-                            <b>Special date</b>
-                        </div>
-                        <div>{formateSpecialDate()}</div>
-                    </div>
+                    <ItemAttributes.List>
+                        <ItemAttributes.Item
+                            body={formatLastPrayed()}
+                            icon="Clock"
+                            title="Last prayed"
+                        />
+                        <ItemAttributes.Item
+                            body={formatSpecialDate()}
+                            icon="Calendar"
+                            title="Special date"
+                        />
+                    </ItemAttributes.List>
                     <Button
                         onClick={() => toggleFavorite(props.id)}
                         aria-label="Toggle favorite"
