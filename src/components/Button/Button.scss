@@ -15,6 +15,10 @@
         background: $accent-color;
         border-color: $accent-color;
         color: white;
+
+        &.Button--with-fill svg {
+            fill: white;
+        }
     }
 
     &--fab {
@@ -25,5 +29,29 @@
             0 0.125rem 0.25rem rgba(0, 0, 0, 0.125);
         right: 1rem;
         position: fixed;
+    }
+
+    &--with-icon {
+        $size: 48px;
+
+        align-items: center;
+        border-radius: $size;
+        display: inline-flex;
+        height: $size;
+        justify-content: center;
+        max-height: $size;
+        max-width: $size;
+        position: relative;
+        width: $size;
+
+        .Icon {
+            position: absolute;
+        }
+
+        &--fill-icon {
+            .Icon__svg {
+                fill: white;
+            }
+        }
     }
 }
