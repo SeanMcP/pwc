@@ -4,7 +4,12 @@ import classList from '@seanmcp/class-list'
 import './Button.scss'
 
 function Button({ children, className, modifiers = [], ...props }) {
-    const fullModifiers = modifiers.map(mod => `Button--${mod}`)
+    const fullModifiers = modifiers.reduce((acc, mod) => {
+        if (Boolean(mod)) {
+            acc.push(`Button--${mod}`)
+        }
+        return acc
+    }, [])
     return (
         <button
             className={classList(
