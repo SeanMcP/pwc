@@ -3,19 +3,32 @@
 .ItemAttributes {
     @include reset-ul;
     margin-bottom: 1rem;
+    display: grid;
+    grid-gap: 1rem;
 
     &__item {
         display: grid;
         grid-template-columns: 3rem 1fr;
-        grid-template-rows: 1rem 1fr;
+        grid-template-rows: 1.125rem 1fr;
         grid-gap: 0.25rem;
 
         .Icon {
+            align-self: flex-start;
             grid-row: 1 / span 2;
         }
     }
 
-    &__item + &__item {
-        margin-top: 0.5rem;
+    &__item-body {
+        p {
+            margin: 0.5rem 0;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
     }
 }
