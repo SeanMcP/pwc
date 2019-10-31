@@ -1,3 +1,7 @@
 .Grid {
     display: grid;
+
+    &--inline {
+        display: inline-grid;
+    }
 }

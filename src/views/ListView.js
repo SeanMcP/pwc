@@ -19,7 +19,7 @@ function ListView() {
                     onKeyDown={onKey({ Escape: () => setQuery('') })}
                 />
             }
-            title="All Items"
+            title="Prayer List"
         >
             <ItemsList individuals={items} query={query} />
             <ButtonLink to={ROUTES.add} modifiers={['fab', 'primary']}>

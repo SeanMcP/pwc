@@ -3,8 +3,19 @@ import classList from '@seanmcp/class-list'
 
 import './Button.scss'
 
-function Button({ children, className, modifiers = [], ...props }) {
-    const fullModifiers = modifiers.reduce((acc, mod) => {
+/*
+    Enumerated modifiers:
+    - primary
+*/
+
+function Button({
+    children,
+    className,
+    modifiers = [],
+    primary = false,
+    ...props
+}) {
+    const otherModifiers = modifiers.reduce((acc, mod) => {
         if (Boolean(mod)) {
             acc.push(`Button--${mod}`)
         }
@@ -15,8 +26,9 @@ function Button({ children, className, modifiers = [], ...props }) {
             className={classList(
                 'Button',
                 props.type && `Button--${props.type}`,
-                className,
-                ...fullModifiers
+                primary && 'Button--primary',
+                ...otherModifiers,
+                className
             )}
             {...props}
         >

@@ -1,12 +1,14 @@
 import React from 'react'
 import dayjs from 'dayjs'
+
+import AppLink from 'components/AppLink/AppLink'
+import Grid from 'components/Grid/Grid'
+import ItemAttributes from 'components/ItemAttributes/ItemAttributes'
+import IconButton from 'components/IconButton/IconButton'
+import ViewContainer from 'components/ViewContainer/ViewContainer'
+
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
-import ViewContainer from 'components/ViewContainer/ViewContainer'
-import ButtonLink from 'components/ButtonLink/ButtonLink'
-import Button from 'components/Button/Button'
-import Icon from 'components/Icon/Icon'
-import ItemAttributes from 'components/ItemAttributes/ItemAttributes'
 
 function formatSpecialDate(date) {
     const day = dayjs(date).format('M/D')
@@ -14,9 +16,9 @@ function formatSpecialDate(date) {
 }
 
 function formatLastPrayed(date) {
+    if (!date) return 'Never'
     const today = dayjs()
     const lastPrayedDate = dayjs(date)
-    if (!lastPrayedDate) return 'Never'
     const days = today.diff(lastPrayedDate, 'days')
     return `${
         days === 0
@@ -25,51 +27,62 @@ function formatLastPrayed(date) {
     }`
 }
 
-function ItemView(props) {
+function ItemView({ id }) {
     const [, { get, recordPrayer, toggleFavorite }] = useItems()
-    const data = get(props.id)
+    const data = get(id)
 
     return (
         <ViewContainer title={data.name} backTo={ROUTES.list}>
-            <header>
-                <section>
-                    <ItemAttributes.List>
-                        <ItemAttributes.Item
-                            body={formatLastPrayed(data.prayerRecord[0])}
-                            icon="Clock"
-                            title="Last prayed"
-                        />
-                        <ItemAttributes.Item
-                            body={formatSpecialDate(data.date)}
-                            icon="Calendar"
-                            title="Special date"
-                        />
-                    </ItemAttributes.List>
-                    <Button
-                        onClick={() => toggleFavorite(props.id)}
-                        aria-label="Toggle favorite"
-                        aria-pressed={Boolean(data.favorite)}
-                    >
-                        <Icon icon="Star" />
-                        <span>{data.favorite ? 'Favorited' : 'Favorite'}</span>
-                    </Button>
-                </section>
+            <header style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                <Grid columns={3} gap="0.5rem" inline>
+                    <IconButton
+                        icon="ArrowUp"
+                        label="Record prayer"
+                        onClick={() => recordPrayer(id)}
+                        primary
+                    />
+                    <AppLink to={buildRoute.edit(id)}>
+                        <IconButton icon="Edit2" label="Edit" primary />
+                    </AppLink>
+                    <IconButton
+                        aria-checked={Boolean(data.favorite)}
+                        fill={Boolean(data.favorite)}
+                        icon="Star"
+                        label="Favorite"
+                        onClick={() => toggleFavorite(id)}
+                        primary
+                        role="switch"
+                    />
+                </Grid>
             </header>
-            <h2>Notes</h2>
-            <p
-                dangerouslySetInnerHTML={{
-                    __html: data.notes.replace(/\n/g, '<br/>')
-                }}
-            />
+            <ItemAttributes.List>
+                <ItemAttributes.Item
+                    body={formatLastPrayed(data.prayerRecord[0])}
+                    icon="Clock"
+                    title="Last prayed"
+                />
+                <ItemAttributes.Item
+                    body={formatSpecialDate(data.date)}
+                    icon="Calendar"
+                    title="Special date"
+                />
+                <ItemAttributes.Item
+                    body={
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: `<p>${data.notes
+                                    .trim()
+                                    .replace(/\n/g, '</p><p>')}</p>`
+                            }}
+                        />
+                    }
+                    icon="FileText"
+                    title="Notes"
+                />
+            </ItemAttributes.List>
             {false && process.env.NODE_ENV === 'development' && (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}
-            <footer>
-                <Button onClick={() => recordPrayer(props.id)}>
-                    Record prayer
-                </Button>
-                <ButtonLink to={buildRoute.edit(props.id)}>Edit</ButtonLink>
-            </footer>
         </ViewContainer>
     )
 }
