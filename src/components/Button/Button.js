@@ -4,7 +4,7 @@ import classList from '@seanmcp/class-list'
 import './Button.scss'
 
 /*
-    Modifiers:
+    Enumerated modifiers:
     - primary
 */
 
@@ -15,7 +15,7 @@ function Button({
     primary = false,
     ...props
 }) {
-    const fullModifiers = modifiers.reduce((acc, mod) => {
+    const otherModifiers = modifiers.reduce((acc, mod) => {
         if (Boolean(mod)) {
             acc.push(`Button--${mod}`)
         }
@@ -27,8 +27,8 @@ function Button({
                 'Button',
                 props.type && `Button--${props.type}`,
                 primary && 'Button--primary',
-                className,
-                ...fullModifiers
+                ...otherModifiers,
+                className
             )}
             {...props}
         >
