@@ -26,4 +26,4 @@ An app for managing your prayer list
         -   [x] Haven't prayed recently
         -   [x] Favorites
     -   [ ] Search bar
-    -   [ ] Bible verse
+    -   [x] Bible verse
