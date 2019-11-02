@@ -1,10 +1,6 @@
 .RecommendationsList {
     border: 1px solid #ddd;
 
-    + .RecommendationsList {
-        margin-top: 1rem;
-    }
-
     &__header {
         padding: 0.5rem;
     }
