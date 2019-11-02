@@ -3,7 +3,6 @@
 .BibleVerse {
     background: whitesmoke;
     border: 1px solid $border-color;
-    margin-top: 2rem;
     padding: 0.5rem;
 
     &__blockquote {
@@ -24,18 +23,5 @@
             content: '—';
             margin-right: 0.25rem;
         }
-    }
-
-    &__header {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-        display: grid;
-        grid-gap: 0.5rem;
-        grid-template-columns: min-content 1fr;
-        margin-bottom: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
-
-    &__heading {
-        margin: 0;
     }
 }
