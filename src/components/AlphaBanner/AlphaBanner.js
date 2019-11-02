@@ -8,9 +8,9 @@ function AlphaBanner() {
         <section className="AlphaBanner">
             <ViewContent squish>
                 <small>
-                    This app is in <b>alpha</b>. Issues or suggestions? Email{' '}
+                    <b>Alpha:</b>{' '}
                     <a href="mailto:feedback@seanmcp.com?subject=PWC">
-                        feeback@seanmcp.com
+                        Issues or suggestions?
                     </a>
                 </small>
             </ViewContent>
