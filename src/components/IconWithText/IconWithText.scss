@@ -1,0 +1,9 @@
+.IconWithText {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: min-content auto;
+
+    &__text {
+        margin: 0;
+    }
+}
