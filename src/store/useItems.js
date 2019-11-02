@@ -37,7 +37,7 @@ function useItemsHook() {
         const shallow = { ...state }
         shallow[id] = {
             name,
-            date: dayjs(date),
+            date: dayjs(date || undefined),
             dateType,
             favorite,
             notes,
