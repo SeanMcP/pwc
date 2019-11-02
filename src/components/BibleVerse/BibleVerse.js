@@ -12,7 +12,7 @@ function BibleVerse() {
 
     return (
         <div className="BibleVerse">
-            <IconHeading icon="BookOpen">BibleVerse</IconHeading>
+            <IconHeading icon="BookOpen">Bible verse</IconHeading>
             <blockquote
                 className="BibleVerse__blockquote"
                 cite={verse.citation}

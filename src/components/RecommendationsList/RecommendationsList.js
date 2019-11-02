@@ -2,7 +2,7 @@ import React from 'react'
 import { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 import AppLink from 'components/AppLink/AppLink'
-import Button from 'components/Button/Button'
+import IconButton from 'components/IconButton/IconButton'
 import IconHeading from 'components/IconHeading/IconHeading'
 
 import './RecommendationsList.scss'
@@ -24,12 +24,13 @@ function RecommendationsList({ icon, ids, title }) {
                 >
                     {item.name}
                 </AppLink>
-                <Button
+                <IconButton
                     className="RecommendationsList__record-button"
+                    icon="ArrowUp"
+                    label="Record prayer"
                     onClick={() => recordPrayer(id)}
-                >
-                    Record prayer
-                </Button>
+                    small
+                />
                 {/* Include dismiss icon? */}
             </li>
         )

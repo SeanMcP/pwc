@@ -18,3 +18,11 @@
     margin: 0;
     padding: 0;
 }
+
+@mixin set-round-element-size($size) {
+    border-radius: $size;
+    height: $size;
+    max-height: $size;
+    max-width: $size;
+    width: $size;
+}

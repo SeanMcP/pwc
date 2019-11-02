@@ -32,17 +32,12 @@
     }
 
     &--with-icon {
-        $size: 48px;
+        @include set-round-element-size(48px);
 
         align-items: center;
-        border-radius: $size;
         display: inline-flex;
-        height: $size;
         justify-content: center;
-        max-height: $size;
-        max-width: $size;
         position: relative;
-        width: $size;
 
         .Icon {
             position: absolute;
@@ -52,6 +47,10 @@
             .Icon__svg {
                 fill: white;
             }
+        }
+
+        &.Button--with-small-icon {
+            @include set-round-element-size(32px);
         }
     }
 }
