@@ -1,0 +1,9 @@
+.IconHeading {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: min-content auto;
+
+    &__heading {
+        margin: 0;
+    }
+}

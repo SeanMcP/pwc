@@ -24,14 +24,4 @@
             margin-right: 0.25rem;
         }
     }
-
-    &__header {
-        display: grid;
-        grid-gap: 0.5rem;
-        grid-template-columns: min-content 1fr;
-    }
-
-    &__heading {
-        margin: 0;
-    }
 }

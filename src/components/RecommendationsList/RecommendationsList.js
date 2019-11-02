@@ -3,7 +3,7 @@ import { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 import AppLink from 'components/AppLink/AppLink'
 import Button from 'components/Button/Button'
-import Icon from 'components/Icon/Icon'
+import IconHeading from 'components/IconHeading/IconHeading'
 
 import './RecommendationsList.scss'
 
@@ -37,10 +37,13 @@ function RecommendationsList({ icon, ids, title }) {
 
     return (
         <div className="RecommendationsList">
-            <header className="RecommendationsList__header">
-                <Icon icon={icon} />
-                <h3 className="RecommendationsList__heading">{title}</h3>
-            </header>
+            <IconHeading
+                className="RecommendationsList__header"
+                icon={icon}
+                headingTag="h3"
+            >
+                {title}
+            </IconHeading>
             <ul className="RecommendationsList__list">{list}</ul>
         </div>
     )
