@@ -8,15 +8,21 @@ function IconButton({
     icon,
     label,
     modifiers = [],
+    small = false,
     ...props
 }) {
     return (
         <Button
             aria-label={label}
-            modifiers={['with-icon', fill && 'with-fill', ...modifiers]}
+            modifiers={[
+                'with-icon',
+                fill && 'with-fill',
+                small && 'with-small-icon',
+                ...modifiers
+            ]}
             {...props}
         >
-            <Icon block icon={icon} />
+            <Icon block icon={icon} size={small ? 18 : undefined} />
             {children}
         </Button>
     )
