@@ -15,19 +15,20 @@ function Button({
     primary = false,
     ...props
 }) {
-    const otherModifiers = modifiers.reduce((acc, mod) => {
+    const modifierClasses = modifiers.reduce((acc, mod) => {
         if (Boolean(mod)) {
             acc.push(`Button--${mod}`)
         }
         return acc
     }, [])
+
     return (
         <button
             className={classList(
                 'Button',
                 props.type && `Button--${props.type}`,
                 primary && 'Button--primary',
-                ...otherModifiers,
+                ...modifierClasses,
                 className
             )}
             {...props}
