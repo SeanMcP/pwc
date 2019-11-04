@@ -1,10 +1,11 @@
 import React from 'react'
 import dayjs from 'dayjs'
 
-import AppLink from 'components/AppLink/AppLink'
+import FabContainer from 'components/FabContainer/FabContainer'
 import Grid from 'components/Grid/Grid'
 import ItemAttributes from 'components/ItemAttributes/ItemAttributes'
 import IconButton from 'components/IconButton/IconButton'
+import LinkButton from 'components/LinkButton/LinkButton'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 
 import ROUTES, { buildRoute } from 'constants/routes'
@@ -34,16 +35,13 @@ function ItemView({ id }) {
     return (
         <ViewContainer title={data.name} backTo={ROUTES.list}>
             <header style={{ marginBottom: '1rem', textAlign: 'center' }}>
-                <Grid columns={3} gap="0.5rem" inline>
-                    <IconButton
-                        icon="ArrowUp"
-                        label="Record prayer"
-                        onClick={() => recordPrayer(id)}
+                <Grid columns={2} gap="0.5rem" inline>
+                    <LinkButton
+                        aria-label="Edit"
+                        icon="Edit2"
                         primary
+                        to={buildRoute.edit(id)}
                     />
-                    <AppLink to={buildRoute.edit(id)}>
-                        <IconButton icon="Edit2" label="Edit" primary />
-                    </AppLink>
                     <IconButton
                         aria-checked={Boolean(data.favorite)}
                         fill={Boolean(data.favorite)}
@@ -56,6 +54,13 @@ function ItemView({ id }) {
                 </Grid>
             </header>
             <ItemAttributes.List>
+                {data.favorite && (
+                    <ItemAttributes.Item
+                        body="Daily reminders"
+                        icon="Star"
+                        title="Favorited"
+                    />
+                )}
                 <ItemAttributes.Item
                     body={formatLastPrayed(data.prayerRecord[0])}
                     icon="Clock"
@@ -83,6 +88,14 @@ function ItemView({ id }) {
             {false && process.env.NODE_ENV === 'development' && (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}
+            <FabContainer>
+                <IconButton
+                    icon="ArrowUp"
+                    label="Record prayer"
+                    onClick={() => recordPrayer(id)}
+                    primary
+                />
+            </FabContainer>
         </ViewContainer>
     )
 }
