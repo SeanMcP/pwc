@@ -1,8 +1,9 @@
 import React from 'react'
 import onKey from 'onkey-event-manager'
 import { useItems } from 'store/useItems'
-import ButtonLink from 'components/ButtonLink/ButtonLink'
+import FabContainer from 'components/FabContainer/FabContainer'
 import ItemsList from 'components/ItemsList/ItemsList'
+import LinkButton from 'components/LinkButton/LinkButton'
 import SearchBar from 'components/SearchBar/SearchBar'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ROUTES from 'constants/routes'
@@ -22,9 +23,14 @@ function ListView() {
             title="Prayer List"
         >
             <ItemsList individuals={items} query={query} />
-            <ButtonLink to={ROUTES.add} modifiers={['fab', 'primary']}>
-                Add
-            </ButtonLink>
+            <FabContainer>
+                <LinkButton
+                    aria-label="Add item"
+                    icon="Plus"
+                    primary
+                    to={ROUTES.add}
+                />
+            </FabContainer>
         </ViewContainer>
     )
 }

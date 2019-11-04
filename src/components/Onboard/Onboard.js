@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonLink from 'components/ButtonLink/ButtonLink'
+import LinkButton from 'components/LinkButton/LinkButton'
 import ROUTES from 'constants/routes'
 import IconHeading from 'components/IconHeading/IconHeading'
 
@@ -10,9 +10,9 @@ function Onboard() {
             <p>
                 PWC makes it easy to manage your prayer list. Let's get started!
             </p>
-            <ButtonLink full primary to={ROUTES.add}>
+            <LinkButton full primary to={ROUTES.add}>
                 Add an item
-            </ButtonLink>
+            </LinkButton>
         </div>
     )
 }
