@@ -1,11 +1,11 @@
 import React from 'react'
-import ButtonLink from 'components/ButtonLink/ButtonLink'
+import LinkButton from 'components/LinkButton/LinkButton'
 import Icon from 'components/Icon/Icon'
 
 import ITEMS from 'constants/items'
 import { buildRoute } from 'constants/routes'
 
-import './ItemTypeButtonLink.scss'
+import './ItemTypeTile.scss'
 
 const ICONS_BY_ITEM_TYPE = {
     [ITEMS.types.person.id]: 'User',
@@ -14,19 +14,15 @@ const ICONS_BY_ITEM_TYPE = {
     [ITEMS.types.idea.id]: 'Heart'
 }
 
-function ItemTypeButtonLink({ type }) {
+function ItemTypeTile({ type }) {
     return (
-        <ButtonLink
-            className="ItemTypeButtonLink"
-            to={buildRoute.addItem(type)}
-            full
-        >
+        <LinkButton className="ItemTypeTile" to={buildRoute.addItem(type)} full>
             <Icon icon={ICONS_BY_ITEM_TYPE[type]} size="48px" block />
-            <div className="ItemTypeButtonLink__text">
+            <div className="ItemTypeTile__text">
                 {ITEMS.types[type].display}
             </div>
-        </ButtonLink>
+        </LinkButton>
     )
 }
 
-export default ItemTypeButtonLink
+export default ItemTypeTile
