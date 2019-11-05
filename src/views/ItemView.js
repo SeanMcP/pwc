@@ -2,7 +2,6 @@ import React from 'react'
 import dayjs from 'dayjs'
 
 import FabContainer from 'components/FabContainer/FabContainer'
-import Grid from 'components/Grid/Grid'
 import ItemAttributes from 'components/ItemAttributes/ItemAttributes'
 import IconButton from 'components/IconButton/IconButton'
 import LinkButton from 'components/LinkButton/LinkButton'
@@ -33,26 +32,7 @@ function ItemView({ id }) {
     const data = get(id)
 
     return (
-        <ViewContainer title={data.name} backTo={ROUTES.list}>
-            <header style={{ marginBottom: '1rem', textAlign: 'center' }}>
-                <Grid columns={2} gap="0.5rem" inline>
-                    <LinkButton
-                        aria-label="Edit"
-                        icon="Edit2"
-                        primary
-                        to={buildRoute.edit(id)}
-                    />
-                    <IconButton
-                        aria-checked={Boolean(data.favorite)}
-                        fill={Boolean(data.favorite)}
-                        icon="Star"
-                        label="Favorite"
-                        onClick={() => toggleFavorite(id)}
-                        primary
-                        role="switch"
-                    />
-                </Grid>
-            </header>
+        <ViewContainer alternateHeader backTo={ROUTES.list} title={data.name}>
             <ItemAttributes.List>
                 {data.favorite && (
                     <ItemAttributes.Item
@@ -85,6 +65,7 @@ function ItemView({ id }) {
                     title="Notes"
                 />
             </ItemAttributes.List>
+            <LinkButton to={buildRoute.edit(id)}>Edit item</LinkButton>
             {false && process.env.NODE_ENV === 'development' && (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}
@@ -94,6 +75,15 @@ function ItemView({ id }) {
                     label="Record prayer"
                     onClick={() => recordPrayer(id)}
                     primary
+                />
+                <IconButton
+                    aria-checked={Boolean(data.favorite)}
+                    fill={Boolean(data.favorite)}
+                    icon="Star"
+                    label="Favorite"
+                    onClick={() => toggleFavorite(id)}
+                    primary
+                    role="switch"
                 />
             </FabContainer>
         </ViewContainer>
