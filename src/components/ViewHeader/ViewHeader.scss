@@ -22,4 +22,13 @@
         text-align: center;
         justify-self: center;
     }
+
+    &--alternate {
+        background: $primary-color;
+        color: white;
+
+        .ViewHeader__link {
+            color: white;
+        }
+    }
 }

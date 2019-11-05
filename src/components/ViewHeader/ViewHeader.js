@@ -1,11 +1,17 @@
 import React from 'react'
+import classList from '@seanmcp/class-list'
 import ViewContent from 'components/ViewContent/ViewContent'
 import AppLink from 'components/AppLink/AppLink'
 import './ViewHeader.scss'
 
-function ViewHeader({ appName, backTo = '/', title }) {
+function ViewHeader({ alternate, appName, backTo = '/', title }) {
     return (
-        <header className="ViewHeader">
+        <header
+            className={classList(
+                'ViewHeader',
+                alternate && 'ViewHeader--alternate'
+            )}
+        >
             <ViewContent>
                 <div className="ViewHeader__container">
                     {window.location.pathname !== '/' && (

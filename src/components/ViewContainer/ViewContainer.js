@@ -8,6 +8,7 @@ import AlphaBanner from 'components/AlphaBanner/AlphaBanner'
 const appName = 'PWC'
 
 function ViewContainer({
+    alternateHeader = false,
     backTo,
     children,
     hideHeader,
@@ -21,7 +22,12 @@ function ViewContainer({
         <div className="ViewContainer">
             <AlphaBanner />
             {!hideHeader && (
-                <ViewHeader appName={appName} backTo={backTo} title={title} />
+                <ViewHeader
+                    alternate={alternateHeader}
+                    appName={appName}
+                    backTo={backTo}
+                    title={title}
+                />
             )}
             {searchBar}
             <main id="main" role="main" className="ViewContainer__main">
