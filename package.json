@@ -7,6 +7,7 @@
         "@seanmcp/class-list": "^1.0.2",
         "a11y-react-emoji": "^1.0.2",
         "dayjs": "^1.8.15",
+        "formik": "^2.0.3",
         "node-sass": "^4.12.0",
         "onkey-event-manager": "^1.0.0",
         "react": "^16.8.6",
@@ -15,7 +16,8 @@
         "react-feather": "^2.0.3",
         "react-scripts": "3.0.1",
         "react-use-toggle": "^0.1.0",
-        "uuid": "^3.3.2"
+        "uuid": "^3.3.2",
+        "yup": "^0.27.0"
     },
     "scripts": {
         "start": "react-scripts start",
