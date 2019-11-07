@@ -1,5 +1,6 @@
 import React from 'react'
 import { navigate } from '@reach/router'
+import { Formik } from 'formik'
 import ROUTES from 'constants/routes'
 import { useItems } from 'store/useItems'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
@@ -11,41 +12,60 @@ import {
 } from 'components/Form/Form'
 import Button from 'components/Button/Button'
 import ITEMS from 'constants/items'
+import { FIELDS, initialValues, validationSchema } from 'schemas/item'
 
 function AddItemView({ type }) {
     const [, { add }] = useItems()
-    function handleSubmit(event) {
-        event.preventDefault()
-        const form = event.target
-        const formData = new FormData(form)
-        const name = formData.get('name'),
-            date = formData.get('date'),
-            dateType = formData.get('dateType'),
-            notes = formData.get('notes')
-        if (name) {
-            add({ date, dateType: date ? dateType : null, name, notes, type })
-            form.reset()
-            navigate(ROUTES.list)
-        }
+
+    function onSubmit(values) {
+        const { date, dateType, name, notes } = values
+
+        add({
+            date,
+            dateType: date ? dateType : null,
+            name,
+            notes,
+            type
+        })
+
+        navigate(ROUTES.list)
     }
+
     return (
         <ViewContainer
             backTo={ROUTES.add}
             title={`Add ${ITEMS.types[type].display}`}
         >
-            <Form onSubmit={handleSubmit}>
-                <InputField label="Name" name="name" autoFocus />
-                <InputField label="Special date" name="date" type="date" />
-                <SelectField label="Date type" name="dateType">
-                    {['Birthday', 'Anniversary', 'Memorial'].map(option => (
-                        <option key={option} value={option.toLowerCase()}>
-                            {option}
-                        </option>
-                    ))}
-                </SelectField>
-                <TextareaField label="Notes" name="notes" />
-                <Button>Add</Button>
-            </Form>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+            >
+                {({ handleSubmit }) => (
+                    <Form onSubmit={handleSubmit}>
+                        <InputField label="Name" name={FIELDS.name} autoFocus />
+                        <InputField
+                            label="Special date"
+                            name={FIELDS.date}
+                            type="date"
+                        />
+                        <SelectField label="Date type" name={FIELDS.dateType}>
+                            {['Birthday', 'Anniversary', 'Memorial'].map(
+                                option => (
+                                    <option
+                                        key={option}
+                                        value={option.toLowerCase()}
+                                    >
+                                        {option}
+                                    </option>
+                                )
+                            )}
+                        </SelectField>
+                        <TextareaField label="Notes" name={FIELDS.notes} />
+                        <Button>Add</Button>
+                    </Form>
+                )}
+            </Formik>
         </ViewContainer>
     )
 }
