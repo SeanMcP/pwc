@@ -1,19 +1,33 @@
 import React from 'react'
 import classList from '@seanmcp/class-list'
+import { useField } from 'formik'
 
 import './Form.scss'
 
-function FieldFactory({ description, element, error, label, ...props }) {
-    const id = `${props.name}-${String(Math.random()).slice(-5)}`
+function FieldFactory({
+    description,
+    element,
+    field = {},
+    label,
+    meta = {},
+    ...props
+}) {
+    if (!props.name) throw Error('`name` is a required prop.')
+
+    const idRef = React.useRef(
+        `${props.name}-${String(Math.random()).slice(-5)}`
+    )
+    const id = idRef.current
     const descriptionId = description ? `${id}-description` : undefined
     const Element = element
     const className = `${element[0].toUpperCase() + element.slice(1)}Field`
+
     return (
         <div
             className={classList(
                 'Field',
                 className,
-                error && `${className}--error`
+                meta.error && `Field--error ${className}--error`
             )}
         >
             {label && (
@@ -36,17 +50,25 @@ function FieldFactory({ description, element, error, label, ...props }) {
                 className={`Field__input ${className}__input`}
                 id={id}
                 aria-describedby={descriptionId}
+                {...field}
                 {...props}
             />
-            {error && (
-                <p className={`Field__error ${className}__error`}>{error}</p>
+            {meta.touched && meta.error && (
+                <p className={`Field__error ${className}__error`}>
+                    {meta.error}
+                </p>
             )}
         </div>
     )
 }
 
+function FormikFieldFactory(props) {
+    const [field, meta] = useField(props)
+    return <FieldFactory field={field} meta={meta} {...props} />
+}
+
 export function InputField(props) {
-    return <FieldFactory element="input" {...props} />
+    return <FormikFieldFactory element="input" {...props} />
 }
 
 export function SearchField(props) {
@@ -54,6 +76,7 @@ export function SearchField(props) {
         <FieldFactory
             aria-label="Search"
             element="input"
+            name="search"
             type="search"
             {...props}
         />
@@ -61,11 +84,11 @@ export function SearchField(props) {
 }
 
 export function TextareaField(props) {
-    return <FieldFactory element="textarea" {...props} />
+    return <FormikFieldFactory element="textarea" {...props} />
 }
 
 export function SelectField(props) {
-    return <FieldFactory element="select" {...props} />
+    return <FormikFieldFactory element="select" {...props} />
 }
 
 export function Form({ className, children, ...props }) {

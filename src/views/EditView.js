@@ -4,81 +4,68 @@ import dayjs from 'dayjs'
 import { useItems } from 'store/useItems'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { InputField, TextareaField } from 'components/Form/Form'
+import { Form } from 'components/Form/Form'
+import * as ItemFields from 'components/Form/ItemFields'
 import Button from 'components/Button/Button'
+import { FIELDS, defaultValues, validationSchema } from 'schemas/item'
+import { Formik } from 'formik'
 
 function EditView(props) {
     const [, { edit, get, remove }, DEV] = useItems()
-    const [validationErrors, setValidationErrors] = React.useState([])
+
     const data = get(props.id)
+
     if (!data) {
         return null
     }
+
     function handleDelete() {
         remove(props.id)
         navigate(ROUTES.list)
     }
-    function handleSave(e) {
-        e.preventDefault()
-        setValidationErrors([])
 
-        const formData = new FormData(e.target)
-        const name = formData.get('name'),
-            birthday = formData.get('birthday'),
-            notes = formData.get('notes')
+    function onSubmit(values) {
+        const { date, dateType, name, notes } = values
 
-        if (!name) {
-            setValidationErrors([...validationErrors, 'Name is required'])
-        }
+        edit(props.id, {
+            date,
+            dateType,
+            name,
+            notes
+        })
 
-        if (validationErrors.length === 0) {
-            edit(props.id, {
-                name,
-                birthday,
-                notes
-            })
-        }
+        navigate(buildRoute.item(props.id))
     }
+
     return (
         <ViewContainer title="Edit" backTo={buildRoute.item(props.id)}>
-            <form
-                onSubmit={handleSave}
-                className={validationErrors.length && '--error'}
+            <Formik
+                initialValues={defaultValues({
+                    [FIELDS.date]: dayjs(data.date).format('YYYY-MM-DD') || '',
+                    [FIELDS.dateType]: data.dateType,
+                    [FIELDS.name]: data.name,
+                    [FIELDS.notes]: data.notes
+                })}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
             >
-                {validationErrors.length > 0 &&
-                    validationErrors.map((error, i) => (
-                        <p key={`error-${i}`} className="Error">
-                            {error}
-                        </p>
-                    ))}
-                <InputField
-                    label="Name"
-                    name="name"
-                    defaultValue={data.name}
-                    required
-                />
-                <InputField
-                    label="Birthday"
-                    name="birthday"
-                    type="date"
-                    defaultValue={
-                        dayjs(data.birthday).format('YYYY-MM-DD') || null
-                    }
-                />
-                <TextareaField
-                    label="Notes"
-                    name="notes"
-                    defaultValue={data.notes}
-                />
-                {process.env.NODE_ENV === 'development' && (
-                    <pre>{JSON.stringify(data, null, 2)}</pre>
+                {({ handleSubmit }) => (
+                    <Form onSubmit={handleSubmit}>
+                        <ItemFields.Name />
+                        <ItemFields.Date />
+                        <ItemFields.DateType />
+                        <ItemFields.Notes />
+                        {false && process.env.NODE_ENV === 'development' && (
+                            <pre>{JSON.stringify(data, null, 2)}</pre>
+                        )}
+                        <Button type="submit">Save changes</Button>
+                        <Button type="button" onClick={handleDelete}>
+                            Remove
+                        </Button>
+                    </Form>
                 )}
-                <Button>Save changes</Button>
-                <Button type="button" onClick={handleDelete}>
-                    Remove
-                </Button>
-            </form>
-            {process.env.NODE_ENV === 'development' && (
+            </Formik>
+            {false && process.env.NODE_ENV === 'development' && (
                 <Button onClick={() => DEV.___DEV___setBirthday(props.id)}>
                     Set birthday to today
                 </Button>
