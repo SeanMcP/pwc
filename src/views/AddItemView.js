@@ -4,15 +4,11 @@ import { Formik } from 'formik'
 import ROUTES from 'constants/routes'
 import { useItems } from 'store/useItems'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import {
-    Form,
-    InputField,
-    TextareaField,
-    SelectField
-} from 'components/Form/Form'
+import { Form } from 'components/Form/Form'
 import Button from 'components/Button/Button'
 import ITEMS from 'constants/items'
-import { FIELDS, initialValues, validationSchema } from 'schemas/item'
+import * as ItemFields from 'components/Form/ItemFields'
+import { initialValues, validationSchema } from 'schemas/item'
 
 function AddItemView({ type }) {
     const [, { add }] = useItems()
@@ -43,26 +39,11 @@ function AddItemView({ type }) {
             >
                 {({ handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
-                        <InputField label="Name" name={FIELDS.name} autoFocus />
-                        <InputField
-                            label="Special date"
-                            name={FIELDS.date}
-                            type="date"
-                        />
-                        <SelectField label="Date type" name={FIELDS.dateType}>
-                            {['Birthday', 'Anniversary', 'Memorial'].map(
-                                option => (
-                                    <option
-                                        key={option}
-                                        value={option.toLowerCase()}
-                                    >
-                                        {option}
-                                    </option>
-                                )
-                            )}
-                        </SelectField>
-                        <TextareaField label="Notes" name={FIELDS.notes} />
-                        <Button>Add</Button>
+                        <ItemFields.Name autoFocus />
+                        <ItemFields.Date />
+                        <ItemFields.DateType />
+                        <ItemFields.Notes />
+                        <Button type="submit">Add</Button>
                     </Form>
                 )}
             </Formik>

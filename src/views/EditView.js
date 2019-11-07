@@ -4,12 +4,8 @@ import dayjs from 'dayjs'
 import { useItems } from 'store/useItems'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import {
-    Form,
-    InputField,
-    TextareaField,
-    SelectField
-} from 'components/Form/Form'
+import { Form } from 'components/Form/Form'
+import * as ItemFields from 'components/Form/ItemFields'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/item'
 import { Formik } from 'formik'
@@ -55,29 +51,14 @@ function EditView(props) {
             >
                 {({ handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
-                        <InputField label="Name" name={FIELDS.name} />
-                        <InputField
-                            label="Special date"
-                            name={FIELDS.date}
-                            type="date"
-                        />
-                        <SelectField label="Date type" name={FIELDS.dateType}>
-                            {['Birthday', 'Anniversary', 'Memorial'].map(
-                                option => (
-                                    <option
-                                        key={option}
-                                        value={option.toLowerCase()}
-                                    >
-                                        {option}
-                                    </option>
-                                )
-                            )}
-                        </SelectField>
-                        <TextareaField label="Notes" name={FIELDS.notes} />
+                        <ItemFields.Name />
+                        <ItemFields.Date />
+                        <ItemFields.DateType />
+                        <ItemFields.Notes />
                         {false && process.env.NODE_ENV === 'development' && (
                             <pre>{JSON.stringify(data, null, 2)}</pre>
                         )}
-                        <Button>Save changes</Button>
+                        <Button type="submit">Save changes</Button>
                         <Button type="button" onClick={handleDelete}>
                             Remove
                         </Button>
