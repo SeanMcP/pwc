@@ -3,12 +3,13 @@
 
 .Form {
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: 2rem;
 }
 
 .Field {
     display: grid;
     grid-gap: 0.5rem;
+    position: relative;
 
     &__label {
         display: block;
@@ -26,7 +27,20 @@
         font-family: inherit;
         font-size: inherit;
         padding: 0.5rem;
-        width: calc(100% - 1rem);
+    }
+
+    &--error {
+        .Field__input {
+            border: 1px solid firebrick;
+        }
+    }
+
+    &__error {
+        color: firebrick;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 0.25rem);
     }
 
     &.TextareaField {
