@@ -22,7 +22,7 @@ function ListView() {
             }
             title="Prayer List"
         >
-            <ItemsList individuals={items} query={query} />
+            <ItemsList items={items} query={query} />
             <FabContainer>
                 <LinkButton
                     aria-label="Add item"

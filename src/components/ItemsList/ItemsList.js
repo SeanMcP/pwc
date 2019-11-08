@@ -34,27 +34,23 @@ function shouldAdd(individual, query) {
     return false
 }
 
-function ItemsList({ individuals, sortBy = 'name', query }) {
-    const list = Object.keys(individuals).sort((a, b) =>
-        sortByMap[sortBy](individuals[a], individuals[b])
+function ItemsList({ items, sortBy = 'name', query }) {
+    const list = Object.keys(items).sort((a, b) =>
+        sortByMap[sortBy](items[a], items[b])
     )
 
-    const items = list.reduce((acc, id) => {
-        const individual = individuals[id]
-        if (shouldAdd(individual, query)) {
+    const listOfItems = list.reduce((acc, id) => {
+        const item = items[id]
+        if (shouldAdd(item, query)) {
             acc.push(
                 <li className="ItemsList__item" key={id}>
                     <AppLink
                         className="ItemsList__link"
                         to={buildRoute.item(id)}
                     >
-                        <span className="ItemsList__icon">
-                            {individual.name[0]}
-                        </span>
-                        <span className="ItemsList__name">
-                            {individual.name}
-                        </span>
-                        {individual.favorite && (
+                        <span className="ItemsList__icon">{item.name[0]}</span>
+                        <span className="ItemsList__name">{item.name}</span>
+                        {item.favorite && (
                             <Emoji label="Favorited" symbol="⭐️" />
                         )}
                     </AppLink>
@@ -67,12 +63,12 @@ function ItemsList({ individuals, sortBy = 'name', query }) {
     return (
         <div className="ItemsList">
             <ul className="ItemsList__list reset">
-                {query && items.length === 0 ? (
+                {query && listOfItems.length === 0 ? (
                     <li className="ItemsList__no-matches">
                         No matches found for "{query}"
                     </li>
                 ) : (
-                    items
+                    listOfItems
                 )}
             </ul>
         </div>
