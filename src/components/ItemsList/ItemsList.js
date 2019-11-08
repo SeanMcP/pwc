@@ -1,10 +1,35 @@
 import React from 'react'
-import Emoji from 'a11y-react-emoji'
-import { buildRoute } from 'constants/routes'
 import AppLink from 'components/AppLink/AppLink'
+import Icon from 'components/Icon/Icon'
+import { buildRoute } from 'constants/routes'
+
+import All from './ItemsListAll'
+import ByType from './ItemsListByType'
+
 import './ItemsList.scss'
 
-const sortByMap = {
+export function renderItems({ items = {}, list = [], query = '' }) {
+    return list.reduce((acc, id) => {
+        const item = items[id]
+        if (shouldAdd(item, query)) {
+            acc.push(
+                <li className="ItemsList__item" key={id}>
+                    <AppLink
+                        className="ItemsList__link"
+                        to={buildRoute.item(id)}
+                    >
+                        <span className="ItemsList__icon">{item.name[0]}</span>
+                        <span className="ItemsList__name">{item.name}</span>
+                        {item.favorite && <Icon icon="Star" />}
+                    </AppLink>
+                </li>
+            )
+        }
+        return acc
+    }, [])
+}
+
+export const sortByMap = {
     name: (a, b) => {
         if (a.name > b.name) {
             return +1
@@ -16,7 +41,7 @@ const sortByMap = {
     }
 }
 
-function shouldAdd(individual, query) {
+export function shouldAdd(individual, query) {
     // If there is no query, it should be added
     if (!query) return true
     const lowerQuery = query.toLowerCase()
@@ -34,49 +59,7 @@ function shouldAdd(individual, query) {
     return false
 }
 
-function ItemsList({ individuals, sortBy = 'name', query }) {
-    const list = Object.keys(individuals).sort((a, b) =>
-        sortByMap[sortBy](individuals[a], individuals[b])
-    )
-
-    const items = list.reduce((acc, id) => {
-        const individual = individuals[id]
-        if (shouldAdd(individual, query)) {
-            acc.push(
-                <li className="ItemsList__item" key={id}>
-                    <AppLink
-                        className="ItemsList__link"
-                        to={buildRoute.item(id)}
-                    >
-                        <span className="ItemsList__icon">
-                            {individual.name[0]}
-                        </span>
-                        <span className="ItemsList__name">
-                            {individual.name}
-                        </span>
-                        {individual.favorite && (
-                            <Emoji label="Favorited" symbol="⭐️" />
-                        )}
-                    </AppLink>
-                </li>
-            )
-        }
-        return acc
-    }, [])
-
-    return (
-        <div className="ItemsList">
-            <ul className="ItemsList__list reset">
-                {query && items.length === 0 ? (
-                    <li className="ItemsList__no-matches">
-                        No matches found for "{query}"
-                    </li>
-                ) : (
-                    items
-                )}
-            </ul>
-        </div>
-    )
+export default {
+    All,
+    ByType
 }
-
-export default ItemsList

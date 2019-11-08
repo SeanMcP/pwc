@@ -1,19 +1,23 @@
 const types = {
     person: {
         id: 'person',
-        display: 'Person'
+        display: 'Person',
+        plural: 'People'
     },
     place: {
         id: 'place',
-        display: 'Place'
+        display: 'Place',
+        plural: 'Places'
     },
     thing: {
         id: 'thing',
-        display: 'Thing'
+        display: 'Thing',
+        plural: 'Things'
     },
     idea: {
         id: 'idea',
-        display: 'Idea'
+        display: 'Idea',
+        plural: 'Ideas'
     }
 }
 
