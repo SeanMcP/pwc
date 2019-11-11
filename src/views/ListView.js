@@ -2,15 +2,19 @@ import React from 'react'
 import onKey from 'onkey-event-manager'
 import { useItems } from 'store/useItems'
 import FabContainer from 'components/FabContainer/FabContainer'
+import Grid from 'components/Grid/Grid'
 import ItemsList from 'components/ItemsList/ItemsList'
 import LinkButton from 'components/LinkButton/LinkButton'
 import SearchBar from 'components/SearchBar/SearchBar'
+import SortListRadio from 'components/SortListRadio/SortListRadio'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ROUTES from 'constants/routes'
 
 function ListView() {
     const [query, setQuery] = React.useState('')
+    const sortState = React.useState('All')
     const [items] = useItems()
+    const FilteredItemsList = ItemsList[sortState[0]]
     return (
         <ViewContainer
             searchBar={
@@ -22,7 +26,10 @@ function ListView() {
             }
             title="Prayer List"
         >
-            <ItemsList.ByType items={items} query={query} />
+            <Grid gap="1rem">
+                <SortListRadio state={sortState} />
+                <FilteredItemsList items={items} query={query} />
+            </Grid>
             <FabContainer>
                 <LinkButton
                     aria-label="Add item"

@@ -5,7 +5,7 @@ import './AlphaBanner.scss'
 
 function AlphaBanner() {
     return (
-        <section className="AlphaBanner">
+        <section className="AlphaBanner" aria-label="Notification">
             <ViewContent squish>
                 <small>
                     <b>Alpha:</b>{' '}

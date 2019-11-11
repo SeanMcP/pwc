@@ -56,7 +56,7 @@ function ItemsListByType({ items, sortBy = 'name', query }) {
 
     return (
         <div className="ItemsList ItemsList--by-type">
-            <h2 style={{ marginTop: 0 }}>By Type</h2>
+            <h2 className="ItemsList__heading">By Type</h2>
             {query && typeLists.length === 0 ? (
                 <p className="ItemsList__no-matches">
                     No matches found for "{query}"
