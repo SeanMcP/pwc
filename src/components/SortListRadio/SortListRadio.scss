@@ -1,0 +1,47 @@
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
+
+.SortListRadio {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    &__legend {
+        @include visually-hidden();
+        // margin: 0 0 0.5rem;
+        // padding: 0;
+        // text-align: center;
+    }
+
+    &__list {
+        display: flex;
+    }
+
+    &__option {
+        flex: 1;
+
+        + .SortListRadio__option {
+            margin-left: 1rem;
+        }
+    }
+
+    &__input {
+        @include visually-hidden();
+    }
+
+    &__label {
+        border: 1px solid $primary-color;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        color: $primary-color;
+        display: block;
+        padding: 0.5rem;
+        text-align: center;
+
+        &--checked {
+            background: $primary-color;
+            border-color: rgba(0, 0, 0, 0.25);
+            color: white;
+        }
+    }
+}
