@@ -1,4 +1,5 @@
 import React from 'react'
+import ColorHash from 'color-hash'
 import AppLink from 'components/AppLink/AppLink'
 import Icon from 'components/Icon/Icon'
 import { buildRoute } from 'constants/routes'
@@ -11,6 +12,7 @@ import './ItemsList.scss'
 export function renderItems({ items = {}, list = [], query = '' }) {
     return list.reduce((acc, id) => {
         const item = items[id]
+        const colorHash = new ColorHash({ lightness: 0.5, saturation: 0.5 })
         if (shouldAdd(item, query)) {
             acc.push(
                 <li className="ItemsList__item" key={id}>
@@ -18,7 +20,12 @@ export function renderItems({ items = {}, list = [], query = '' }) {
                         className="ItemsList__link"
                         to={buildRoute.item(id)}
                     >
-                        <span className="ItemsList__icon">{item.name[0]}</span>
+                        <span
+                            className="ItemsList__icon"
+                            style={{ background: colorHash.hex(item.name) }}
+                        >
+                            {item.name[0]}
+                        </span>
                         <span className="ItemsList__name">{item.name}</span>
                         {item.favorite && <Icon icon="Star" />}
                     </AppLink>

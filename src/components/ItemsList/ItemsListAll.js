@@ -10,7 +10,7 @@ function ItemsList({ items, sortBy = 'name', query }) {
 
     return (
         <div className="ItemsList ItemsList--all">
-            <h2 style={{ marginTop: 0 }}>All</h2>
+            <h2 className="ItemsList__heading">All</h2>
             <ul className="ItemsList__list reset">
                 {query && listOfItems.length === 0 ? (
                     <li className="ItemsList__no-matches">
