@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik } from 'formik'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import useSettings from 'store/useSettings'
-import { Form, InputField } from 'components/Form/Form'
+import { Form, InputField, SelectField } from 'components/Form/Form'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/settings'
 import Grid from 'components/Grid/Grid'
@@ -11,14 +11,15 @@ function SettingsView() {
     const [settings, { setAll }] = useSettings()
 
     function onSubmit(values) {
-        const { recommendationCount } = values
-        setAll({ recommendationCount })
+        const { mode, recommendationCount } = values
+        setAll({ mode, recommendationCount })
     }
 
     return (
         <ViewContainer title="Settings">
             <Formik
                 initialValues={defaultValues({
+                    [FIELDS.mode]: settings.mode,
                     [FIELDS.recommendationCount]: settings.recommendationCount
                 })}
                 onSubmit={onSubmit}
@@ -29,9 +30,20 @@ function SettingsView() {
                         <InputField
                             description="Default is three"
                             label="Number of recommendations"
-                            name="recommendationCount"
+                            name={FIELDS.recommendationCount}
                             type="number"
                         />
+                        <SelectField
+                            description="Change the appearance of the app"
+                            label="Mode"
+                            name={FIELDS.mode}
+                        >
+                            {['light', 'dark'].map(option => (
+                                <option key={option} value={option}>
+                                    {option[0].toUpperCase() + option.slice(1)}
+                                </option>
+                            ))}
+                        </SelectField>
                         <footer>
                             <Grid
                                 columns="2"
