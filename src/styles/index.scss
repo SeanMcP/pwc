@@ -17,3 +17,10 @@ ul.reset {
     margin: 0;
     padding: 0;
 }
+
+body[data-mode='dark'] {
+    background: #1b1b1b;
+    color: white;
+
+    $border-color: #333;
+}
