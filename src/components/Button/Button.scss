@@ -43,4 +43,9 @@
             @include set-round-element-size(32px);
         }
     }
+
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
 }
