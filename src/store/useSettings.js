@@ -1,3 +1,4 @@
+import React from 'react'
 import useLocalStorage from 'store/useLocalStorage'
 
 const initialState = {
@@ -20,6 +21,12 @@ export default function useSettings() {
             ...changes
         })
     }
+
+    const { mode } = state
+
+    React.useEffect(() => {
+        if (mode) document.body.dataset.mode = mode
+    }, [mode])
 
     return [state, { setValue, setAll }]
 }
