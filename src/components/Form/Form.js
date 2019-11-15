@@ -1,6 +1,7 @@
 import React from 'react'
 import classList from '@seanmcp/class-list'
 import { useField } from 'formik'
+import Icon from 'components/Icon/Icon'
 
 import './Form.scss'
 
@@ -8,6 +9,7 @@ function FieldFactory({
     description,
     element,
     field = {},
+    id,
     label,
     meta = {},
     ...props
@@ -17,8 +19,8 @@ function FieldFactory({
     const idRef = React.useRef(
         `${props.name}-${String(Math.random()).slice(-5)}`
     )
-    const id = idRef.current
-    const descriptionId = description ? `${id}-description` : undefined
+    const elementId = id || idRef.current
+    const descriptionId = description ? `${elementId}-description` : undefined
     const Element = element
     const className = `${element[0].toUpperCase() + element.slice(1)}Field`
 
@@ -33,7 +35,7 @@ function FieldFactory({
             {label && (
                 <label
                     className={`Field__label ${className}__label`}
-                    htmlFor={id}
+                    htmlFor={elementId}
                 >
                     {label}
                 </label>
@@ -48,7 +50,7 @@ function FieldFactory({
             )}
             <Element
                 className={`Field__input ${className}__input`}
-                id={id}
+                id={elementId}
                 aria-describedby={descriptionId}
                 {...field}
                 {...props}
@@ -72,14 +74,19 @@ export function InputField(props) {
 }
 
 export function SearchField(props) {
+    const id = "search-bar"
     return (
-        <FieldFactory
-            aria-label="Search"
-            element="input"
-            name="search"
-            type="search"
-            {...props}
-        />
+        <label className="SearchField" htmlFor={id}>
+            <Icon icon="Search" />
+            <FieldFactory
+                aria-label="Search"
+                element="input"
+                name="search"
+                type="search"
+                id={id}
+                {...props}
+            />
+        </label>
     )
 }
 

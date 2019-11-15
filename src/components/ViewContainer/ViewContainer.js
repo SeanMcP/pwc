@@ -1,14 +1,13 @@
 import React from 'react'
-import ViewHeader from 'components/ViewHeader/ViewHeader'
-import ViewContent from 'components/ViewContent/ViewContent'
-import './ViewContainer.scss'
-import ViewFooter from 'components/ViewFooter/ViewFooter'
 import AlphaBanner from 'components/AlphaBanner/AlphaBanner'
+import ViewContent from 'components/ViewContent/ViewContent'
+import ViewFooter from 'components/ViewFooter/ViewFooter'
+import ViewHeader from 'components/ViewHeader/ViewHeader'
+import './ViewContainer.scss'
 
 const appName = 'PWC'
 
 function ViewContainer({
-    alternateHeader = false,
     backTo,
     children,
     hideHeader,
@@ -23,7 +22,6 @@ function ViewContainer({
             <AlphaBanner />
             {!hideHeader && (
                 <ViewHeader
-                    alternate={alternateHeader}
                     appName={appName}
                     backTo={backTo}
                     title={title}

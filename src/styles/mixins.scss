@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 @mixin form-focus-styles {
-    &:focus {
+    &:focus, &:focus-within {
         border-color: $accent-color;
         box-shadow: 0 0 0 4px $faint-accent-color;
 
@@ -11,6 +11,12 @@
     &::-moz-focus-inner {
         border: none;
     }
+}
+
+@mixin form-element-styles {
+    @include form-focus-styles;
+
+    border-radius: $border-radius;
 }
 
 @mixin reset-ul {

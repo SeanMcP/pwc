@@ -32,7 +32,7 @@ function ItemView({ id }) {
     const data = get(id)
 
     return (
-        <ViewContainer alternateHeader backTo={ROUTES.list} title={data.name}>
+        <ViewContainer backTo={ROUTES.list} title={data.name}>
             <ItemAttributes.List>
                 {data.favorite && (
                     <ItemAttributes.Item

@@ -2,7 +2,7 @@
 @import 'styles/variables.scss';
 
 .Button {
-    @include form-focus-styles;
+    @include form-element-styles;
 
     background: transparent;
     border: 1px solid $border-color;
