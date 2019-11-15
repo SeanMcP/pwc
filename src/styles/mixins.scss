@@ -13,6 +13,12 @@
     }
 }
 
+@mixin form-element-styles {
+    @include form-focus-styles;
+
+    border-radius: $border-radius;
+}
+
 @mixin reset-ul {
     list-style-type: none;
     margin: 0;
