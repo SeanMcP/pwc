@@ -1,8 +1,8 @@
 @import 'styles/variables.scss';
 
 .ViewHeader {
-    background: #f1f1f1;
-    border-bottom: 1px solid $border-color;
+    background: linear-gradient(to top right, $indigo-900, $purple-A700);
+    color: white;
 
     &__container {
         align-items: center;
@@ -12,8 +12,14 @@
     }
 
     &__link {
+        color: white !important;
         position: absolute;
         left: 0;
+        text-decoration: none;
+
+        &:active, &:focus, &:hover {
+            text-decoration: underline;
+        }
     }
 
     &__heading {
@@ -21,14 +27,5 @@
         margin: 0;
         text-align: center;
         justify-self: center;
-    }
-
-    &--alternate {
-        background: $primary-color;
-        color: white;
-
-        .ViewHeader__link {
-            color: white;
-        }
     }
 }
