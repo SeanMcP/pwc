@@ -1,6 +1,15 @@
 @import 'styles/mixins.scss';
 @import 'styles/variables.scss';
 
+@mixin input-styles {
+    @include form-element-styles;
+
+    border: 1px solid $border-color;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.5rem;
+}
+
 .Form {
     display: grid;
     grid-gap: 2rem;
@@ -21,12 +30,7 @@
     }
 
     &__input {
-        @include form-focus-styles;
-
-        border: 1px solid $border-color;
-        font-family: inherit;
-        font-size: inherit;
-        padding: 0.5rem;
+        @include input-styles;
     }
 
     &--error {
@@ -46,6 +50,29 @@
     &.TextareaField {
         .Field__input {
             min-height: 4rem;
+        }
+    }
+}
+
+.SearchField {
+    @include input-styles;
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-gap: 0.5rem;
+
+    .Icon {
+        color: #999;
+    }
+
+    [type="search"] {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+    }
+
+    &:focus-within {
+        .Icon {
+            color: $primary-color;
         }
     }
 }
