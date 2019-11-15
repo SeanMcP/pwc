@@ -1,10 +1,10 @@
 import React from 'react'
 import ViewContent from 'components/ViewContent/ViewContent'
-import './ViewFooter.scss'
-// import AppLink from 'components/AppLink/AppLink'
 import ROUTES from 'constants/routes'
 import NavLink from 'components/NavLink/NavLink'
 import Icon from 'components/Icon/Icon'
+
+import './ViewFooter.scss'
 
 function ViewFooter() {
     return (
