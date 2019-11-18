@@ -48,6 +48,10 @@ function useItemsHook() {
         setState(shallow)
     }
 
+    function areItems() {
+        return Object.keys(state).length > 0
+    }
+
     function edit(id, updates) {
         const shallow = { ...state }
         shallow[id] = {
@@ -146,6 +150,7 @@ function useItemsHook() {
         state,
         {
             add,
+            areItems,
             edit,
             get,
             getRecommendations,

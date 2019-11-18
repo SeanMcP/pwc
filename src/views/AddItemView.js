@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import ROUTES from 'constants/routes'
 import { useItems } from 'store/useItems'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { Form } from 'components/Form/Form'
+import { Form, FormFooter } from 'components/Form/Form'
 import Button from 'components/Button/Button'
 import ITEMS from 'constants/items'
 import * as ItemFields from 'components/Form/ItemFields'
@@ -43,7 +43,10 @@ function AddItemView({ type }) {
                         <ItemFields.Date />
                         <ItemFields.DateType />
                         <ItemFields.Notes />
-                        <Button type="submit">Add</Button>
+                        <FormFooter>
+                            <Button type="submit" primary>Add</Button>
+                            <Button type="reset">Reset</Button>
+                        </FormFooter>
                     </Form>
                 )}
             </Formik>

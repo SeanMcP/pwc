@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { useItems } from 'store/useItems'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { Form } from 'components/Form/Form'
+import { Form, FormFooter } from 'components/Form/Form'
 import * as ItemFields from 'components/Form/ItemFields'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/item'
@@ -58,10 +58,12 @@ function EditView(props) {
                         {false && process.env.NODE_ENV === 'development' && (
                             <pre>{JSON.stringify(data, null, 2)}</pre>
                         )}
-                        <Button type="submit">Save changes</Button>
-                        <Button type="button" onClick={handleDelete}>
-                            Remove
-                        </Button>
+                        <FormFooter>
+                            <Button type="submit" primary>Save</Button>
+                            <Button type="button" onClick={handleDelete}>
+                                Remove
+                            </Button>
+                        </FormFooter>
                     </Form>
                 )}
             </Formik>

@@ -4,6 +4,7 @@ import { useField } from 'formik'
 import Icon from 'components/Icon/Icon'
 
 import './Form.scss'
+import Grid from 'components/Grid/Grid'
 
 function FieldFactory({
     description,
@@ -104,4 +105,8 @@ export function Form({ className, children, ...props }) {
             {children}
         </form>
     )
+}
+
+export function FormFooter({ children }) {
+    return (<Grid as="footer" columns={children.length} gap="1rem">{children}</Grid>)
 }
