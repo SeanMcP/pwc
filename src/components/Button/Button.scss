@@ -41,6 +41,7 @@
 
         &.Button--with-small-icon {
             @include set-round-element-size(32px);
+            border-radius: $border-radius-sm;
         }
     }
 
