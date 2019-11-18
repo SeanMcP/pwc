@@ -3,11 +3,12 @@
 .BibleVerse {
     background: whitesmoke;
     border: 1px solid $border-color;
-    padding: 0.5rem;
+    border-radius: $border-radius;
+    padding: 1rem;
 
     &__blockquote {
         margin: 0;
-        padding: 0.5rem;
+        margin-top: 0.5rem;
 
         p {
             margin: 0;
