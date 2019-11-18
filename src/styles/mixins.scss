@@ -26,7 +26,7 @@
 }
 
 @mixin set-round-element-size($size) {
-    border-radius: $size;
+    border-radius: $border-radius;
     height: $size;
     max-height: $size;
     max-width: $size;
