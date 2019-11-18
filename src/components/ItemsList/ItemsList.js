@@ -24,7 +24,7 @@ export function renderItems({ items = {}, list = [], query = '' }) {
                             className="ItemsList__icon"
                             style={{ background: colorHash.hex(item.name) }}
                         >
-                            {item.name[0]}
+                            {item.name[0].toUpperCase()}
                         </span>
                         <span className="ItemsList__name">{item.name}</span>
                         {item.favorite && <Icon icon="Star" />}
