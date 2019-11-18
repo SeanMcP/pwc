@@ -13,7 +13,7 @@ import ROUTES from 'constants/routes'
 function ListView() {
     const [query, setQuery] = React.useState('')
     const sortState = React.useState('All')
-    const [items] = useItems()
+    const [items, { areItems }] = useItems()
     const FilteredItemsList = ItemsList[sortState[0]]
     return (
         <ViewContainer
@@ -26,10 +26,10 @@ function ListView() {
             }
             title="Prayer List"
         >
-            <Grid gap="1rem">
+            {areItems() ? <Grid gap="1rem">
                 <SortListRadio state={sortState} />
                 <FilteredItemsList items={items} query={query} />
-            </Grid>
+            </Grid> : <p style={{ marginTop: 0 }}>You don't have any items in your list. Try adding some!</p>}
             <FabContainer>
                 <LinkButton
                     aria-label="Add item"
