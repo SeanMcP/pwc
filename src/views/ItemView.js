@@ -11,21 +11,35 @@ import ICONS from 'constants/icons'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 
+const FORMATS = {
+    date: 'MMM D'
+}
+
 function formatSpecialDate(date) {
-    const day = dayjs(date).format('M/D')
+    const day = dayjs(date).format(FORMATS.date)
     return day === 'Invalid Date' ? 'None' : day
+}
+
+function unitsAgo(unit = '', number) {
+    return `${number} ${unit}${number === 1 ? '' : 's'} ago`
 }
 
 function formatLastPrayed(date) {
     if (!date) return 'Never'
     const today = dayjs()
     const lastPrayedDate = dayjs(date)
-    const days = today.diff(lastPrayedDate, 'days')
-    return `${
-        days === 0
-            ? '< 24 hours ago'
-            : `${days} day${days === 1 ? '' : 's'} ago`
-    }`
+    const minutes = today.diff(lastPrayedDate, 'minutes')
+    if (minutes === 0) {
+        return 'Just now'
+    }
+    if (minutes < 60) {
+        return unitsAgo('minute', minutes)
+    }
+    const hours = today.diff(lastPrayedDate, 'hours')
+    if (hours <= 24) {
+        return unitsAgo('hour', hours)
+    }
+    return lastPrayedDate.format(FORMATS.date)
 }
 
 function ItemView({ id }) {
@@ -56,9 +70,9 @@ function ItemView({ id }) {
                     body={
                         <div
                             dangerouslySetInnerHTML={{
-                                __html: `<p>${data.notes
+                                __html: data.notes ? `<p>${data.notes
                                     .trim()
-                                    .replace(/\n/g, '</p><p>')}</p>`
+                                    .replace(/\n/g, '</p><p>')}</p>` : 'None'
                             }}
                         />
                     }
