@@ -1,17 +1,17 @@
 import React from 'react'
+import IconHeading from 'components/IconHeading/IconHeading'
+import ICONS from 'constants/icons'
 import LinkButton from 'components/LinkButton/LinkButton'
 import ROUTES from 'constants/routes'
-import IconHeading from 'components/IconHeading/IconHeading'
+import ViewContent from 'components/ViewContent/ViewContent'
 
 import './Onboard.scss'
-import ViewContent from 'components/ViewContent/ViewContent'
 
 function Onboard() {
     return (
         <div className="Onboard">
             <ViewContent>
-
-                <IconHeading icon="Smile">Welcome</IconHeading>
+                <IconHeading icon={ICONS.onboard}>Welcome</IconHeading>
                 <p>
                     PWC makes it easy to manage your prayer list. Let's get started!
                 </p>

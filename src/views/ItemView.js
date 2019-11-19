@@ -7,6 +7,7 @@ import IconButton from 'components/IconButton/IconButton'
 import LinkButton from 'components/LinkButton/LinkButton'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 
+import ICONS from 'constants/icons'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 
@@ -37,18 +38,18 @@ function ItemView({ id }) {
                 {data.favorite && (
                     <ItemAttributes.Item
                         body="Daily reminders"
-                        icon="Star"
+                        icon={ICONS.favorite}
                         title="Favorited"
                     />
                 )}
                 <ItemAttributes.Item
                     body={formatLastPrayed(data.prayerRecord[0])}
-                    icon="Clock"
+                    icon={ICONS.lastPrayed}
                     title="Last prayed"
                 />
                 <ItemAttributes.Item
                     body={formatSpecialDate(data.date)}
-                    icon="Calendar"
+                    icon={ICONS.specialDate}
                     title="Special date"
                 />
                 <ItemAttributes.Item
@@ -61,7 +62,7 @@ function ItemView({ id }) {
                             }}
                         />
                     }
-                    icon="FileText"
+                    icon={ICONS.notes}
                     title="Notes"
                 />
             </ItemAttributes.List>
@@ -71,7 +72,7 @@ function ItemView({ id }) {
             )}
             <FabContainer>
                 <IconButton
-                    icon="ArrowUp"
+                    icon={ICONS.prayer}
                     label="Record prayer"
                     onClick={() => recordPrayer(id)}
                     primary
@@ -79,7 +80,7 @@ function ItemView({ id }) {
                 <IconButton
                     aria-checked={Boolean(data.favorite)}
                     fill={Boolean(data.favorite)}
-                    icon="Star"
+                    icon={ICONS.favorite}
                     label="Favorite"
                     onClick={() => toggleFavorite(id)}
                     primary
