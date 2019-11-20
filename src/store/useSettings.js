@@ -19,6 +19,7 @@ export default function useSettings() {
             ...state,
             ...changes
         })
+        alert('Settings saved')
     }
 
     return [state, { setValue, setAll }]
