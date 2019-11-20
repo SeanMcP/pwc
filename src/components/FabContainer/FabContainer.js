@@ -7,14 +7,16 @@ function FabContainer({ children, left = false, right = true }) {
     if (left && right)
         throw Error('`FabContainer` cannot receive `left` and `right` props.')
     return (
-        <div
-            className={classList(
-                'FabContainer',
-                left && 'FabContainer--left',
-                right && 'FabContainer--right'
-            )}
-        >
-            {children}
+        <div className='FabContainer'>
+            <div
+                className={classList(
+                    'FabContainer__buttons',
+                    left && 'FabContainer__buttons--left',
+                    right && 'FabContainer__buttons--right'
+                )}
+            >
+                {children}
+            </div>
         </div>
     )
 }
