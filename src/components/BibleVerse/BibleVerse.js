@@ -1,7 +1,8 @@
 import React from 'react'
 
-import VERSES from 'static/verses.json'
 import IconHeading from 'components/IconHeading/IconHeading'
+import ICONS from 'constants/icons'
+import VERSES from 'static/verses.json'
 
 import './BibleVerse.scss'
 
@@ -12,7 +13,7 @@ function BibleVerse() {
 
     return (
         <div className="BibleVerse">
-            <IconHeading icon="BookOpen">Bible verse</IconHeading>
+            <IconHeading icon={ICONS.verse}>Bible verse</IconHeading>
             <blockquote
                 className="BibleVerse__blockquote"
                 cite={verse.citation}

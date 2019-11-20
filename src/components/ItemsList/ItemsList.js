@@ -1,11 +1,13 @@
 import React from 'react'
 import ColorHash from 'color-hash'
-import AppLink from 'components/AppLink/AppLink'
-import Icon from 'components/Icon/Icon'
-import { buildRoute } from 'constants/routes'
 
 import All from './ItemsListAll'
+import AppLink from 'components/AppLink/AppLink'
 import ByType from './ItemsListByType'
+import Icon from 'components/Icon/Icon'
+
+import { buildRoute } from 'constants/routes'
+import ICONS from 'constants/icons'
 
 import './ItemsList.scss'
 
@@ -27,7 +29,7 @@ export function renderItems({ items = {}, list = [], query = '' }) {
                             {item.name[0].toUpperCase()}
                         </span>
                         <span className="ItemsList__name">{item.name}</span>
-                        {item.favorite && <Icon icon="Star" />}
+                        {item.favorite && <Icon icon={ICONS.favorite} />}
                     </AppLink>
                 </li>
             )

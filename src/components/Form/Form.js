@@ -1,10 +1,13 @@
 import React from 'react'
 import classList from '@seanmcp/class-list'
 import { useField } from 'formik'
+
+import Grid from 'components/Grid/Grid'
 import Icon from 'components/Icon/Icon'
 
+import ICONS from 'constants/icons'
+
 import './Form.scss'
-import Grid from 'components/Grid/Grid'
 
 function FieldFactory({
     description,
@@ -78,7 +81,7 @@ export function SearchField(props) {
     const id = "search-bar"
     return (
         <label className="SearchField" htmlFor={id}>
-            <Icon icon="Search" />
+            <Icon icon={ICONS.search} />
             <FieldFactory
                 aria-label="Search"
                 element="input"

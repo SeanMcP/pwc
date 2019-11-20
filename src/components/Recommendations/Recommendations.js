@@ -1,8 +1,10 @@
 import React from 'react'
+import ICONS from 'constants/icons'
 import RecommendationsList from 'components/RecommendationsList/RecommendationsList'
 import { useItems } from 'store/useItems'
 import usePrayerRecord from 'store/usePrayerRecord'
 import useSettings from 'store/useSettings'
+
 import './Recommendations.scss'
 
 function Recommendations() {
@@ -19,17 +21,17 @@ function Recommendations() {
         <div className="Recommendations">
             <h2 className="Recommendations__heading">Recommendations</h2>
             <RecommendationsList
-                icon="Calendar"
+                icon={ICONS.specialDate}
                 ids={dates}
                 title="Special dates"
             />
             <RecommendationsList
-                icon="Star"
+                icon={ICONS.favorite}
                 ids={favorites}
                 title="Favorites"
             />
             <RecommendationsList
-                icon="Clock"
+                icon={ICONS.lastPrayed}
                 ids={lastPrayed}
                 title="Last prayed"
             />

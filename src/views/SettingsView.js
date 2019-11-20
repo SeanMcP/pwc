@@ -17,6 +17,7 @@ function SettingsView() {
     return (
         <ViewContainer title="Settings">
             <Formik
+                enableReinitialize
                 initialValues={defaultValues({
                     [FIELDS.recommendationCount]: settings.recommendationCount
                 })}
