@@ -1,5 +1,5 @@
 import React from 'react'
-import AlphaBanner from 'components/AlphaBanner/AlphaBanner'
+import ReleaseBanner from 'components/ReleaseBanner/ReleaseBanner'
 import ViewContent from 'components/ViewContent/ViewContent'
 import ViewFooter from 'components/ViewFooter/ViewFooter'
 import ViewHeader from 'components/ViewHeader/ViewHeader'
@@ -19,7 +19,7 @@ function ViewContainer({
     }, [title])
     return (
         <div className="ViewContainer">
-            <AlphaBanner />
+            <ReleaseBanner />
             {!hideHeader && (
                 <ViewHeader
                     appName={appName}
