@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 .ViewFooter {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $border-color;
 
     &__nav {
         display: grid;
@@ -21,7 +21,7 @@
 
         &,
         &:visited {
-            color: #333;
+            color: $gray-900;
         }
 
         &[aria-current='true'],
@@ -36,7 +36,7 @@
         }
 
         &[aria-current='true'] {
-            background: #222;
+            background: $gray-900;
         }
     }
 }
