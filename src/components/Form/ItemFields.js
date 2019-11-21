@@ -3,7 +3,7 @@ import { InputField, TextareaField } from './Form'
 import { FIELDS } from 'schemas/item'
 
 export function Name(props) {
-    return <InputField label="Name" name={FIELDS.name} {...props} />
+    return <InputField label="Name" name={FIELDS.name} required {...props} />
 }
 
 export function Date(props) {
