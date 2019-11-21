@@ -14,11 +14,10 @@ function AddItemView({ type }) {
     const [, { add }] = useItems()
 
     function onSubmit(values) {
-        const { date, dateType, name, notes } = values
+        const { date, name, notes } = values
 
         add({
             date,
-            dateType: date ? dateType : null,
             name,
             notes,
             type
@@ -41,7 +40,6 @@ function AddItemView({ type }) {
                     <Form onSubmit={handleSubmit}>
                         <ItemFields.Name autoFocus />
                         <ItemFields.Date />
-                        <ItemFields.DateType />
                         <ItemFields.Notes />
                         <FormFooter>
                             <Button type="submit" primary>Add</Button>

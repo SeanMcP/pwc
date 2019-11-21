@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputField, SelectField, TextareaField } from './Form'
+import { InputField, TextareaField } from './Form'
 import { FIELDS } from 'schemas/item'
 
 export function Name(props) {
@@ -9,23 +9,12 @@ export function Name(props) {
 export function Date(props) {
     return (
         <InputField
+            description="You will get a prayer reminder on this date"
             label="Special date"
             name={FIELDS.date}
             type="date"
             {...props}
         />
-    )
-}
-
-export function DateType(props) {
-    return (
-        <SelectField label="Date type" name={FIELDS.dateType} {...props}>
-            {['Birthday', 'Anniversary', 'Memorial'].map(option => (
-                <option key={option} value={option.toLowerCase()}>
-                    {option}
-                </option>
-            ))}
-        </SelectField>
     )
 }
 

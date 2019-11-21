@@ -26,7 +26,6 @@ function useItemsHook() {
     function add({
         name,
         date,
-        dateType,
         favorite = false,
         notes = '',
         prayerRecord = [],
@@ -38,7 +37,6 @@ function useItemsHook() {
         shallow[id] = {
             name,
             date: date ? dayjs(date) : null,
-            dateType,
             favorite,
             notes,
             prayerRecord,

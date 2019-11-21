@@ -25,11 +25,10 @@ function EditView(props) {
     }
 
     function onSubmit(values) {
-        const { date, dateType, name, notes } = values
+        const { date, name, notes } = values
 
         edit(props.id, {
             date,
-            dateType,
             name,
             notes
         })
@@ -42,7 +41,6 @@ function EditView(props) {
             <Formik
                 initialValues={defaultValues({
                     [FIELDS.date]: dayjs(data.date).format('YYYY-MM-DD') || '',
-                    [FIELDS.dateType]: data.dateType,
                     [FIELDS.name]: data.name,
                     [FIELDS.notes]: data.notes
                 })}
@@ -53,7 +51,6 @@ function EditView(props) {
                     <Form onSubmit={handleSubmit}>
                         <ItemFields.Name />
                         <ItemFields.Date />
-                        <ItemFields.DateType />
                         <ItemFields.Notes />
                         {false && process.env.NODE_ENV === 'development' && (
                             <pre>{JSON.stringify(data, null, 2)}</pre>
