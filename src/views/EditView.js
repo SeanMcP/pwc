@@ -47,7 +47,7 @@ function EditView(props) {
                 onSubmit={onSubmit}
                 validationSchema={validationSchema}
             >
-                {({ handleSubmit }) => (
+                {({ dirty, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <ItemFields.Name />
                         <ItemFields.Date />
@@ -56,8 +56,8 @@ function EditView(props) {
                             <pre>{JSON.stringify(data, null, 2)}</pre>
                         )}
                         <FormFooter>
-                            <Button type="submit" primary>Save</Button>
-                            <Button type="button" onClick={handleDelete}>
+                            <Button disabled={!dirty} type="submit" primary>Save</Button>
+                            <Button disabled={!dirty} type="button" onClick={handleDelete}>
                                 Remove
                             </Button>
                         </FormFooter>
