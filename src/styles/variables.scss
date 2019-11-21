@@ -1,7 +1,7 @@
 @import './md-colors.scss';
 
 // COLORS
-$border-color: #ddd;
+$border-color: $gray-200;
 $primary-color: $blue-800;
 $primary-color--faint: rgba(23, 93, 164, 0.5);
 $accent-color: $primary-color;
