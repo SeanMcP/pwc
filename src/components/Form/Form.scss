@@ -25,6 +25,11 @@
         font-weight: bold;
     }
 
+    &__required {
+        color: $red-900;
+        margin-left: 0.125rem;
+    }
+
     &__description {
         color: rgba(0, 0, 0, 0.75);
     }
@@ -35,12 +40,12 @@
 
     &--error {
         .Field__input {
-            border: 1px solid firebrick;
+            border: 1px solid $red-900;
         }
     }
 
     &__error {
-        color: firebrick;
+        color: $red-900;
         margin: 0;
         position: absolute;
         right: 0;
@@ -49,7 +54,7 @@
 
     &.TextareaField {
         .Field__input {
-            min-height: 4rem;
+            min-height: 5rem;
         }
     }
 }
