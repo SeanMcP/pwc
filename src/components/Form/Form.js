@@ -98,10 +98,6 @@ export function TextareaField(props) {
     return <FormikFieldFactory element="textarea" {...props} />
 }
 
-export function SelectField(props) {
-    return <FormikFieldFactory element="select" {...props} />
-}
-
 export function Form({ className, children, ...props }) {
     return (
         <form className={classList('Form', className)} {...props}>
