@@ -16,6 +16,7 @@ function FieldFactory({
     id,
     label,
     meta = {},
+    required = false,
     ...props
 }) {
     if (!props.name) throw Error('`name` is a required prop.')
@@ -41,7 +42,7 @@ function FieldFactory({
                     className={`Field__label ${className}__label`}
                     htmlFor={elementId}
                 >
-                    {label}
+                    {label}{required && <span className="Field__required" title="Is Required">*</span>}
                 </label>
             )}
             {description && (
@@ -56,6 +57,7 @@ function FieldFactory({
                 className={`Field__input ${className}__input`}
                 id={elementId}
                 aria-describedby={descriptionId}
+                aria-required={required}
                 {...field}
                 {...props}
             />
