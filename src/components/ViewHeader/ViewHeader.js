@@ -2,8 +2,9 @@ import React from 'react'
 import AppLink from 'components/AppLink/AppLink'
 import ViewContent from 'components/ViewContent/ViewContent'
 import './ViewHeader.scss'
+import APP_NAME from 'constants/appName'
 
-function ViewHeader({ appName, backTo = '/', title }) {
+function ViewHeader({ backTo = '/', title }) {
     return (
         <header className="ViewHeader">
             <ViewContent>
@@ -13,7 +14,7 @@ function ViewHeader({ appName, backTo = '/', title }) {
                             Back
                         </AppLink>
                     )}
-                    <h1 className="ViewHeader__heading">{title || appName}</h1>
+                    <h1 className="ViewHeader__heading">{title || APP_NAME}</h1>
                 </div>
             </ViewContent>
         </header>

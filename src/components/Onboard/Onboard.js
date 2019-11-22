@@ -4,6 +4,7 @@ import ICONS from 'constants/icons'
 import LinkButton from 'components/LinkButton/LinkButton'
 import ROUTES from 'constants/routes'
 import ViewContent from 'components/ViewContent/ViewContent'
+import APP_NAME from 'constants/appName'
 
 import './Onboard.scss'
 
@@ -13,7 +14,7 @@ function Onboard() {
             <ViewContent>
                 <IconHeading icon={ICONS.onboard}>Welcome</IconHeading>
                 <p>
-                    PWC makes it easy to manage your prayer list. Let's get started!
+                    {APP_NAME} makes it easy to manage your prayer list. Let's get started!
                 </p>
                 <LinkButton full primary to={ROUTES.add}>
                     Add an item

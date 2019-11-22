@@ -7,6 +7,7 @@ import ViewContent from 'components/ViewContent/ViewContent'
 function SearchBar(props) {
     return (
         <form
+            autoComplete="off"
             className="SearchBar"
             onSubmit={e => e.preventDefault()}
             role="search"

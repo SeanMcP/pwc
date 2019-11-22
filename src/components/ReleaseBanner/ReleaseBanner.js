@@ -1,6 +1,8 @@
 import React from 'react'
 import ViewContent from 'components/ViewContent/ViewContent'
 
+import { name } from '../../../package.json'
+
 import './ReleaseBanner.scss'
 
 function ReleaseBanner({ release = 'alpha' }) {
@@ -10,7 +12,7 @@ function ReleaseBanner({ release = 'alpha' }) {
             <ViewContent squish>
                 <small>
                     <b>{releaseCaps}:</b>{' '}
-                    <a href={`mailto:feedback@seanmcp.com?subject=PWC (${releaseCaps})`}>
+                    <a href={`mailto:feedback@seanmcp.com?subject=${name.toUpperCase()} (${releaseCaps})`}>
                         Issues or suggestions?
                     </a>
                 </small>

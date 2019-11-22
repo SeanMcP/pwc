@@ -24,15 +24,6 @@ function SortListRadio({ state }) {
                             className="SortListRadio__option"
                             key={option.value}
                         >
-                            <input
-                                checked={isChecked}
-                                className="SortListRadio__input"
-                                id={option.value}
-                                name="sort"
-                                onChange={handleChange}
-                                type="radio"
-                                value={option.value}
-                            />
                             <label
                                 className={classList(
                                     'SortListRadio__label',
@@ -40,6 +31,15 @@ function SortListRadio({ state }) {
                                 )}
                                 htmlFor={option.value}
                             >
+                                <input
+                                    checked={isChecked}
+                                    className="SortListRadio__input"
+                                    id={option.value}
+                                    name="sort"
+                                    onChange={handleChange}
+                                    type="radio"
+                                    value={option.value}
+                                />
                                 {option.label}
                             </label>
                         </li>

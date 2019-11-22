@@ -4,8 +4,7 @@ import ViewContent from 'components/ViewContent/ViewContent'
 import ViewFooter from 'components/ViewFooter/ViewFooter'
 import ViewHeader from 'components/ViewHeader/ViewHeader'
 import './ViewContainer.scss'
-
-const appName = 'PWC'
+import APP_NAME from 'constants/appName'
 
 function ViewContainer({
     backTo,
@@ -15,14 +14,13 @@ function ViewContainer({
     title
 }) {
     React.useEffect(() => {
-        document.title = title ? `${title} - ${appName}` : appName
+        document.title = title ? `${title} - ${APP_NAME}` : APP_NAME
     }, [title])
     return (
         <div className="ViewContainer">
             <ReleaseBanner />
             {!hideHeader && (
                 <ViewHeader
-                    appName={appName}
                     backTo={backTo}
                     title={title}
                 />

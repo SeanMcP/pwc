@@ -3,6 +3,7 @@
 .RecommendationsList {
     border: 1px solid $border-color;
     border-radius: $border-radius;
+    overflow: hidden;
 
     &__header {
         padding: 0.5rem;
@@ -20,6 +21,10 @@
         display: flex;
         padding: 0.5rem;
         justify-content: space-between;
+
+        button {
+            background: white;
+        }
 
         &:hover {
             background: $gray-50;
