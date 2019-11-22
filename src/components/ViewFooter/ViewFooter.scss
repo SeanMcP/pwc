@@ -1,3 +1,4 @@
+@import 'styles/mixins.scss';
 @import 'styles/variables.scss';
 
 .ViewFooter {
@@ -15,6 +16,8 @@
     }
 
     &__link {
+        @include focus-styles;
+        
         padding: 0.5rem 0;
         text-decoration: none;
         transition: all 200ms ease-in-out;

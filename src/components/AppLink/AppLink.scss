@@ -1,4 +1,8 @@
+@import 'styles/mixins.scss';
+
 .AppLink {
+    @include focus-styles;
+
     color: navy;
 
     &:visited {
