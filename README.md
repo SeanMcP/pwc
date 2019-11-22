@@ -1,4 +1,6 @@
-# pwc
+![PWOC](public/favicon.png)
+
+# PWOC
 
 > Tentatively pronounced "Pea-Wok"
 
