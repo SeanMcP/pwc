@@ -9,7 +9,7 @@ function SearchResults({ data, query }) {
         for (const id in data) {
             const item = data[id]
             // This vvvvvv is a costly procedure. Consider revising.
-            const tagMatch = item.tags.some(tag => tag.includes(query))
+            const tagMatch = item.tags.some((tag) => tag.includes(query))
             if (
                 item.name.toLowerCase().includes(query.toLowerCase()) ||
                 tagMatch

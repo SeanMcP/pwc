@@ -5,7 +5,7 @@ import './SortListRadio.scss'
 
 const OPTIONS = [
     { label: 'All', value: 'All' },
-    { label: 'Type', value: 'ByType' }
+    { label: 'Type', value: 'ByType' },
 ]
 
 function SortListRadio({ state }) {
@@ -17,7 +17,7 @@ function SortListRadio({ state }) {
         <fieldset className="SortListRadio">
             <legend className="SortListRadio__legend">Sort List By</legend>
             <ul className="SortListRadio__list reset">
-                {OPTIONS.map(option => {
+                {OPTIONS.map((option) => {
                     const isChecked = value === option.value
                     return (
                         <li

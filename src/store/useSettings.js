@@ -2,7 +2,7 @@ import useLocalStorage from 'store/useLocalStorage'
 
 const initialState = {
     recommendationCount: 3,
-    mode: 'light' // Aspirational
+    mode: 'light', // Aspirational
 }
 
 export default function useSettings() {
@@ -17,7 +17,7 @@ export default function useSettings() {
     function setAll(changes) {
         setState({
             ...state,
-            ...changes
+            ...changes,
         })
         alert('Settings saved')
     }

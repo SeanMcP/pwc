@@ -19,7 +19,7 @@ function SettingsView() {
             <Formik
                 enableReinitialize
                 initialValues={defaultValues({
-                    [FIELDS.recommendationCount]: settings.recommendationCount
+                    [FIELDS.recommendationCount]: settings.recommendationCount,
                 })}
                 onSubmit={onSubmit}
                 validationSchema={validationSchema}

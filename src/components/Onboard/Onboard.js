@@ -14,7 +14,8 @@ function Onboard() {
             <ViewContent>
                 <IconHeading icon={ICONS.onboard}>Welcome</IconHeading>
                 <p>
-                    {APP_NAME} makes it easy to manage your prayer list. Let's get started!
+                    {APP_NAME} makes it easy to manage your prayer list. Let's
+                    get started!
                 </p>
                 <LinkButton full primary to={ROUTES.add}>
                     Add an item

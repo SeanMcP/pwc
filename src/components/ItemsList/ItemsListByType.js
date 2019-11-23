@@ -6,7 +6,7 @@ function getOrderedItemsByType(items = {}, sortBy = 'name') {
     const typeMap = {}
     const ids = Object.keys(items)
     if (ids.length) {
-        ids.forEach(id => {
+        ids.forEach((id) => {
             const { type } = items[id]
 
             if (!typeMap[type]) {
@@ -40,7 +40,7 @@ function ItemsListByType({ items, sortBy = 'name', query }) {
         const itemsByType = renderItems({
             items,
             list: orderedItemsByType[type],
-            query
+            query,
         })
         if (itemsByType.length) {
             typeLists.push(

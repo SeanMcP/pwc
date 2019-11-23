@@ -30,7 +30,7 @@ function useItemsHook() {
         notes = '',
         prayerRecord = [],
         tags = [],
-        type
+        type,
     }) {
         const id = uuid()
         const shallow = { ...state }
@@ -41,7 +41,7 @@ function useItemsHook() {
             notes,
             prayerRecord,
             tags,
-            type
+            type,
         }
         setState(shallow)
     }
@@ -54,7 +54,7 @@ function useItemsHook() {
         const shallow = { ...state }
         shallow[id] = {
             ...shallow[id],
-            ...updates
+            ...updates,
         }
         setState(shallow)
     }
@@ -91,7 +91,7 @@ function useItemsHook() {
         const recommendations = {
             dates: [],
             favorites: [],
-            lastPrayed: []
+            lastPrayed: [],
         }
 
         for (const id in state) {
@@ -154,13 +154,13 @@ function useItemsHook() {
             getRecommendations,
             recordPrayer,
             remove,
-            toggleFavorite
-        }
+            toggleFavorite,
+        },
     ]
 
     if (process.env.NODE_ENV === 'development') {
         output.push({
-            ___DEV___setDateToToday
+            ___DEV___setDateToToday,
         })
     }
 

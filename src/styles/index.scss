@@ -23,7 +23,8 @@ ul.reset {
 a {
     color: $primary-color;
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
         text-decoration: none;
     }
 

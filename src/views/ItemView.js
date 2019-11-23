@@ -12,7 +12,7 @@ import ROUTES, { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
 
 const FORMATS = {
-    date: 'MMM D'
+    date: 'MMM D',
 }
 
 function formatSpecialDate(date) {
@@ -70,9 +70,11 @@ function ItemView({ id }) {
                     body={
                         <div
                             dangerouslySetInnerHTML={{
-                                __html: data.notes ? `<p>${data.notes
-                                    .trim()
-                                    .replace(/\n/g, '</p><p>')}</p>` : 'None'
+                                __html: data.notes
+                                    ? `<p>${data.notes
+                                          .trim()
+                                          .replace(/\n/g, '</p><p>')}</p>`
+                                    : 'None',
                             }}
                         />
                     }

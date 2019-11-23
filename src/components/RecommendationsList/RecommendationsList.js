@@ -15,7 +15,7 @@ function RecommendationsList({ icon, ids, title }) {
 
     const type = title.toLowerCase().replace(/ /g, '-')
 
-    const list = ids.map(id => {
+    const list = ids.map((id) => {
         const item = state[id]
         return (
             <li className="RecommendationsList__item" key={`${type}-${id}`}>

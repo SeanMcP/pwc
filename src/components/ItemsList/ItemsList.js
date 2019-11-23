@@ -47,7 +47,7 @@ export const sortByMap = {
         } else {
             return 0
         }
-    }
+    },
 }
 
 export function shouldAdd(individual, query) {
@@ -70,5 +70,5 @@ export function shouldAdd(individual, query) {
 
 export default {
     All,
-    ByType
+    ByType,
 }

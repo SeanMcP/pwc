@@ -20,7 +20,7 @@ function AddItemView({ type }) {
             date,
             name,
             notes,
-            type
+            type,
         })
 
         navigate(ROUTES.list)
@@ -42,8 +42,12 @@ function AddItemView({ type }) {
                         <ItemFields.Date />
                         <ItemFields.Notes />
                         <FormFooter>
-                            <Button disabled={!dirty} type="submit" primary>Add</Button>
-                            <Button disabled={!dirty} type="reset">Reset</Button>
+                            <Button disabled={!dirty} type="submit" primary>
+                                Add
+                            </Button>
+                            <Button disabled={!dirty} type="reset">
+                                Reset
+                            </Button>
                         </FormFooter>
                     </Form>
                 )}

@@ -11,7 +11,7 @@ function ViewContainer({
     children,
     hideHeader,
     searchBar = null,
-    title
+    title,
 }) {
     React.useEffect(() => {
         document.title = title ? `${title} - ${APP_NAME}` : APP_NAME
@@ -19,12 +19,7 @@ function ViewContainer({
     return (
         <div className="ViewContainer">
             <ReleaseBanner />
-            {!hideHeader && (
-                <ViewHeader
-                    backTo={backTo}
-                    title={title}
-                />
-            )}
+            {!hideHeader && <ViewHeader backTo={backTo} title={title} />}
             {searchBar}
             <main id="main" role="main" className="ViewContainer__main">
                 <ViewContent>{children}</ViewContent>

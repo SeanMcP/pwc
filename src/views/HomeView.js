@@ -12,10 +12,14 @@ function HomeView() {
     const [, { areItems }] = useItems()
     return (
         <ViewContainer>
-            {areItems() ? <Grid gap="2rem">
-                <Recommendations />
-                <BibleVerse />
-            </Grid> : <Onboard />}
+            {areItems() ? (
+                <Grid gap="2rem">
+                    <Recommendations />
+                    <BibleVerse />
+                </Grid>
+            ) : (
+                <Onboard />
+            )}
         </ViewContainer>
     )
 }
