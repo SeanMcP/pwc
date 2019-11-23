@@ -16,18 +16,19 @@ function LinkButton({
         icon ? 'IconButton/IconButton' : 'Button/Button'
     }`).default
     return (
-        <AppLink
+        <ButtonTag
+            as={AppLink}
             className={classList(
                 'LinkButton',
                 className,
                 full && 'LinkButton--full'
             )}
+            {...props}
+            icon={icon}
             to={to}
         >
-            <ButtonTag {...props} icon={icon} tabIndex="-1">
-                {children}
-            </ButtonTag>
-        </AppLink>
+            {children}
+        </ButtonTag>
     )
 }
 

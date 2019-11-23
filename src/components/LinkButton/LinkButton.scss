@@ -1,7 +1,7 @@
 .LinkButton {
+    text-align: center;
+
     &--full {
-        .Button {
-            width: 100%;
-        }
+        display: block;
     }
 }
