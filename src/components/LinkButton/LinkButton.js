@@ -14,7 +14,7 @@ function LinkButton({
 }) {
     const ButtonTag = require(`components/${
         icon ? 'IconButton/IconButton' : 'Button/Button'
-        }`).default
+    }`).default
     return (
         <ButtonTag
             as={AppLink}
