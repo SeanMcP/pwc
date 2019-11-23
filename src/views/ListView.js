@@ -23,16 +23,22 @@ function ListView() {
             searchBar={
                 <SearchBar
                     value={query}
-                    onChange={e => setQuery(e.target.value)}
+                    onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={onKey({ Escape: () => setQuery('') })}
                 />
             }
             title="Prayer List"
         >
-            {areItems() ? <Grid gap="1rem">
-                <SortListRadio state={sortState} />
-                <FilteredItemsList items={items} query={query} />
-            </Grid> : <p style={{ marginTop: 0 }}>You don't have any items in your list. Try adding some!</p>}
+            {areItems() ? (
+                <Grid gap="1rem">
+                    <SortListRadio state={sortState} />
+                    <FilteredItemsList items={items} query={query} />
+                </Grid>
+            ) : (
+                <p style={{ marginTop: 0 }}>
+                    You don't have any items in your list. Try adding some!
+                </p>
+            )}
             <FabContainer>
                 <LinkButton
                     aria-label="Add item"

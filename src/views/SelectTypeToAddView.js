@@ -10,7 +10,7 @@ function SelectTypeToAddView() {
         <ViewContainer title="Add">
             <h2>What type of item would you like to add?</h2>
             <Grid columns={2} gap="1rem">
-                {ITEMS.order.map(type => (
+                {ITEMS.order.map((type) => (
                     <ItemTypeTile key={type} type={type} />
                 ))}
             </Grid>

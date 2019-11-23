@@ -5,18 +5,16 @@
     "dependencies": {
         "@reach/router": "^1.2.1",
         "@seanmcp/class-list": "^1.0.2",
-        "a11y-react-emoji": "^1.0.2",
         "color-hash": "^1.0.3",
         "dayjs": "^1.8.15",
         "formik": "^2.0.3",
         "node-sass": "^4.12.0",
         "onkey-event-manager": "^1.0.0",
-        "react": "^16.8.6",
+        "react": "^16.12.0",
         "react-cookie": "^4.0.1",
-        "react-dom": "^16.8.6",
+        "react-dom": "^16.12.0",
         "react-feather": "^2.0.3",
-        "react-scripts": "3.0.1",
-        "react-use-toggle": "^0.1.0",
+        "react-scripts": "^3.2.0",
         "uuid": "^3.3.2",
         "yup": "^0.27.0"
     },
@@ -24,7 +22,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "format": "prettier --write \"src/**/*\""
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -40,5 +39,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "prettier": "^1.19.1"
     }
 }

@@ -19,5 +19,5 @@ function Item({ body, icon, title }) {
 
 export default {
     Item,
-    List
+    List,
 }

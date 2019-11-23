@@ -18,7 +18,7 @@ function IconButton({
                 'with-icon',
                 fill && 'with-fill',
                 small && 'with-small-icon',
-                ...modifiers
+                ...modifiers,
             ]}
             {...props}
         >

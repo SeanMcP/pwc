@@ -7,7 +7,7 @@ function NavLink({ className, ...props }) {
         <AppLink
             className={classList('NavLink', className)}
             getProps={({ isCurrent }) => ({
-                'aria-current': isCurrent || undefined
+                'aria-current': isCurrent || undefined,
             })}
             {...props}
         />

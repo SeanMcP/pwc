@@ -13,7 +13,7 @@ const ICONS_BY_ITEM_TYPE = {
     [ITEMS.types.person.id]: ICONS.person,
     [ITEMS.types.place.id]: ICONS.place,
     [ITEMS.types.thing.id]: ICONS.thing,
-    [ITEMS.types.idea.id]: ICONS.idea
+    [ITEMS.types.idea.id]: ICONS.idea,
 }
 
 function ItemTypeTile({ type }) {

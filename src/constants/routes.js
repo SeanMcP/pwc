@@ -5,7 +5,7 @@ const ROUTES = {
     list: '/list',
     item: '/i/:id',
     edit: '/e/:id',
-    settings: '/settings'
+    settings: '/settings',
 }
 
 export const buildRoute = {
@@ -17,7 +17,7 @@ export const buildRoute = {
     },
     item(id) {
         return ROUTES.item.replace(/:id/, id)
-    }
+    },
 }
 
 export default ROUTES
