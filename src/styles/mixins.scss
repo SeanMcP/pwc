@@ -2,8 +2,8 @@
 
 @mixin focus-styles {
     &:focus, &:focus-within {
-        border-color: $accent-color;
-        box-shadow: 0 0 0 4px $faint-accent-color;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 4px $primary-color--faint;
 
         outline: 4px solid transparent;
     }

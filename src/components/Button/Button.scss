@@ -12,8 +12,8 @@
     padding: 0.5rem 1rem;
 
     &--primary {
-        background: $accent-color;
-        border-color: $accent-color;
+        background: $primary-color;
+        border-color: $primary-color;
         color: white;
 
         &.Button--with-fill svg {
@@ -41,7 +41,7 @@
 
         &.Button--with-small-icon {
             @include set-round-element-size(32px);
-            border-radius: $border-radius-sm;
+            border-radius: $border-radius--small;
         }
     }
 
