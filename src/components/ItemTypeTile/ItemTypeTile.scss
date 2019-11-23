@@ -1,4 +1,9 @@
+@import 'styles/variables.scss';
+
 .ItemTypeTile {
+    color: $gray-900;
+    text-decoration: none;
+
     .Button {
         padding: 1rem;
     }

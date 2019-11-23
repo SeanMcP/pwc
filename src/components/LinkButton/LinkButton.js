@@ -14,20 +14,21 @@ function LinkButton({
 }) {
     const ButtonTag = require(`components/${
         icon ? 'IconButton/IconButton' : 'Button/Button'
-    }`).default
+        }`).default
     return (
-        <AppLink
+        <ButtonTag
+            as={AppLink}
             className={classList(
                 'LinkButton',
                 className,
                 full && 'LinkButton--full'
             )}
+            {...props}
+            icon={icon}
             to={to}
         >
-            <ButtonTag {...props} icon={icon} tabIndex="-1">
-                {children}
-            </ButtonTag>
-        </AppLink>
+            {children}
+        </ButtonTag>
     )
 }
 
