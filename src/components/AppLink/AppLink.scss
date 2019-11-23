@@ -2,10 +2,4 @@
 
 .AppLink {
     @include focus-styles;
-
-    color: navy;
-
-    &:visited {
-        color: purple;
-    }
 }
