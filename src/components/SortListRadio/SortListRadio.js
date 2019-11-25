@@ -3,7 +3,7 @@ import classList from '@seanmcp/class-list'
 
 import './SortListRadio.scss'
 
-const OPTIONS = [
+export const OPTIONS = [
     { label: 'All', value: 'All' },
     { label: 'Type', value: 'ByType' },
 ]
