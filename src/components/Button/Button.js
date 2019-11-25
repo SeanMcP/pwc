@@ -9,12 +9,14 @@ import './Button.scss'
 */
 
 function Button({
+    as = 'button',
     children,
     className,
     modifiers = [],
     primary = false,
     ...props
 }) {
+    const Tag = as
     const modifierClasses = modifiers.reduce((acc, mod) => {
         if (Boolean(mod)) {
             acc.push(`Button--${mod}`)
@@ -23,7 +25,7 @@ function Button({
     }, [])
 
     return (
-        <button
+        <Tag
             className={classList(
                 'Button',
                 props.type && `Button--${props.type}`,
@@ -34,7 +36,7 @@ function Button({
             {...props}
         >
             {children}
-        </button>
+        </Tag>
     )
 }
 
