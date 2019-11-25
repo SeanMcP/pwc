@@ -19,7 +19,9 @@
         left: 0;
         text-decoration: none;
 
-        &:active, &:focus, &:hover {
+        &:active,
+        &:focus,
+        &:hover {
             text-decoration: underline;
         }
     }

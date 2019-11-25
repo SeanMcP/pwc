@@ -12,7 +12,9 @@ function ReleaseBanner({ release = 'beta' }) {
             <ViewContent squish>
                 <small>
                     <b>{releaseCaps}:</b>{' '}
-                    <a href={`mailto:feedback@seanmcp.com?subject=${name.toUpperCase()} (${releaseCaps})`}>
+                    <a
+                        href={`mailto:feedback@seanmcp.com?subject=${name.toUpperCase()} (${releaseCaps})`}
+                    >
                         Issues or suggestions?
                     </a>
                 </small>

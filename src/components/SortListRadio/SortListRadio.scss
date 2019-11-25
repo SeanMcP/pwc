@@ -22,7 +22,7 @@
 
     &__label {
         @include focus-styles;
-        
+
         border: 1px solid $primary-color;
         border-radius: $border-radius;
         cursor: pointer;

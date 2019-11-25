@@ -42,7 +42,12 @@ function FieldFactory({
                     className={`Field__label ${className}__label`}
                     htmlFor={elementId}
                 >
-                    {label}{required && <span className="Field__required" title="Is Required">*</span>}
+                    {label}
+                    {required && (
+                        <span className="Field__required" title="Is Required">
+                            *
+                        </span>
+                    )}
                 </label>
             )}
             {description && (
@@ -80,7 +85,7 @@ export function InputField(props) {
 }
 
 export function SearchField(props) {
-    const id = "search-bar"
+    const id = 'search-bar'
     return (
         <label className="SearchField" htmlFor={id}>
             <Icon icon={ICONS.search} />
@@ -109,5 +114,9 @@ export function Form({ className, children, ...props }) {
 }
 
 export function FormFooter({ children }) {
-    return (<Grid as="footer" columns={children.length} gap="1rem">{children}</Grid>)
+    return (
+        <Grid as="footer" columns={children.length} gap="1rem">
+            {children}
+        </Grid>
+    )
 }

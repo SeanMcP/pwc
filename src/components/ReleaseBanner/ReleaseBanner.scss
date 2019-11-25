@@ -9,6 +9,10 @@
     text-align: center;
 
     a {
-        color: $text-color;
+        color: $text-color !important;
+
+        &:focus {
+            outline-color: $text-color;
+        }
     }
 }

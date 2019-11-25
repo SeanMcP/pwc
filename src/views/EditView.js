@@ -30,7 +30,7 @@ function EditView(props) {
         edit(props.id, {
             date,
             name,
-            notes
+            notes,
         })
 
         navigate(buildRoute.item(props.id))
@@ -42,7 +42,7 @@ function EditView(props) {
                 initialValues={defaultValues({
                     [FIELDS.date]: dayjs(data.date).format('YYYY-MM-DD') || '',
                     [FIELDS.name]: data.name,
-                    [FIELDS.notes]: data.notes
+                    [FIELDS.notes]: data.notes,
                 })}
                 onSubmit={onSubmit}
                 validationSchema={validationSchema}
@@ -56,8 +56,14 @@ function EditView(props) {
                             <pre>{JSON.stringify(data, null, 2)}</pre>
                         )}
                         <FormFooter>
-                            <Button disabled={!dirty} type="submit" primary>Save</Button>
-                            <Button disabled={!dirty} type="button" onClick={handleDelete}>
+                            <Button disabled={!dirty} type="submit" primary>
+                                Save
+                            </Button>
+                            <Button
+                                disabled={!dirty}
+                                type="button"
+                                onClick={handleDelete}
+                            >
                                 Remove
                             </Button>
                         </FormFooter>

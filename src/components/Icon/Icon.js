@@ -21,7 +21,7 @@ function Icon({ block = false, className = '', icon, ...props }) {
 }
 
 Icon.defaultProps = {
-    size: 24
+    size: 24,
 }
 
 export default Icon
