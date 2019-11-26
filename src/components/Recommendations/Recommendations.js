@@ -15,26 +15,35 @@ function Recommendations() {
         count - prayerCount || 0
     )
 
-    if (!dates.length && !favorites.length && !lastPrayed.length) return null
+    const noRecommendations =
+        !dates.length && !favorites.length && !lastPrayed.length
 
     return (
         <div className="Recommendations">
             <h2 className="Recommendations__heading">Recommendations</h2>
-            <RecommendationsList
-                icon={ICONS.specialDate}
-                ids={dates}
-                title="Special dates"
-            />
-            <RecommendationsList
-                icon={ICONS.favorite}
-                ids={favorites}
-                title="Favorites"
-            />
-            <RecommendationsList
-                icon={ICONS.lastPrayed}
-                ids={lastPrayed}
-                title="Last prayed"
-            />
+            {noRecommendations ? (
+                <p className="Recommendations__none">
+                    That's all we've got! Pray for world peace.
+                </p>
+            ) : (
+                <>
+                    <RecommendationsList
+                        icon={ICONS.specialDate}
+                        ids={dates}
+                        title="Special dates"
+                    />
+                    <RecommendationsList
+                        icon={ICONS.favorite}
+                        ids={favorites}
+                        title="Favorites"
+                    />
+                    <RecommendationsList
+                        icon={ICONS.lastPrayed}
+                        ids={lastPrayed}
+                        title="Last prayed"
+                    />
+                </>
+            )}
         </div>
     )
 }
