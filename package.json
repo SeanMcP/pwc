@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@reach/router": "^1.2.1",
-        "@seanmcp/class-list": "^1.0.2",
+        "class-list-builder": "^1.1.0",
         "color-hash": "^1.0.3",
         "dayjs": "^1.8.15",
         "formik": "^2.0.3",

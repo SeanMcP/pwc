@@ -1,14 +1,11 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 import './ViewContent.scss'
 
 function ViewContent({ children, squish, ...props }) {
     return (
         <div
-            className={classList(
-                'ViewContent',
-                squish && 'ViewContent__squish'
-            )}
+            className={clb('ViewContent', squish && 'ViewContent__squish')}
             {...props}
         >
             {children}

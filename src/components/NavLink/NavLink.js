@@ -1,11 +1,11 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 import AppLink from 'components/AppLink/AppLink'
 
 function NavLink({ className, ...props }) {
     return (
         <AppLink
-            className={classList('NavLink', className)}
+            className={clb('NavLink', className)}
             getProps={({ isCurrent }) => ({
                 'aria-current': isCurrent || undefined,
             })}

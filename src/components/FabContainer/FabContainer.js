@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 
 import './FabContainer.scss'
 
@@ -9,7 +9,7 @@ function FabContainer({ children, left = false, right = true }) {
     return (
         <div className="FabContainer">
             <div
-                className={classList(
+                className={clb(
                     'FabContainer__buttons',
                     left && 'FabContainer__buttons--left',
                     right && 'FabContainer__buttons--right'
