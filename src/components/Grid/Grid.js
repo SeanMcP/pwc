@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 
 import './Grid.scss'
 
@@ -18,7 +18,7 @@ function Grid({
     if (gap) style.gridGap = gap
     return (
         <Tag
-            className={classList('Grid', className, inline && 'Grid--inline')}
+            className={clb('Grid', className, inline && 'Grid--inline')}
             style={style}
             {...props}
         />

@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 import { useField } from 'formik'
 
 import Grid from 'components/Grid/Grid'
@@ -31,7 +31,7 @@ function FieldFactory({
 
     return (
         <div
-            className={classList(
+            className={clb(
                 'Field',
                 className,
                 meta.error && `Field--error ${className}--error`
@@ -107,7 +107,7 @@ export function TextareaField(props) {
 
 export function Form({ className, children, ...props }) {
     return (
-        <form className={classList('Form', className)} {...props}>
+        <form className={clb('Form', className)} {...props}>
             {children}
         </form>
     )

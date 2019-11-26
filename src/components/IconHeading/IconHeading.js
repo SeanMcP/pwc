@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 
 import Icon from 'components/Icon/Icon'
 
@@ -14,7 +14,7 @@ function IconHeading({
 }) {
     const HeadingTag = headingTag
     return (
-        <header className={classList('IconHeading', className)} {...props}>
+        <header className={clb('IconHeading', className)} {...props}>
             <Icon icon={icon} />
             <HeadingTag className="IconHeading__heading">{children}</HeadingTag>
         </header>

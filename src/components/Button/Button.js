@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 
 import './Button.scss'
 
@@ -26,7 +26,7 @@ function Button({
 
     return (
         <Tag
-            className={classList(
+            className={clb(
                 'Button',
                 props.type && `Button--${props.type}`,
                 primary && 'Button--primary',
