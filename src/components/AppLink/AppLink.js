@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 import './AppLink.scss'
 
 function AppLink({ children, className, ...props }) {
     return (
-        <Link className={classList('AppLink', className)} {...props}>
+        <Link className={clb('AppLink', className)} {...props}>
             {children}
         </Link>
     )

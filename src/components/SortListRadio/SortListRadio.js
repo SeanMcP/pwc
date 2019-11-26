@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 
 import './SortListRadio.scss'
 
@@ -25,7 +25,7 @@ function SortListRadio({ state }) {
                             key={option.value}
                         >
                             <label
-                                className={classList(
+                                className={clb(
                                     'SortListRadio__label',
                                     isChecked && 'SortListRadio__label--checked'
                                 )}

@@ -1,6 +1,6 @@
 import React from 'react'
 import * as FeatherIcons from 'react-feather'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 import './Icon.scss'
 
 function Icon({ block = false, className = '', icon, ...props }) {
@@ -9,7 +9,7 @@ function Icon({ block = false, className = '', icon, ...props }) {
     const Tag = FeatherIcons[icon]
 
     return (
-        <span className={classList('Icon', block && 'Icon--block', className)}>
+        <span className={clb('Icon', block && 'Icon--block', className)}>
             <Tag
                 className="Icon__svg"
                 {...props}
