@@ -1,18 +1,19 @@
 import React from 'react'
+import Container from 'react-div-100vh'
 import { CookiesProvider } from 'react-cookie'
+import { ItemsProvider } from 'store/useItems'
 import Router from 'Router'
 import './App.scss'
-import { ItemsProvider } from 'store/useItems'
 
 function App() {
     return (
-        <div className="App">
+        <Container className="App">
             <CookiesProvider>
                 <ItemsProvider>
                     <Router />
                 </ItemsProvider>
             </CookiesProvider>
-        </div>
+        </Container>
     )
 }
 
