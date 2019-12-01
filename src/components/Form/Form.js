@@ -101,6 +101,10 @@ export function SearchField(props) {
     )
 }
 
+export function SelectField(props) {
+    return <FormikFieldFactory element="select" {...props} />
+}
+
 export function TextareaField(props) {
     return <FormikFieldFactory element="textarea" {...props} />
 }

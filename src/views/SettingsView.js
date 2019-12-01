@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik } from 'formik'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import useSettings from 'store/useSettings'
-import { Form, InputField, FormFooter } from 'components/Form/Form'
+import { Form, InputField, FormFooter, SelectField } from 'components/Form/Form'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/settings'
 
@@ -10,8 +10,7 @@ function SettingsView() {
     const [settings, { setAll }] = useSettings()
 
     function onSubmit(values) {
-        const { recommendationCount } = values
-        setAll({ recommendationCount })
+        setAll(values)
     }
 
     return (
@@ -19,6 +18,7 @@ function SettingsView() {
             <Formik
                 enableReinitialize
                 initialValues={defaultValues({
+                    [FIELDS.listView]: settings.listView,
                     [FIELDS.recommendationCount]: settings.recommendationCount,
                 })}
                 onSubmit={onSubmit}
@@ -32,6 +32,19 @@ function SettingsView() {
                             name="recommendationCount"
                             type="number"
                         />
+                        <SelectField
+                            label="List view preference"
+                            name="listView"
+                        >
+                            {['All', 'By Type'].map((option) => (
+                                <option
+                                    key={option}
+                                    value={option.replace(/ /g, '')}
+                                >
+                                    {option}
+                                </option>
+                            ))}
+                        </SelectField>
                         <FormFooter>
                             <Button disabled={!dirty} primary type="submit">
                                 Save

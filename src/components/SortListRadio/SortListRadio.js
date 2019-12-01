@@ -2,6 +2,8 @@ import React from 'react'
 import clb from 'class-list-builder'
 
 import './SortListRadio.scss'
+import useSettings from 'store/useSettings'
+import { FIELDS } from 'schemas/settings'
 
 export const OPTIONS = [
     { label: 'All', value: 'All' },
@@ -10,9 +12,13 @@ export const OPTIONS = [
 
 function SortListRadio({ state }) {
     const [value, setValue] = state
+    const [, { setValue: setSettingsValue }] = useSettings()
+
     function handleChange(e) {
+        setSettingsValue(FIELDS.listView, e.target.value)
         setValue(e.target.value)
     }
+
     return (
         <fieldset className="SortListRadio">
             <legend className="SortListRadio__legend">Sort List By</legend>
