@@ -29,21 +29,23 @@ function SettingsView() {
                         <InputField
                             description="Default is three"
                             label="Number of recommendations"
-                            name="recommendationCount"
+                            name={FIELDS.recommendationCount}
                             type="number"
                         />
                         <SelectField
-                            label="List view preference"
-                            name="listView"
+                            description="Include or exclude favorites from count"
+                            label="Favorites in recommendations"
+                            name={FIELDS.includeFavorites}
                         >
-                            {['All', 'By Type'].map((option) => (
-                                <option
-                                    key={option}
-                                    value={option.replace(/ /g, '')}
-                                >
-                                    {option}
-                                </option>
-                            ))}
+                            <option value="true">Include in count</option>
+                            <option value="false">Exclude from count</option>
+                        </SelectField>
+                        <SelectField
+                            label="List view preference"
+                            name={FIELDS.listView}
+                        >
+                            <option value="All">All</option>
+                            <option value="ByType">By Type</option>
                         </SelectField>
                         <FormFooter>
                             <Button disabled={!dirty} primary type="submit">
