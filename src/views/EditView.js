@@ -1,6 +1,8 @@
 import React from 'react'
-import { navigate } from '@reach/router'
 import dayjs from 'dayjs'
+import { Formik } from 'formik'
+import { navigate } from '@reach/router'
+
 import { useItems } from 'store/useItems'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
@@ -8,7 +10,6 @@ import { Form, FormFooter } from 'components/Form/Form'
 import * as ItemFields from 'components/Form/ItemFields'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/item'
-import { Formik } from 'formik'
 
 function EditView(props) {
     const [, { edit, get, remove }, DEV] = useItems()
@@ -59,11 +60,7 @@ function EditView(props) {
                             <Button disabled={!dirty} type="submit" primary>
                                 Save
                             </Button>
-                            <Button
-                                disabled={!dirty}
-                                type="button"
-                                onClick={handleDelete}
-                            >
+                            <Button type="button" onClick={handleDelete}>
                                 Remove
                             </Button>
                         </FormFooter>
