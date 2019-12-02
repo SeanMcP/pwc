@@ -12,10 +12,12 @@ import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ICONS from 'constants/icons'
 import ROUTES from 'constants/routes'
 import { useItems } from 'store/useItems'
+import useSettings from 'store/useSettings'
 
 function ListView() {
     const [query, setQuery] = React.useState('')
-    const sortState = React.useState('All')
+    const [{ listView = 'All' }] = useSettings()
+    const sortState = React.useState(listView)
     const [items, { areItems }] = useItems()
     const FilteredItemsList = ItemsList[sortState[0]]
     return (

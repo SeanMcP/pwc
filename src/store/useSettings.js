@@ -1,7 +1,8 @@
 import useLocalStorage from 'store/useLocalStorage'
+import { initialValues } from 'schemas/settings'
 
 const initialState = {
-    recommendationCount: 3,
+    ...initialValues,
     mode: 'light', // Aspirational
 }
 
