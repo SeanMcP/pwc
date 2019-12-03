@@ -18,6 +18,7 @@ function SettingsView() {
             <Formik
                 enableReinitialize
                 initialValues={defaultValues({
+                    [FIELDS.includeFavorites]: settings.includeFavorites,
                     [FIELDS.listView]: settings.listView,
                     [FIELDS.recommendationCount]: settings.recommendationCount,
                 })}
