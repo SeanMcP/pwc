@@ -1,6 +1,7 @@
 {
     "name": "pwoc",
     "version": "0.1.0",
+    "dataVersion": "0.1.0",
     "private": true,
     "dependencies": {
         "@reach/router": "^1.2.1",
