@@ -9,11 +9,12 @@ import './Recommendations.scss'
 
 function Recommendations() {
     const [prayerCount] = usePrayerRecord()
-    const [{ recommendationCount: count }] = useSettings()
+    const [settings] = useSettings()
     const [, { getRecommendations }] = useItems()
-    const { dates, favorites, lastPrayed } = getRecommendations(
-        count - prayerCount || 0
-    )
+    const { dates, favorites, lastPrayed } = getRecommendations({
+        prayerCount,
+        settings,
+    })
 
     const noRecommendations =
         !dates.length && !favorites.length && !lastPrayed.length
