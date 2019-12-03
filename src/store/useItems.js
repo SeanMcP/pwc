@@ -84,7 +84,9 @@ function useItemsHook() {
         }
     }
 
-    function getRecommendations(length) {
+    function getRecommendations({ prayerCount, settings }) {
+        const { includeFavorites, recommendationCount } = settings
+        const length = recommendationCount - prayerCount || 0
         let count = 0
         const toBeSorted = []
 
@@ -110,7 +112,7 @@ function useItemsHook() {
             // Favorited items has second...
             if (item.favorite) {
                 recommendations.favorites.push(id)
-                count++
+                if (includeFavorites === 'true') count++
                 continue
             }
 
