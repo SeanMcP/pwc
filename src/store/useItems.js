@@ -140,12 +140,6 @@ function useItemsHook() {
         return recommendations
     }
 
-    function ___DEV___setDateToToday(id) {
-        const shallow = { ...state }
-        shallow[id].date = dayjs()
-        setState(shallow)
-    }
-
     const output = [
         state,
         {
@@ -160,9 +154,36 @@ function useItemsHook() {
         },
     ]
 
+    function ___DEV___setDateToToday(id) {
+        const shallow = { ...state }
+        shallow[id].date = dayjs()
+        setState(shallow)
+    }
+
+    function ___DEV___populateList() {
+        const ITEMS = require('constants/items')
+        const types = Object.keys(ITEMS)
+        const items = {}
+        let favorite = false
+        for (let i = 0; i < 24; i++) {
+            items[uuid()] = {
+                date: null,
+                favorite,
+                name: `Test-${i}`,
+                notes: `- Notes for Test-${i}`,
+                prayerRecord: [],
+                tags: [],
+                type: types[Math.floor(Math.random() * types.length)],
+            }
+            if (i % 3 === 0) favorite = !favorite
+        }
+        setState({ ...state, ...items })
+    }
+
     if (process.env.NODE_ENV === 'development') {
         output.push({
             ___DEV___setDateToToday,
+            ___DEV___populateList,
         })
     }
 
