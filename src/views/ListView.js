@@ -18,7 +18,7 @@ function ListView() {
     const [query, setQuery] = React.useState('')
     const [{ listView = 'All' }] = useSettings()
     const sortState = React.useState(listView)
-    const [items, { areItems }] = useItems()
+    const [items, { areItems }, { ___DEV___populateList }] = useItems()
     const FilteredItemsList = ItemsList[sortState[0]]
     return (
         <ViewContainer
@@ -49,6 +49,9 @@ function ListView() {
                     to={ROUTES.add}
                 />
             </FabContainer>
+            {true && process.env.NODE_ENV === 'development' && (
+                <button onClick={___DEV___populateList}>Populate list</button>
+            )}
         </ViewContainer>
     )
 }
