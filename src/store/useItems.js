@@ -2,7 +2,8 @@ import React from 'react'
 import uuid from 'uuid/v4'
 import dayjs from 'dayjs'
 import useLocalStorage from 'store/useLocalStorage'
-import usePrayerRecord from './usePrayerRecord'
+import usePrayerRecord from 'store/usePrayerRecord'
+import useSettings from 'store/useSettings'
 
 const initialState = {}
 
@@ -20,6 +21,7 @@ function isTodaysDate(dateString) {
 }
 
 function useItemsHook() {
+    const [{ includeFavorites }] = useSettings()
     const [, addPrayer] = usePrayerRecord()
     const [state, setState] = useLocalStorage('items', initialState)
 
@@ -87,7 +89,11 @@ function useItemsHook() {
         const shallow = { ...state }
         shallow[id].prayerRecord = [dayjs(), ...shallow[id].prayerRecord]
         setState(shallow)
-        addPrayer()
+        // If this item is not a favorite, or we are
+        // including favorites, then add a prayer.
+        if (!shallow[id].favorite || includeFavorites === 'true') {
+            addPrayer()
+        }
     }
 
     function remove(id) {
