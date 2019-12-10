@@ -25,8 +25,9 @@ function useItemsHook() {
 
     function add({
         name,
-        date,
+        day,
         favorite = false,
+        month,
         notes = '',
         prayerRecord = [],
         tags = [],
@@ -34,9 +35,17 @@ function useItemsHook() {
     }) {
         const id = uuid()
         const shallow = { ...state }
+
+        let date = null
+        if (day && month) {
+            date = dayjs()
+                .month(month)
+                .date(day)
+        }
+
         shallow[id] = {
             name,
-            date: date ? dayjs(date) : null,
+            date,
             favorite,
             notes,
             prayerRecord,
@@ -50,8 +59,13 @@ function useItemsHook() {
         return Object.keys(state).length > 0
     }
 
-    function edit(id, updates) {
+    function edit(id, { day, month, ...updates }) {
         const shallow = { ...state }
+        if (day && month) {
+            updates.date = dayjs()
+                .month(month)
+                .date(day)
+        }
         shallow[id] = {
             ...shallow[id],
             ...updates,
