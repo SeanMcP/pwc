@@ -53,6 +53,9 @@ export function Day(props) {
     }
     return (
         <SelectField hideLabel label="Day" name={FIELDS.day} {...props}>
+            <option key="day" value="">
+                Day
+            </option>
             {dayOptions}
         </SelectField>
     )
@@ -61,6 +64,9 @@ export function Day(props) {
 export function Month(props) {
     return (
         <SelectField hideLabel label="Month" name={FIELDS.month} {...props}>
+            <option key="month" value="">
+                Month
+            </option>
             {MONTHS.map((month, index) => (
                 <option key={index} value={index}>
                     {month}
