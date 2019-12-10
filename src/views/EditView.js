@@ -26,22 +26,25 @@ function EditView(props) {
     }
 
     function onSubmit(values) {
-        const { date, name, notes } = values
+        const { day, month, name, notes } = values
 
         edit(props.id, {
-            date,
+            day,
+            month,
             name,
             notes,
         })
 
         navigate(buildRoute.item(props.id))
     }
+    const date = dayjs(data.date)
 
     return (
         <ViewContainer title="Edit" backTo={buildRoute.item(props.id)}>
             <Formik
                 initialValues={defaultValues({
-                    [FIELDS.date]: dayjs(data.date).format('YYYY-MM-DD') || '',
+                    [FIELDS.day]: date.date() || '',
+                    [FIELDS.month]: date.month() || '',
                     [FIELDS.name]: data.name,
                     [FIELDS.notes]: data.notes,
                 })}

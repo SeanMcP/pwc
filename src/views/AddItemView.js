@@ -14,10 +14,11 @@ function AddItemView({ type }) {
     const [, { add }] = useItems()
 
     function onSubmit(values) {
-        const { date, name, notes } = values
+        const { day, month, name, notes } = values
 
         add({
-            date,
+            day,
+            month,
             name,
             notes,
             type,
