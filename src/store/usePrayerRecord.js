@@ -12,9 +12,9 @@ function todayAtMidnight() {
 
 const type = 'record'
 
-const storeKey = buildKeyFromType(type)
+export const storeKey = buildKeyFromType(type)
 
-const options = {
+export const options = {
     // Fyi: `todayAtMidnight()` returns milliseconds, but `useCookies`
     // is expecting a date, hence the wrapping.
     expires: new Date(todayAtMidnight()),
@@ -44,7 +44,7 @@ export default function usePrayerRecord() {
     function increment() {
         // This variable seemed necessary, but I can't explain why.
         // Try removing this later if you have some time to tinker.
-        const newValue = value + 1
+        const newValue = (value || 0) + 1
         setCookie(storeKey, newValue, options)
     }
 
