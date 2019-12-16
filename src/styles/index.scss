@@ -36,3 +36,7 @@ a {
         text-decoration: underline dotted $primary-color--faint;
     }
 }
+
+body[data-debug='true'] {
+    border: 2px solid $debug;
+}
