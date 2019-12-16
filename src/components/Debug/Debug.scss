@@ -1,0 +1,11 @@
+@import 'styles/variables.scss';
+
+.DebugDownloader {
+    background: $debug;
+    padding: 0.25rem;
+
+    a {
+        color: black;
+        padding-left: 0.5rem;
+    }
+}
