@@ -1,12 +1,18 @@
 import { useCookies } from 'react-cookie'
-import pkg from '../../package.json'
+import {
+    buildKeyFromType,
+    buildKeyFromVersionAndType,
+} from 'utils/dataUtils.js'
+import PREVIOUS_VERSIONS from 'data/previousVersions'
 
 function todayAtMidnight() {
     // Manufactures a timestampt for today at 11:59:59:999pm.
     return new Date().setHours(23, 59, 59, 999)
 }
 
-const name = `${pkg.name}@${pkg.version}-record`
+const type = 'record'
+
+const storeKey = buildKeyFromType(type)
 
 const options = {
     // Fyi: `todayAtMidnight()` returns milliseconds, but `useCookies`
@@ -17,16 +23,29 @@ const options = {
 }
 
 export default function usePrayerRecord() {
-    const [cookies, setCookie] = useCookies([name])
-    const value = parseInt(cookies[name])
+    const [cookies, setCookie, removeCookie] = useCookies([storeKey])
+    const value = parseInt(cookies[storeKey])
 
-    if (isNaN(value)) setCookie(name, 0, options)
+    if (isNaN(value)) {
+        let foundValue
+        for (const version of PREVIOUS_VERSIONS) {
+            const previousKey = buildKeyFromVersionAndType(version, type)
+            const oldValue = parseInt(cookies[previousKey])
+            if (!isNaN(oldValue)) {
+                foundValue = oldValue
+                // Clean up
+                removeCookie(previousKey)
+                break
+            }
+        }
+        setCookie(storeKey, foundValue || 0, options)
+    }
 
     function increment() {
         // This variable seemed necessary, but I can't explain why.
         // Try removing this later if you have some time to tinker.
         const newValue = value + 1
-        setCookie(name, newValue, options)
+        setCookie(storeKey, newValue, options)
     }
 
     return [value, increment]

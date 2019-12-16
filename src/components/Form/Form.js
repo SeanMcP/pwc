@@ -13,6 +13,7 @@ function FieldFactory({
     description,
     element,
     field = {},
+    hideLabel = false,
     id,
     label,
     meta = {},
@@ -37,7 +38,7 @@ function FieldFactory({
                 meta.error && `Field--error ${className}--error`
             )}
         >
-            {label && (
+            {label && !hideLabel && (
                 <label
                     className={`Field__label ${className}__label`}
                     htmlFor={elementId}
@@ -62,6 +63,7 @@ function FieldFactory({
                 className={`Field__input ${className}__input`}
                 id={elementId}
                 aria-describedby={descriptionId}
+                aria-label={hideLabel ? label : undefined}
                 aria-required={required}
                 {...field}
                 {...props}

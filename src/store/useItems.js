@@ -2,7 +2,8 @@ import React from 'react'
 import uuid from 'uuid/v4'
 import dayjs from 'dayjs'
 import useLocalStorage from 'store/useLocalStorage'
-import usePrayerRecord from './usePrayerRecord'
+import usePrayerRecord from 'store/usePrayerRecord'
+import useSettings from 'store/useSettings'
 
 const initialState = {}
 
@@ -20,13 +21,15 @@ function isTodaysDate(dateString) {
 }
 
 function useItemsHook() {
+    const [{ includeFavorites }] = useSettings()
     const [, addPrayer] = usePrayerRecord()
     const [state, setState] = useLocalStorage('items', initialState)
 
     function add({
         name,
-        date,
+        day,
         favorite = false,
+        month,
         notes = '',
         prayerRecord = [],
         tags = [],
@@ -34,9 +37,17 @@ function useItemsHook() {
     }) {
         const id = uuid()
         const shallow = { ...state }
+
+        let date = null
+        if (day && month) {
+            date = dayjs()
+                .month(month)
+                .date(day)
+        }
+
         shallow[id] = {
             name,
-            date: date ? dayjs(date) : null,
+            date,
             favorite,
             notes,
             prayerRecord,
@@ -50,8 +61,13 @@ function useItemsHook() {
         return Object.keys(state).length > 0
     }
 
-    function edit(id, updates) {
+    function edit(id, { day, month, ...updates }) {
         const shallow = { ...state }
+        if (day && month) {
+            updates.date = dayjs()
+                .month(month)
+                .date(day)
+        }
         shallow[id] = {
             ...shallow[id],
             ...updates,
@@ -73,7 +89,11 @@ function useItemsHook() {
         const shallow = { ...state }
         shallow[id].prayerRecord = [dayjs(), ...shallow[id].prayerRecord]
         setState(shallow)
-        addPrayer()
+        // If this item is not a favorite, or we are
+        // including favorites, then add a prayer.
+        if (!shallow[id].favorite || includeFavorites === 'true') {
+            addPrayer()
+        }
     }
 
     function remove(id) {
@@ -140,12 +160,6 @@ function useItemsHook() {
         return recommendations
     }
 
-    function ___DEV___setDateToToday(id) {
-        const shallow = { ...state }
-        shallow[id].date = dayjs()
-        setState(shallow)
-    }
-
     const output = [
         state,
         {
@@ -160,9 +174,36 @@ function useItemsHook() {
         },
     ]
 
+    function ___DEV___setDateToToday(id) {
+        const shallow = { ...state }
+        shallow[id].date = dayjs()
+        setState(shallow)
+    }
+
+    function ___DEV___populateList() {
+        const ITEMS = require('constants/items')
+        const types = Object.keys(ITEMS)
+        const items = {}
+        let favorite = false
+        for (let i = 0; i < 24; i++) {
+            items[uuid()] = {
+                date: null,
+                favorite,
+                name: `Test-${i}`,
+                notes: `- Notes for Test-${i}`,
+                prayerRecord: [],
+                tags: [],
+                type: types[Math.floor(Math.random() * types.length)],
+            }
+            if (i % 3 === 0) favorite = !favorite
+        }
+        setState({ ...state, ...items })
+    }
+
     if (process.env.NODE_ENV === 'development') {
         output.push({
             ___DEV___setDateToToday,
+            ___DEV___populateList,
         })
     }
 

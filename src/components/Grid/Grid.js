@@ -4,9 +4,11 @@ import clb from 'class-list-builder'
 import './Grid.scss'
 
 function Grid({
+    alignItems,
     as = 'div',
     className,
     columns,
+    differentColumns,
     gap,
     inline = false,
     units = '1fr',
@@ -14,7 +16,12 @@ function Grid({
 }) {
     const Tag = as
     const style = {}
-    if (columns) style.gridTemplateColumns = `repeat(${columns}, ${units})`
+    if (alignItems) style.alignItems = alignItems
+    if (columns) {
+        style.gridTemplateColumns = `repeat(${columns}, ${units})`
+    } else if (differentColumns) {
+        style.gridTemplateColumns = differentColumns
+    }
     if (gap) style.gridGap = gap
     return (
         <Tag
