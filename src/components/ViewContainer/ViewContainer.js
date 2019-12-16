@@ -3,13 +3,14 @@ import ReleaseBanner from 'components/ReleaseBanner/ReleaseBanner'
 import ViewContent from 'components/ViewContent/ViewContent'
 import ViewFooter from 'components/ViewFooter/ViewFooter'
 import ViewHeader from 'components/ViewHeader/ViewHeader'
-import './ViewContainer.scss'
 import APP_NAME from 'constants/appName'
 
+import './ViewContainer.scss'
+
 function ViewContainer({
+    actionButton,
     backTo,
     children,
-    hideHeader,
     searchBar = null,
     title,
 }) {
@@ -19,7 +20,11 @@ function ViewContainer({
     return (
         <div className="ViewContainer">
             <ReleaseBanner />
-            {!hideHeader && <ViewHeader backTo={backTo} title={title} />}
+            <ViewHeader
+                actionButton={actionButton}
+                backTo={backTo}
+                title={title}
+            />
             {searchBar}
             <main id="main" role="main" className="ViewContainer__main">
                 <ViewContent>{children}</ViewContent>
