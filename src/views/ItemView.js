@@ -47,7 +47,11 @@ function ItemView({ id }) {
     const data = get(id)
 
     return (
-        <ViewContainer backTo={ROUTES.list} title={data.name}>
+        <ViewContainer
+            actionButton={<LinkButton icon="Edit" to={buildRoute.edit(id)} />}
+            backTo={ROUTES.list}
+            title="View"
+        >
             <ItemAttributes.List>
                 {data.favorite && (
                     <ItemAttributes.Item
@@ -82,7 +86,6 @@ function ItemView({ id }) {
                     title="Notes"
                 />
             </ItemAttributes.List>
-            <LinkButton to={buildRoute.edit(id)}>Edit item</LinkButton>
             {false && process.env.NODE_ENV === 'development' && (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             )}

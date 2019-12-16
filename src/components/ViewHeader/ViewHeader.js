@@ -1,21 +1,34 @@
 import React from 'react'
-import AppLink from 'components/AppLink/AppLink'
+import Grid from 'components/Grid/Grid'
+import LinkButton from 'components/LinkButton/LinkButton'
 import ViewContent from 'components/ViewContent/ViewContent'
-import './ViewHeader.scss'
 import APP_NAME from 'constants/appName'
 
-function ViewHeader({ backTo = '/', title }) {
+import './ViewHeader.scss'
+
+function ViewHeader({ actionButton = null, backTo = '/', title }) {
+    const shouldRenderBackButton = window.location.pathname !== '/'
     return (
         <header className="ViewHeader">
             <ViewContent>
-                <div className="ViewHeader__container">
-                    {window.location.pathname !== '/' && (
-                        <AppLink className="ViewHeader__link" to={backTo}>
-                            Back
-                        </AppLink>
+                <Grid
+                    alignItems="center"
+                    className="ViewHeader__container"
+                    differentColumns={
+                        (shouldRenderBackButton || actionButton) &&
+                        '48px auto 48px'
+                    }
+                >
+                    {shouldRenderBackButton && (
+                        <LinkButton
+                            className="ViewHeader__link"
+                            icon="ArrowLeft"
+                            to={backTo}
+                        />
                     )}
                     <h1 className="ViewHeader__heading">{title || APP_NAME}</h1>
-                </div>
+                    {actionButton}
+                </Grid>
             </ViewContent>
         </header>
     )
