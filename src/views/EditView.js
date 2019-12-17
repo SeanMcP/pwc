@@ -10,9 +10,10 @@ import { Form, FormFooter } from 'components/Form/Form'
 import * as ItemFields from 'components/Form/ItemFields'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/item'
+import DevOnly from 'components/DevOnly/DevOnly'
 
 function EditView(props) {
-    const [, { edit, get, remove }, DEV] = useItems()
+    const [, { edit, get, remove }, __DEV__] = useItems()
 
     const data = get(props.id)
 
@@ -70,11 +71,11 @@ function EditView(props) {
                     </Form>
                 )}
             </Formik>
-            {false && process.env.NODE_ENV === 'development' && (
-                <Button onClick={() => DEV.___DEV___setBirthday(props.id)}>
+            <DevOnly off>
+                <Button onClick={() => __DEV__.setBirthday(props.id)}>
                     Set birthday to today
                 </Button>
-            )}
+            </DevOnly>
         </ViewContainer>
     )
 }

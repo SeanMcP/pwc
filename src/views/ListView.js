@@ -13,12 +13,13 @@ import ICONS from 'constants/icons'
 import ROUTES from 'constants/routes'
 import { useItems } from 'store/useItems'
 import useSettings from 'store/useSettings'
+import DevOnly from 'components/DevOnly/DevOnly'
 
 function ListView() {
     const [query, setQuery] = React.useState('')
     const [{ listView = 'All' }] = useSettings()
     const sortState = React.useState(listView)
-    const [items, { areItems }, { ___DEV___populateList }] = useItems()
+    const [items, { areItems }, __DEV__] = useItems()
     const FilteredItemsList = ItemsList[sortState[0]]
     return (
         <ViewContainer
@@ -49,9 +50,9 @@ function ListView() {
                     to={ROUTES.add}
                 />
             </FabContainer>
-            {true && process.env.NODE_ENV === 'development' && (
-                <button onClick={___DEV___populateList}>Populate list</button>
-            )}
+            <DevOnly>
+                <button onClick={__DEV__.populateList}>Populate list</button>
+            </DevOnly>
         </ViewContainer>
     )
 }

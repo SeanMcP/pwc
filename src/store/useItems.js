@@ -174,13 +174,13 @@ function useItemsHook() {
         },
     ]
 
-    function ___DEV___setDateToToday(id) {
+    function setDateToToday(id) {
         const shallow = { ...state }
         shallow[id].date = dayjs()
         setState(shallow)
     }
 
-    function ___DEV___populateList() {
+    function populateList() {
         const ITEMS = require('constants/items')
         const types = Object.keys(ITEMS)
         const items = {}
@@ -200,12 +200,16 @@ function useItemsHook() {
         setState({ ...state, ...items })
     }
 
+    let __DEV__ = {}
+
     if (process.env.NODE_ENV === 'development') {
-        output.push({
-            ___DEV___setDateToToday,
-            ___DEV___populateList,
-        })
+        __DEV__ = {
+            populateList,
+            setDateToToday,
+        }
     }
+
+    output.push(__DEV__)
 
     return output
 }
