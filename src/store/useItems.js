@@ -181,8 +181,8 @@ function useItemsHook() {
     }
 
     function populateList() {
-        const ITEMS = require('constants/items')
-        const types = Object.keys(ITEMS)
+        const ITEMS = require('constants/items').default
+        const types = Object.keys(ITEMS.types)
         const items = {}
         let favorite = false
         for (let i = 0; i < 24; i++) {
