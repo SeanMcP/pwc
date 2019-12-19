@@ -1,4 +1,5 @@
 .ItemHeader {
+    color: white;
     display: grid;
     gap: 0.5rem;
     grid-template-columns: min-content auto;
@@ -6,7 +7,6 @@
     margin: -1rem;
     margin-bottom: 1rem;
     padding: 1rem;
-    color: white;
 
     &__heading {
         margin: 0;
