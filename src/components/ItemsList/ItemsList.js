@@ -1,5 +1,4 @@
 import React from 'react'
-import ColorHash from 'color-hash'
 
 import All from './ItemsListAll'
 import AppLink from 'components/AppLink/AppLink'
@@ -8,13 +7,13 @@ import Icon from 'components/Icon/Icon'
 
 import { buildRoute } from 'constants/routes'
 import ICONS from 'constants/icons'
+import colorHash from 'utils/colorHashUtils'
 
 import './ItemsList.scss'
 
 export function renderItems({ items = {}, list = [], query = '' }) {
     return list.reduce((acc, id) => {
         const item = items[id]
-        const colorHash = new ColorHash({ lightness: 0.5, saturation: 0.5 })
         if (shouldAdd(item, query)) {
             acc.push(
                 <li className="ItemsList__item" key={id}>
