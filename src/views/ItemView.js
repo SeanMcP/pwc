@@ -51,7 +51,7 @@ function ItemView({ id }) {
         <ViewContainer
             actionButton={
                 <LinkButton
-                    aria-label="Edit"
+                    aria-label="Edit item"
                     icon="Edit"
                     to={buildRoute.edit(id)}
                 />
