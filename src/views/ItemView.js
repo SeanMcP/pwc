@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import FabContainer from 'components/FabContainer/FabContainer'
 import ItemAttributes from 'components/ItemAttributes/ItemAttributes'
 import IconButton from 'components/IconButton/IconButton'
+import ItemHeader from 'components/ItemHeader/ItemHeader'
 import LinkButton from 'components/LinkButton/LinkButton'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 
@@ -48,10 +49,17 @@ function ItemView({ id }) {
 
     return (
         <ViewContainer
-            actionButton={<LinkButton icon="Edit" to={buildRoute.edit(id)} />}
+            actionButton={
+                <LinkButton
+                    aria-label="Edit item"
+                    icon="Edit"
+                    to={buildRoute.edit(id)}
+                />
+            }
             backTo={ROUTES.list}
             title="View"
         >
+            <ItemHeader name={data.name} type={data.type} />
             <ItemAttributes.List>
                 {data.favorite && (
                     <ItemAttributes.Item
