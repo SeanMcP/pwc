@@ -29,6 +29,7 @@ function ViewHeader({ actionButton = null, backTo = '/', title }) {
                 >
                     {shouldRenderBackButton && (
                         <LinkButton
+                            aria-label="Navigate back"
                             className="ViewHeader__link"
                             icon="ArrowLeft"
                             to={backTo}
