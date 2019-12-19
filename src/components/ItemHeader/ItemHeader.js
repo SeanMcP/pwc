@@ -1,9 +1,9 @@
 import React from 'react'
 import Icon from 'components/Icon/Icon'
 import ICONS from 'constants/icons'
+import colorHash from 'utils/colorHashUtils'
 
 import './ItemHeader.scss'
-import colorHash from 'utils/colorHashUtils'
 
 function ItemHeader({ name, type }) {
     return (
