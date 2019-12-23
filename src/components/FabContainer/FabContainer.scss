@@ -1,26 +1,33 @@
 .FabContainer {
     $nav-bar-height: 58px;
     bottom: calc(58px + 1rem);
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
     position: fixed;
+    max-width: 600px;
+    width: calc(100% - 2rem);
 
-    &--left {
-        left: 1rem;
-    }
+    &__buttons {
+        bottom: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        position: absolute;
 
-    &--right {
-        right: 1rem;
-    }
+        &--left {
+            left: 0;
+        }
 
-    // Only apply drop shadow to .Button to handle
-    // instances where other wrapper elements
-    .Button {
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
-    }
+        &--right {
+            right: 0;
+        }
 
-    * + * {
-        margin-bottom: 0.5rem;
+        // Only apply drop shadow to .Button to handle
+        // instances where other wrapper elements
+        .Button:not(:focus) {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
+        }
+
+        * + * {
+            margin-bottom: 0.5rem;
+        }
     }
 }

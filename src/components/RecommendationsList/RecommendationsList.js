@@ -1,9 +1,10 @@
 import React from 'react'
-import { buildRoute } from 'constants/routes'
-import { useItems } from 'store/useItems'
 import AppLink from 'components/AppLink/AppLink'
+import { buildRoute } from 'constants/routes'
 import IconButton from 'components/IconButton/IconButton'
 import IconHeading from 'components/IconHeading/IconHeading'
+import ICONS from 'constants/icons'
+import { useItems } from 'store/useItems'
 
 import './RecommendationsList.scss'
 
@@ -14,7 +15,7 @@ function RecommendationsList({ icon, ids, title }) {
 
     const type = title.toLowerCase().replace(/ /g, '-')
 
-    const list = ids.map(id => {
+    const list = ids.map((id) => {
         const item = state[id]
         return (
             <li className="RecommendationsList__item" key={`${type}-${id}`}>
@@ -26,7 +27,7 @@ function RecommendationsList({ icon, ids, title }) {
                 </AppLink>
                 <IconButton
                     className="RecommendationsList__record-button"
-                    icon="ArrowUp"
+                    icon={ICONS.prayer}
                     label="Record prayer"
                     onClick={() => recordPrayer(id)}
                     small

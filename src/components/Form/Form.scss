@@ -1,6 +1,15 @@
 @import 'styles/mixins.scss';
 @import 'styles/variables.scss';
 
+@mixin input-styles {
+    @include form-element-styles;
+
+    border: 1px solid $border-color;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.5rem;
+}
+
 .Form {
     display: grid;
     grid-gap: 2rem;
@@ -16,27 +25,27 @@
         font-weight: bold;
     }
 
+    &__required {
+        color: $red-900;
+        margin-left: 0.125rem;
+    }
+
     &__description {
         color: rgba(0, 0, 0, 0.75);
     }
 
     &__input {
-        @include form-focus-styles;
-
-        border: 1px solid $border-color;
-        font-family: inherit;
-        font-size: inherit;
-        padding: 0.5rem;
+        @include input-styles;
     }
 
     &--error {
         .Field__input {
-            border: 1px solid firebrick;
+            border: 1px solid $red-900;
         }
     }
 
     &__error {
-        color: firebrick;
+        color: $red-900;
         margin: 0;
         position: absolute;
         right: 0;
@@ -45,7 +54,32 @@
 
     &.TextareaField {
         .Field__input {
-            min-height: 4rem;
+            min-height: 5rem;
+        }
+    }
+}
+
+.SearchField {
+    @include input-styles;
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-gap: 0.5rem;
+
+    .Icon {
+        color: $gray-500;
+    }
+
+    [type='search'] {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        // Safari only
+        -webkit-appearance: none;
+    }
+
+    &:focus-within {
+        .Icon {
+            color: $primary-color;
         }
     }
 }

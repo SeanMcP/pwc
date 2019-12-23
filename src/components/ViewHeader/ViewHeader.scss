@@ -1,34 +1,30 @@
 @import 'styles/variables.scss';
 
 .ViewHeader {
-    background: #f1f1f1;
+    $text-color: $gray-900;
+
+    background: $gray-200;
     border-bottom: 1px solid $border-color;
+    color: $text-color;
+    height: 48px;
 
     &__container {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        position: relative;
+        // Break out of container
+        margin: 0 -1rem;
     }
 
-    &__link {
-        position: absolute;
-        left: 0;
+    .LinkButton {
+        border: none;
+        border-radius: 0;
+        color: $text-color;
+        margin-bottom: -1rem;
+        margin-top: -1rem;
     }
 
     &__heading {
-        font-size: 1.5rem;
+        font-size: 1rem;
         margin: 0;
         text-align: center;
         justify-self: center;
-    }
-
-    &--alternate {
-        background: $primary-color;
-        color: white;
-
-        .ViewHeader__link {
-            color: white;
-        }
     }
 }

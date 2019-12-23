@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 import AppLink from 'components/AppLink/AppLink'
 
 import './LinkButton.scss'
@@ -16,18 +16,15 @@ function LinkButton({
         icon ? 'IconButton/IconButton' : 'Button/Button'
     }`).default
     return (
-        <AppLink
-            className={classList(
-                'LinkButton',
-                className,
-                full && 'LinkButton--full'
-            )}
+        <ButtonTag
+            as={AppLink}
+            className={clb('LinkButton', className, full && 'LinkButton--full')}
+            {...props}
+            icon={icon}
             to={to}
         >
-            <ButtonTag {...props} icon={icon} tabIndex="-1">
-                {children}
-            </ButtonTag>
-        </AppLink>
+            {children}
+        </ButtonTag>
     )
 }
 

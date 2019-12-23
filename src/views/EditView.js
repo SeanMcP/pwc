@@ -1,17 +1,19 @@
 import React from 'react'
-import { navigate } from '@reach/router'
 import dayjs from 'dayjs'
+import { Formik } from 'formik'
+import { navigate } from '@reach/router'
+
 import { useItems } from 'store/useItems'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { Form } from 'components/Form/Form'
+import { Form, FormFooter } from 'components/Form/Form'
 import * as ItemFields from 'components/Form/ItemFields'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/item'
-import { Formik } from 'formik'
+import DevOnly from 'components/DevOnly/DevOnly'
 
 function EditView(props) {
-    const [, { edit, get, remove }, DEV] = useItems()
+    const [, { edit, get, remove }, __DEV__] = useItems()
 
     const data = get(props.id)
 
@@ -25,51 +27,55 @@ function EditView(props) {
     }
 
     function onSubmit(values) {
-        const { date, dateType, name, notes } = values
+        const { day, month, name, notes } = values
 
         edit(props.id, {
-            date,
-            dateType,
+            day,
+            month,
             name,
-            notes
+            notes,
         })
 
         navigate(buildRoute.item(props.id))
     }
+    const date = dayjs(data.date)
 
     return (
         <ViewContainer title="Edit" backTo={buildRoute.item(props.id)}>
             <Formik
                 initialValues={defaultValues({
-                    [FIELDS.date]: dayjs(data.date).format('YYYY-MM-DD') || '',
-                    [FIELDS.dateType]: data.dateType,
+                    [FIELDS.day]: date.date() || '',
+                    [FIELDS.month]: date.month() || '',
                     [FIELDS.name]: data.name,
-                    [FIELDS.notes]: data.notes
+                    [FIELDS.notes]: data.notes,
                 })}
                 onSubmit={onSubmit}
                 validationSchema={validationSchema}
             >
-                {({ handleSubmit }) => (
+                {({ dirty, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <ItemFields.Name />
                         <ItemFields.Date />
-                        <ItemFields.DateType />
                         <ItemFields.Notes />
                         {false && process.env.NODE_ENV === 'development' && (
                             <pre>{JSON.stringify(data, null, 2)}</pre>
                         )}
-                        <Button type="submit">Save changes</Button>
-                        <Button type="button" onClick={handleDelete}>
-                            Remove
-                        </Button>
+                        <FormFooter>
+                            <Button disabled={!dirty} type="submit" primary>
+                                Save
+                            </Button>
+                            <Button type="button" onClick={handleDelete}>
+                                Remove
+                            </Button>
+                        </FormFooter>
                     </Form>
                 )}
             </Formik>
-            {false && process.env.NODE_ENV === 'development' && (
-                <Button onClick={() => DEV.___DEV___setBirthday(props.id)}>
+            <DevOnly off>
+                <Button onClick={() => __DEV__.setBirthday(props.id)}>
                     Set birthday to today
                 </Button>
-            )}
+            </DevOnly>
         </ViewContainer>
     )
 }

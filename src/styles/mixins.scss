@@ -1,9 +1,10 @@
 @import 'styles/variables.scss';
 
-@mixin form-focus-styles {
-    &:focus {
-        border-color: $accent-color;
-        box-shadow: 0 0 0 4px $faint-accent-color;
+@mixin focus-styles {
+    &:focus,
+    &:focus-within {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 4px $primary-color--faint;
 
         outline: 4px solid transparent;
     }
@@ -13,6 +14,12 @@
     }
 }
 
+@mixin form-element-styles {
+    @include focus-styles;
+
+    border-radius: $border-radius;
+}
+
 @mixin reset-ul {
     list-style-type: none;
     margin: 0;
@@ -20,7 +27,7 @@
 }
 
 @mixin set-round-element-size($size) {
-    border-radius: $size;
+    border-radius: $border-radius;
     height: $size;
     max-height: $size;
     max-width: $size;

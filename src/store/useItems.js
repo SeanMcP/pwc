@@ -2,7 +2,8 @@ import React from 'react'
 import uuid from 'uuid/v4'
 import dayjs from 'dayjs'
 import useLocalStorage from 'store/useLocalStorage'
-import usePrayerRecord from './usePrayerRecord'
+import usePrayerRecord from 'store/usePrayerRecord'
+import useSettings from 'store/useSettings'
 
 const initialState = {}
 
@@ -20,39 +21,56 @@ function isTodaysDate(dateString) {
 }
 
 function useItemsHook() {
+    const [{ includeFavorites }] = useSettings()
     const [, addPrayer] = usePrayerRecord()
     const [state, setState] = useLocalStorage('items', initialState)
 
     function add({
         name,
-        date,
-        dateType,
+        day,
         favorite = false,
+        month,
         notes = '',
         prayerRecord = [],
         tags = [],
-        type
+        type,
     }) {
         const id = uuid()
         const shallow = { ...state }
+
+        let date = null
+        if (day && month) {
+            date = dayjs()
+                .month(month)
+                .date(day)
+        }
+
         shallow[id] = {
             name,
-            date: date ? dayjs(date) : null,
-            dateType,
+            date,
             favorite,
             notes,
             prayerRecord,
             tags,
-            type
+            type,
         }
         setState(shallow)
     }
 
-    function edit(id, updates) {
+    function areItems() {
+        return Object.keys(state).length > 0
+    }
+
+    function edit(id, { day, month, ...updates }) {
         const shallow = { ...state }
+        if (day && month) {
+            updates.date = dayjs()
+                .month(month)
+                .date(day)
+        }
         shallow[id] = {
             ...shallow[id],
-            ...updates
+            ...updates,
         }
         setState(shallow)
     }
@@ -71,7 +89,11 @@ function useItemsHook() {
         const shallow = { ...state }
         shallow[id].prayerRecord = [dayjs(), ...shallow[id].prayerRecord]
         setState(shallow)
-        addPrayer()
+        // If this item is not a favorite, or we are
+        // including favorites, then add a prayer.
+        if (!shallow[id].favorite || includeFavorites === 'true') {
+            addPrayer()
+        }
     }
 
     function remove(id) {
@@ -82,14 +104,16 @@ function useItemsHook() {
         }
     }
 
-    function getRecommendations(length) {
+    function getRecommendations({ prayerCount, settings }) {
+        const { includeFavorites, recommendationCount } = settings
+        const length = recommendationCount - prayerCount || 0
         let count = 0
         const toBeSorted = []
 
         const recommendations = {
             dates: [],
             favorites: [],
-            lastPrayed: []
+            lastPrayed: [],
         }
 
         for (const id in state) {
@@ -108,7 +132,7 @@ function useItemsHook() {
             // Favorited items has second...
             if (item.favorite) {
                 recommendations.favorites.push(id)
-                count++
+                if (includeFavorites === 'true') count++
                 continue
             }
 
@@ -136,30 +160,56 @@ function useItemsHook() {
         return recommendations
     }
 
-    function ___DEV___setDateToToday(id) {
-        const shallow = { ...state }
-        shallow[id].date = dayjs()
-        setState(shallow)
-    }
-
     const output = [
         state,
         {
             add,
+            areItems,
             edit,
             get,
             getRecommendations,
             recordPrayer,
             remove,
-            toggleFavorite
-        }
+            toggleFavorite,
+        },
     ]
 
-    if (process.env.NODE_ENV === 'development') {
-        output.push({
-            ___DEV___setDateToToday
-        })
+    function setDateToToday(id) {
+        const shallow = { ...state }
+        shallow[id].date = dayjs()
+        setState(shallow)
     }
+
+    function populateList() {
+        const ITEMS = require('constants/items').default
+        const types = Object.keys(ITEMS.types)
+        const items = {}
+        let favorite = false
+        for (let i = 0; i < 24; i++) {
+            items[uuid()] = {
+                date: null,
+                favorite,
+                name: `Test-${i}`,
+                notes: `- Notes for Test-${i}`,
+                prayerRecord: [],
+                tags: [],
+                type: types[Math.floor(Math.random() * types.length)],
+            }
+            if (i % 3 === 0) favorite = !favorite
+        }
+        setState({ ...state, ...items })
+    }
+
+    let __DEV__ = {}
+
+    if (process.env.NODE_ENV === 'development') {
+        __DEV__ = {
+            populateList,
+            setDateToToday,
+        }
+    }
+
+    output.push(__DEV__)
 
     return output
 }

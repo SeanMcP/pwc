@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 
 import './Button.scss'
 
@@ -9,12 +9,14 @@ import './Button.scss'
 */
 
 function Button({
+    as = 'button',
     children,
     className,
     modifiers = [],
     primary = false,
     ...props
 }) {
+    const Tag = as
     const modifierClasses = modifiers.reduce((acc, mod) => {
         if (Boolean(mod)) {
             acc.push(`Button--${mod}`)
@@ -23,8 +25,8 @@ function Button({
     }, [])
 
     return (
-        <button
-            className={classList(
+        <Tag
+            className={clb(
                 'Button',
                 props.type && `Button--${props.type}`,
                 primary && 'Button--primary',
@@ -34,7 +36,7 @@ function Button({
             {...props}
         >
             {children}
-        </button>
+        </Tag>
     )
 }
 

@@ -1,5 +1,11 @@
-$border-color: #ddd;
-$primary-color: rgb(23, 93, 164);
-$primary-color--faint: rgba(23, 93, 164, 0.5);
-$accent-color: $primary-color;
-$faint-accent-color: $primary-color--faint;
+@import './md-colors.scss';
+
+// COLORS
+$border-color: $gray-400;
+$primary-color: $purple-800;
+$primary-color--faint: rgba($primary-color, 0.5);
+$debug: $orange-600;
+
+// POSITIONING
+$border-radius: 0.5rem;
+$border-radius--small: 0.25rem;

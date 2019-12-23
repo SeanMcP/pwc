@@ -8,21 +8,12 @@
 
     &__legend {
         @include visually-hidden();
-        // margin: 0 0 0.5rem;
-        // padding: 0;
-        // text-align: center;
     }
 
     &__list {
-        display: flex;
-    }
-
-    &__option {
-        flex: 1;
-
-        + .SortListRadio__option {
-            margin-left: 1rem;
-        }
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     &__input {
@@ -30,8 +21,11 @@
     }
 
     &__label {
+        @include focus-styles;
+
         border: 1px solid $primary-color;
-        border-radius: 0.5rem;
+        border-radius: $border-radius;
+        cursor: pointer;
         box-sizing: border-box;
         color: $primary-color;
         display: block;
@@ -40,7 +34,6 @@
 
         &--checked {
             background: $primary-color;
-            border-color: rgba(0, 0, 0, 0.25);
             color: white;
         }
     }

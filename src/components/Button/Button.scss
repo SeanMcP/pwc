@@ -2,7 +2,7 @@
 @import 'styles/variables.scss';
 
 .Button {
-    @include form-focus-styles;
+    @include form-element-styles;
 
     background: transparent;
     border: 1px solid $border-color;
@@ -12,8 +12,8 @@
     padding: 0.5rem 1rem;
 
     &--primary {
-        background: $accent-color;
-        border-color: $accent-color;
+        background: $primary-color;
+        border-color: $primary-color;
         color: white;
 
         &.Button--with-fill svg {
@@ -27,6 +27,7 @@
         align-items: center;
         display: inline-flex;
         justify-content: center;
+        padding: 0;
         position: relative;
 
         .Icon {
@@ -41,11 +42,12 @@
 
         &.Button--with-small-icon {
             @include set-round-element-size(32px);
+            border-radius: $border-radius--small;
         }
     }
 
     &[disabled] {
         cursor: not-allowed;
-        opacity: 0.5;
+        opacity: 0.75;
     }
 }

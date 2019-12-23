@@ -1,21 +1,27 @@
 import * as yup from 'yup'
 
 export const FIELDS = {
+    includeFavorites: 'includeFavorites',
+    listView: 'listView',
+    mode: 'mode',
     recommendationCount: 'recommendationCount',
-    mode: 'mode'
 }
 
 export const initialValues = {
-    [FIELDS.mode]: 'light',
-    [FIELDS.recommendationCount]: 3
+    [FIELDS.includeFavorites]: 'true',
+    [FIELDS.listView]: 'All',
+    [FIELDS.mode]: 'Light',
+    [FIELDS.recommendationCount]: 3,
 }
 
 export const defaultValues = (values = {}) => ({
     ...initialValues,
-    ...values
+    ...values,
 })
 
 export const validationSchema = yup.object().shape({
+    [FIELDS.includeFavorites]: yup.boolean().required('Required'),
+    [FIELDS.listView]: yup.string().required('Required'),
     [FIELDS.mode]: yup.string().required('Required'),
-    [FIELDS.recommendationCount]: yup.number().required('Required')
+    [FIELDS.recommendationCount]: yup.number().required('Required'),
 })

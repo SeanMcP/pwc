@@ -1,6 +1,6 @@
 import React from 'react'
 import onKey from 'onkey-event-manager'
-import { useItems } from 'store/useItems'
+
 import FabContainer from 'components/FabContainer/FabContainer'
 import Grid from 'components/Grid/Grid'
 import ItemsList from 'components/ItemsList/ItemsList'
@@ -8,36 +8,51 @@ import LinkButton from 'components/LinkButton/LinkButton'
 import SearchBar from 'components/SearchBar/SearchBar'
 import SortListRadio from 'components/SortListRadio/SortListRadio'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
+
+import ICONS from 'constants/icons'
 import ROUTES from 'constants/routes'
+import { useItems } from 'store/useItems'
+import useSettings from 'store/useSettings'
+import DevOnly from 'components/DevOnly/DevOnly'
 
 function ListView() {
     const [query, setQuery] = React.useState('')
-    const sortState = React.useState('All')
-    const [items] = useItems()
+    const [{ listView = 'All' }] = useSettings()
+    const sortState = React.useState(listView)
+    const [items, { areItems }, __DEV__] = useItems()
     const FilteredItemsList = ItemsList[sortState[0]]
     return (
         <ViewContainer
             searchBar={
                 <SearchBar
                     value={query}
-                    onChange={e => setQuery(e.target.value)}
+                    onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={onKey({ Escape: () => setQuery('') })}
                 />
             }
             title="Prayer List"
         >
-            <Grid gap="1rem">
-                <SortListRadio state={sortState} />
-                <FilteredItemsList items={items} query={query} />
-            </Grid>
+            {areItems() ? (
+                <Grid gap="1rem">
+                    <SortListRadio state={sortState} />
+                    <FilteredItemsList items={items} query={query} />
+                </Grid>
+            ) : (
+                <p style={{ marginTop: 0 }}>
+                    You don't have any items in your list. Try adding some!
+                </p>
+            )}
             <FabContainer>
                 <LinkButton
                     aria-label="Add item"
-                    icon="Plus"
+                    icon={ICONS.add}
                     primary
                     to={ROUTES.add}
                 />
             </FabContainer>
+            <DevOnly>
+                <button onClick={__DEV__.populateList}>Populate list</button>
+            </DevOnly>
         </ViewContainer>
     )
 }

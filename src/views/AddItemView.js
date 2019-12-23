@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import ROUTES from 'constants/routes'
 import { useItems } from 'store/useItems'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { Form } from 'components/Form/Form'
+import { Form, FormFooter } from 'components/Form/Form'
 import Button from 'components/Button/Button'
 import ITEMS from 'constants/items'
 import * as ItemFields from 'components/Form/ItemFields'
@@ -14,14 +14,14 @@ function AddItemView({ type }) {
     const [, { add }] = useItems()
 
     function onSubmit(values) {
-        const { date, dateType, name, notes } = values
+        const { day, month, name, notes } = values
 
         add({
-            date,
-            dateType: date ? dateType : null,
+            day,
+            month,
             name,
             notes,
-            type
+            type,
         })
 
         navigate(ROUTES.list)
@@ -37,13 +37,19 @@ function AddItemView({ type }) {
                 onSubmit={onSubmit}
                 validationSchema={validationSchema}
             >
-                {({ handleSubmit }) => (
+                {({ dirty, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <ItemFields.Name autoFocus />
                         <ItemFields.Date />
-                        <ItemFields.DateType />
                         <ItemFields.Notes />
-                        <Button type="submit">Add</Button>
+                        <FormFooter>
+                            <Button disabled={!dirty} type="submit" primary>
+                                Add
+                            </Button>
+                            <Button disabled={!dirty} type="reset">
+                                Reset
+                            </Button>
+                        </FormFooter>
                     </Form>
                 )}
             </Formik>

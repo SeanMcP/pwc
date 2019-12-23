@@ -1,4 +1,8 @@
-# pwc
+![PWOC](public/icon-192.png)
+
+# PWOC
+
+Private prayer list manager
 
 > Tentatively pronounced "Pea-Wok"
 

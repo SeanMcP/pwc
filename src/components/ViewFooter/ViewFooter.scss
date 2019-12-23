@@ -1,7 +1,8 @@
+@import 'styles/mixins.scss';
 @import 'styles/variables.scss';
 
 .ViewFooter {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $border-color;
 
     &__nav {
         display: grid;
@@ -15,13 +16,15 @@
     }
 
     &__link {
+        @include focus-styles;
+
         padding: 0.5rem 0;
         text-decoration: none;
         transition: all 200ms ease-in-out;
 
         &,
         &:visited {
-            color: #333;
+            color: $gray-900;
         }
 
         &[aria-current='true'],
@@ -32,11 +35,11 @@
 
         &:focus,
         &:hover {
-            background: $accent-color;
+            background: $primary-color;
         }
 
         &[aria-current='true'] {
-            background: #222;
+            background: $gray-900;
         }
     }
 }

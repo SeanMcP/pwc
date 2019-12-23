@@ -7,8 +7,9 @@ import ViewContent from 'components/ViewContent/ViewContent'
 function SearchBar(props) {
     return (
         <form
+            autoComplete="off"
             className="SearchBar"
-            onSubmit={e => e.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
             role="search"
         >
             <ViewContent>
@@ -20,7 +21,7 @@ function SearchBar(props) {
 
 SearchBar.defaultProps = {
     'aria-label': 'Search',
-    placeholder: 'Search for a name'
+    placeholder: 'Search for a name',
 }
 
 export default SearchBar

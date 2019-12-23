@@ -1,9 +1,24 @@
 import React from 'react'
-import { name, version } from '../../package.json'
+import {
+    buildKeyFromType,
+    buildKeyFromVersionAndType,
+} from 'utils/dataUtils.js'
+import PREVIOUS_VERSIONS from 'data/previousVersions'
 
-function getLocalStorage(storeKey, initialState) {
+function getLocalStorage(storeKey, initialState, type) {
     const valueFromStorage = JSON.parse(localStorage.getItem(storeKey))
     if (!valueFromStorage) {
+        for (const version of PREVIOUS_VERSIONS) {
+            const previousKey = buildKeyFromVersionAndType(version, type)
+            const oldValue = JSON.parse(localStorage.getItem(previousKey))
+            if (oldValue) {
+                // Use the old value
+                setLocalStorage(storeKey, oldValue)
+                // Clean up
+                localStorage.removeItem(previousKey)
+                return oldValue
+            }
+        }
         setLocalStorage(storeKey, initialState)
         return initialState
     }
@@ -14,10 +29,10 @@ function setLocalStorage(storeKey, valueToStore) {
     localStorage.setItem(storeKey, JSON.stringify(valueToStore))
 }
 
-export default function useLocalStorage(key, initialState) {
-    const storeKey = `${name}@${version}-${key}`
+export default function useLocalStorage(type, initialState) {
+    const storeKey = buildKeyFromType(type)
     const [state, setState] = React.useState(
-        getLocalStorage(storeKey, initialState)
+        getLocalStorage(storeKey, initialState, type)
     )
     React.useEffect(() => {
         setLocalStorage(storeKey, state)

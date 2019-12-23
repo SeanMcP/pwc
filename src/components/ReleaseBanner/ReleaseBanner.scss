@@ -1,0 +1,18 @@
+@import 'styles/variables.scss';
+
+.ReleaseBanner {
+    $text-color: white;
+
+    background: $gray-900;
+    color: $text-color;
+    padding: 0.5rem 0;
+    text-align: center;
+
+    a {
+        color: $text-color !important;
+
+        &:focus {
+            outline-color: $text-color;
+        }
+    }
+}

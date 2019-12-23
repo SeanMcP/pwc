@@ -1,6 +1,11 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 import { useField } from 'formik'
+
+import Grid from 'components/Grid/Grid'
+import Icon from 'components/Icon/Icon'
+
+import ICONS from 'constants/icons'
 
 import './Form.scss'
 
@@ -8,8 +13,11 @@ function FieldFactory({
     description,
     element,
     field = {},
+    hideLabel = false,
+    id,
     label,
     meta = {},
+    required = false,
     ...props
 }) {
     if (!props.name) throw Error('`name` is a required prop.')
@@ -17,25 +25,30 @@ function FieldFactory({
     const idRef = React.useRef(
         `${props.name}-${String(Math.random()).slice(-5)}`
     )
-    const id = idRef.current
-    const descriptionId = description ? `${id}-description` : undefined
+    const elementId = id || idRef.current
+    const descriptionId = description ? `${elementId}-description` : undefined
     const Element = element
     const className = `${element[0].toUpperCase() + element.slice(1)}Field`
 
     return (
         <div
-            className={classList(
+            className={clb(
                 'Field',
                 className,
                 meta.error && `Field--error ${className}--error`
             )}
         >
-            {label && (
+            {label && !hideLabel && (
                 <label
                     className={`Field__label ${className}__label`}
-                    htmlFor={id}
+                    htmlFor={elementId}
                 >
                     {label}
+                    {required && (
+                        <span className="Field__required" title="Is Required">
+                            *
+                        </span>
+                    )}
                 </label>
             )}
             {description && (
@@ -48,8 +61,10 @@ function FieldFactory({
             )}
             <Element
                 className={`Field__input ${className}__input`}
-                id={id}
+                id={elementId}
                 aria-describedby={descriptionId}
+                aria-label={hideLabel ? label : undefined}
+                aria-required={required}
                 {...field}
                 {...props}
             />
@@ -72,29 +87,42 @@ export function InputField(props) {
 }
 
 export function SearchField(props) {
+    const id = 'search-bar'
     return (
-        <FieldFactory
-            aria-label="Search"
-            element="input"
-            name="search"
-            type="search"
-            {...props}
-        />
+        <label className="SearchField" htmlFor={id}>
+            <Icon icon={ICONS.search} />
+            <FieldFactory
+                aria-label="Search"
+                element="input"
+                name="search"
+                type="search"
+                id={id}
+                {...props}
+            />
+        </label>
     )
-}
-
-export function TextareaField(props) {
-    return <FormikFieldFactory element="textarea" {...props} />
 }
 
 export function SelectField(props) {
     return <FormikFieldFactory element="select" {...props} />
 }
 
+export function TextareaField(props) {
+    return <FormikFieldFactory element="textarea" {...props} />
+}
+
 export function Form({ className, children, ...props }) {
     return (
-        <form className={classList('Form', className)} {...props}>
+        <form className={clb('Form', className)} {...props}>
             {children}
         </form>
+    )
+}
+
+export function FormFooter({ children }) {
+    return (
+        <Grid as="footer" columns={children.length} gap="1rem">
+            {children}
+        </Grid>
     )
 }

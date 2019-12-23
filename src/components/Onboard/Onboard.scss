@@ -1,0 +1,16 @@
+@import 'styles/variables.scss';
+
+.Onboard {
+    align-items: center;
+    background: $gray-100;
+    bottom: 0;
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    .ViewContent {
+        height: initial;
+    }
+}

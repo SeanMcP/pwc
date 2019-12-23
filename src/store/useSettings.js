@@ -1,9 +1,10 @@
 import React from 'react'
 import useLocalStorage from 'store/useLocalStorage'
+import { initialValues } from 'schemas/settings'
 
 const initialState = {
-    recommendationCount: 3,
-    mode: 'light' // Aspirational
+    ...initialValues,
+    mode: 'light', // Aspirational
 }
 
 export default function useSettings() {
@@ -18,8 +19,9 @@ export default function useSettings() {
     function setAll(changes) {
         setState({
             ...state,
-            ...changes
+            ...changes,
         })
+        alert('Settings saved')
     }
 
     const { mode } = state

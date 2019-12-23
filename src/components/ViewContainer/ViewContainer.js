@@ -1,34 +1,34 @@
 import React from 'react'
-import ViewHeader from 'components/ViewHeader/ViewHeader'
+import * as Debug from 'components/Debug/Debug'
+import ReleaseBanner from 'components/ReleaseBanner/ReleaseBanner'
 import ViewContent from 'components/ViewContent/ViewContent'
-import './ViewContainer.scss'
 import ViewFooter from 'components/ViewFooter/ViewFooter'
-import AlphaBanner from 'components/AlphaBanner/AlphaBanner'
+import ViewHeader from 'components/ViewHeader/ViewHeader'
+import APP_NAME from 'constants/appName'
+import useDebugMode from 'hooks/useDebugMode'
 
-const appName = 'PWC'
+import './ViewContainer.scss'
 
 function ViewContainer({
-    alternateHeader = false,
+    actionButton,
     backTo,
     children,
-    hideHeader,
     searchBar = null,
-    title
+    title,
 }) {
+    useDebugMode()
     React.useEffect(() => {
-        document.title = title ? `${title} - ${appName}` : appName
+        document.title = title ? `${title} - ${APP_NAME}` : APP_NAME
     }, [title])
     return (
         <div className="ViewContainer">
-            <AlphaBanner />
-            {!hideHeader && (
-                <ViewHeader
-                    alternate={alternateHeader}
-                    appName={appName}
-                    backTo={backTo}
-                    title={title}
-                />
-            )}
+            <Debug.Downloader />
+            <ReleaseBanner />
+            <ViewHeader
+                actionButton={actionButton}
+                backTo={backTo}
+                title={title}
+            />
             {searchBar}
             <main id="main" role="main" className="ViewContainer__main">
                 <ViewContent>{children}</ViewContent>

@@ -1,5 +1,5 @@
 import React from 'react'
-import classList from '@seanmcp/class-list'
+import clb from 'class-list-builder'
 
 import Icon from 'components/Icon/Icon'
 
@@ -20,10 +20,7 @@ function IconWithText({
     const TextTag = textTag
 
     return (
-        <ContainerTag
-            className={classList('IconWithText', className)}
-            {...props}
-        >
+        <ContainerTag className={clb('IconWithText', className)} {...props}>
             <Icon icon={icon} {...iconProps} />
             <TextTag className="IconWithText__text">{text}</TextTag>
         </ContainerTag>

@@ -1,5 +1,9 @@
+@import 'styles/variables.scss';
+
 .RecommendationsList {
-    border: 1px solid #ddd;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    overflow: hidden;
 
     &__header {
         padding: 0.5rem;
@@ -13,13 +17,17 @@
 
     &__item {
         align-items: center;
-        border-top: 1px solid #f1f1f1;
+        border-top: 1px solid $border-color;
         display: flex;
         padding: 0.5rem;
         justify-content: space-between;
 
+        button {
+            background: white;
+        }
+
         &:hover {
-            background: rgba(0, 0, 0, 0.025);
+            background: $gray-50;
         }
     }
 

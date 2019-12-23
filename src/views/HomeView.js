@@ -9,15 +9,17 @@ import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { useItems } from 'store/useItems'
 
 function HomeView() {
-    const [items] = useItems()
-    const areNoItems = Object.keys(items).length === 0
+    const [, { areItems }] = useItems()
     return (
         <ViewContainer>
-            <Grid gap="2rem">
-                {areNoItems && <Onboard />}
-                <Recommendations />
-                <BibleVerse />
-            </Grid>
+            {areItems() ? (
+                <Grid gap="2rem">
+                    <Recommendations />
+                    <BibleVerse />
+                </Grid>
+            ) : (
+                <Onboard />
+            )}
         </ViewContainer>
     )
 }
