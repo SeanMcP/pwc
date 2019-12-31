@@ -1,19 +1,17 @@
 import React from 'react'
 import onKey from 'onkey-event-manager'
 
+import AddFab from 'components/AddFab/AddFab'
+import DevOnly from 'components/DevOnly/DevOnly'
 import FabContainer from 'components/FabContainer/FabContainer'
 import Grid from 'components/Grid/Grid'
 import ItemsList from 'components/ItemsList/ItemsList'
-import LinkButton from 'components/LinkButton/LinkButton'
 import SearchBar from 'components/SearchBar/SearchBar'
 import SortListRadio from 'components/SortListRadio/SortListRadio'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 
-import ICONS from 'constants/icons'
-import ROUTES from 'constants/routes'
 import { useItems } from 'store/useItems'
 import useSettings from 'store/useSettings'
-import DevOnly from 'components/DevOnly/DevOnly'
 
 function ListView() {
     const [query, setQuery] = React.useState('')
@@ -43,12 +41,7 @@ function ListView() {
                 </p>
             )}
             <FabContainer>
-                <LinkButton
-                    aria-label="Add item"
-                    icon={ICONS.add}
-                    primary
-                    to={ROUTES.add}
-                />
+                <AddFab />
             </FabContainer>
             <DevOnly>
                 <button onClick={__DEV__.populateList}>Populate list</button>
