@@ -13,4 +13,8 @@
         flex: 1;
         overflow-y: auto;
     }
+
+    main.--with-fab {
+        padding-bottom: calc(48px + 1rem);
+    }
 }
