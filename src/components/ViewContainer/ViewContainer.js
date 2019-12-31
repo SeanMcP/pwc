@@ -10,22 +10,24 @@ import useDebugMode from 'hooks/useDebugMode'
 import './ViewContainer.scss'
 
 function ViewContainer({
-    actionButton,
+    actionButtons,
     backTo,
     children,
     searchBar = null,
     title,
 }) {
     useDebugMode()
+
     React.useEffect(() => {
         document.title = title ? `${title} - ${APP_NAME}` : APP_NAME
     }, [title])
+
     return (
         <div className="ViewContainer">
             <Debug.Downloader />
             <ReleaseBanner />
             <ViewHeader
-                actionButton={actionButton}
+                actionButtons={actionButtons}
                 backTo={backTo}
                 title={title}
             />
