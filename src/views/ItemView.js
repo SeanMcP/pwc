@@ -4,7 +4,6 @@ import dayjs from 'dayjs'
 import FabContainer from 'components/FabContainer/FabContainer'
 import ItemAttributes from 'components/ItemAttributes/ItemAttributes'
 import IconButton from 'components/IconButton/IconButton'
-import ItemHeader from 'components/ItemHeader/ItemHeader'
 import LinkButton from 'components/LinkButton/LinkButton'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 
@@ -49,17 +48,24 @@ function ItemView({ id }) {
 
     return (
         <ViewContainer
-            actionButton={
+            actionButtons={[
+                <IconButton
+                    aria-checked={Boolean(data.favorite)}
+                    fill={Boolean(data.favorite)}
+                    icon={ICONS.favorite}
+                    label="Favorite"
+                    onClick={() => toggleFavorite(id)}
+                    role="switch"
+                />,
                 <LinkButton
                     aria-label="Edit item"
                     icon="Edit"
                     to={buildRoute.edit(id)}
-                />
-            }
+                />,
+            ]}
             backTo={ROUTES.list}
-            title="View"
+            title={data.name}
         >
-            <ItemHeader name={data.name} type={data.type} />
             <ItemAttributes.List>
                 {data.favorite && (
                     <ItemAttributes.Item
@@ -103,15 +109,6 @@ function ItemView({ id }) {
                     label="Record prayer"
                     onClick={() => recordPrayer(id)}
                     primary
-                />
-                <IconButton
-                    aria-checked={Boolean(data.favorite)}
-                    fill={Boolean(data.favorite)}
-                    icon={ICONS.favorite}
-                    label="Favorite"
-                    onClick={() => toggleFavorite(id)}
-                    primary
-                    role="switch"
                 />
             </FabContainer>
         </ViewContainer>
