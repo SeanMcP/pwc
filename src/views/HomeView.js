@@ -17,8 +17,8 @@ function HomeView() {
             {areItems() ? (
                 <>
                     <Grid gap="2rem">
-                        <Recommendations />
                         <BibleVerse />
+                        <Recommendations />
                     </Grid>
                     <FabContainer>
                         <AddFab />
