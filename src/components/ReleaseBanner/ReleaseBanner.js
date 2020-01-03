@@ -1,5 +1,5 @@
 import React from 'react'
-import ViewContent from 'components/ViewContent/ViewContent'
+import ContentContainer from 'components/ContentContainer/ContentContainer'
 
 import { name } from '../../../package.json'
 
@@ -9,7 +9,7 @@ function ReleaseBanner({ release = 'beta' }) {
     const releaseCaps = release[0].toUpperCase() + release.slice(1)
     return (
         <section className="ReleaseBanner" aria-label="Notification">
-            <ViewContent squish>
+            <ContentContainer squish>
                 <small>
                     <b>{releaseCaps}:</b>{' '}
                     <a
@@ -18,7 +18,7 @@ function ReleaseBanner({ release = 'beta' }) {
                         Issues or suggestions?
                     </a>
                 </small>
-            </ViewContent>
+            </ContentContainer>
         </section>
     )
 }

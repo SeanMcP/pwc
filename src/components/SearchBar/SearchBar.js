@@ -1,8 +1,8 @@
 import React from 'react'
 import { SearchField } from 'components/Form/Form'
+import ContentContainer from 'components/ContentContainer/ContentContainer'
 
 import './SearchBar.scss'
-import ViewContent from 'components/ViewContent/ViewContent'
 
 function SearchBar(props) {
     return (
@@ -12,9 +12,9 @@ function SearchBar(props) {
             onSubmit={(e) => e.preventDefault()}
             role="search"
         >
-            <ViewContent>
+            <ContentContainer>
                 <SearchField {...props} />
-            </ViewContent>
+            </ContentContainer>
         </form>
     )
 }
