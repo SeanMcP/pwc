@@ -1,16 +1,16 @@
 import React from 'react'
+import ContentContainer from 'components/ContentContainer/ContentContainer'
 import Icon from 'components/Icon/Icon'
 import ICONS from 'constants/icons'
 import NavLink from 'components/NavLink/NavLink'
 import ROUTES from 'constants/routes'
-import ViewContent from 'components/ViewContent/ViewContent'
 
 import './ViewFooter.scss'
 
 function ViewFooter() {
     return (
         <footer className="ViewFooter">
-            <ViewContent squish>
+            <ContentContainer squish>
                 <nav className="ViewFooter__nav">
                     <NavLink className="ViewFooter__link" to={ROUTES.home}>
                         <Icon icon={ICONS.home} block />
@@ -25,7 +25,7 @@ function ViewFooter() {
                         <small>Settings</small>
                     </NavLink>
                 </nav>
-            </ViewContent>
+            </ContentContainer>
         </footer>
     )
 }

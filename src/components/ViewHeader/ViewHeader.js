@@ -1,9 +1,10 @@
 import React from 'react'
 import { navigate } from '@reach/router'
 import clb from 'class-list-builder'
+
+import ContentContainer from 'components/ContentContainer/ContentContainer'
 import Grid from 'components/Grid/Grid'
 import LinkButton from 'components/LinkButton/LinkButton'
-import ViewContent from 'components/ViewContent/ViewContent'
 import APP_NAME from 'constants/appName'
 import useCount from 'hooks/useCount'
 
@@ -36,7 +37,7 @@ function ViewHeader({ actionButtons = [], backTo = '/', title }) {
 
     return (
         <header className="ViewHeader">
-            <ViewContent>
+            <ContentContainer>
                 {shouldRenderBackButton ? (
                     <div className="ViewHeader__container">
                         <LinkButton
@@ -57,7 +58,7 @@ function ViewHeader({ actionButtons = [], backTo = '/', title }) {
                 ) : (
                     heading
                 )}
-            </ViewContent>
+            </ContentContainer>
         </header>
     )
 }

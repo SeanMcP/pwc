@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Debug from 'components/Debug/Debug'
 import ReleaseBanner from 'components/ReleaseBanner/ReleaseBanner'
-import ViewContent from 'components/ViewContent/ViewContent'
+import ContentContainer from 'components/ContentContainer/ContentContainer'
 import ViewFooter from 'components/ViewFooter/ViewFooter'
 import ViewHeader from 'components/ViewHeader/ViewHeader'
 import APP_NAME from 'constants/appName'
@@ -13,7 +13,7 @@ function ViewContainer({
     actionButtons,
     backTo,
     children,
-    searchBar = null,
+    subHeader = null,
     title,
 }) {
     useDebugMode()
@@ -31,9 +31,9 @@ function ViewContainer({
                 backTo={backTo}
                 title={title}
             />
-            {searchBar}
+            {subHeader}
             <main id="main" role="main" className="ViewContainer__main">
-                <ViewContent>{children}</ViewContent>
+                <ContentContainer>{children}</ContentContainer>
             </main>
             <ViewFooter />
         </div>

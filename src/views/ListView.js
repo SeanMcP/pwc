@@ -21,18 +21,20 @@ function ListView() {
     const FilteredItemsList = ItemsList[sortState[0]]
     return (
         <ViewContainer
-            searchBar={
-                <SearchBar
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={onKey({ Escape: () => setQuery('') })}
-                />
+            subHeader={
+                <>
+                    <SearchBar
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={onKey({ Escape: () => setQuery('') })}
+                    />
+                    <SortListRadio state={sortState} />
+                </>
             }
             title="Prayer List"
         >
             {areItems() ? (
                 <Grid gap="1rem">
-                    <SortListRadio state={sortState} />
                     <FilteredItemsList items={items} query={query} />
                 </Grid>
             ) : (
