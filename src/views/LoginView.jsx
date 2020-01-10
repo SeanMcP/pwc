@@ -1,11 +1,11 @@
 import React from 'react'
-import ViewContainer from 'components/ViewContainer/ViewContainer'
-import { InputField, Form } from 'components/Form/Form'
 import { Formik } from 'formik'
+import { InputField, Form } from 'components/Form/Form'
+import AccountViewContainer from 'components/AccountViewContainer/AccountViewContainer'
 
 function LoginView() {
     return (
-        <ViewContainer title="Login">
+        <AccountViewContainer title="Login">
             <Formik>
                 {({ handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
@@ -22,7 +22,7 @@ function LoginView() {
                     </Form>
                 )}
             </Formik>
-        </ViewContainer>
+        </AccountViewContainer>
     )
 }
 
