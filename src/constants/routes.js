@@ -3,6 +3,7 @@ const ROUTES = {
     add: '/add',
     addItem: '/add/:type',
     list: '/list',
+    login: '/login',
     item: '/i/:id',
     edit: '/e/:id',
     settings: '/settings',
