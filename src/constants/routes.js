@@ -7,6 +7,7 @@ const ROUTES = {
     item: '/i/:id',
     edit: '/e/:id',
     settings: '/settings',
+    signUp: '/sign-up',
 }
 
 export const buildRoute = {
