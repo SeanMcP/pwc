@@ -51,7 +51,7 @@ function LoginView() {
             </Formik>
             <p className="--text-center" style={{ marginTop: '2rem' }}>
                 Don't have an account?{' '}
-                <AppLink to={ROUTES.signUp}>Sign up!</AppLink>
+                <AppLink to={ROUTES.register}>Register!</AppLink>
             </p>
         </AccountViewContainer>
     )
