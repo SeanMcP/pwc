@@ -22,7 +22,7 @@ const loginShape = {
 
 export const loginValidationSchema = yup.object().shape(loginShape)
 
-export const signUpValidationSchema = yup.object().shape({
+export const registerValidationSchema = yup.object().shape({
     ...loginShape,
     [FIELDS.confirm]: yup.string().required('Required'),
 })
