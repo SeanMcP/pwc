@@ -6,19 +6,23 @@ import Grid from 'components/Grid/Grid'
 import Button from 'components/Button/Button'
 import AppLink from 'components/AppLink/AppLink'
 import ROUTES from 'constants/routes'
-import { FIELDS, initialValues, loginValidationSchema } from 'schemas/account'
+import {
+    FIELDS,
+    initialValues,
+    registerValidationSchema,
+} from 'schemas/account'
 
 function handleSubmit(values) {
     console.log('Values:', values)
 }
 
-function LoginView() {
+function RegisterView() {
     return (
-        <AccountViewContainer title="Login">
+        <AccountViewContainer title="Register">
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={loginValidationSchema}
+                validationSchema={registerValidationSchema}
             >
                 {({ dirty, errors, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
@@ -32,12 +36,17 @@ function LoginView() {
                             name={FIELDS.password}
                             type="password"
                         />
+                        <InputField
+                            label="Confirm password"
+                            name={FIELDS.confirm}
+                            type="password"
+                        />
                         <Grid columns={2} gap="1rem">
                             <Button
                                 disabled={!dirty || Object.keys(errors).length}
                                 primary
                             >
-                                Login
+                                Register
                             </Button>
                             <Button
                                 disabled={!dirty || Object.keys(errors).length}
@@ -50,11 +59,11 @@ function LoginView() {
                 )}
             </Formik>
             <p className="--text-center" style={{ marginTop: '2rem' }}>
-                Don't have an account?{' '}
-                <AppLink to={ROUTES.register}>Register!</AppLink>
+                Already have an account?{' '}
+                <AppLink to={ROUTES.login}>Login!</AppLink>
             </p>
         </AccountViewContainer>
     )
 }
 
-export default LoginView
+export default RegisterView

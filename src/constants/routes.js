@@ -2,12 +2,12 @@ const ROUTES = {
     home: '/',
     add: '/add',
     addItem: '/add/:type',
+    edit: '/e/:id',
+    item: '/i/:id',
     list: '/list',
     login: '/login',
-    item: '/i/:id',
-    edit: '/e/:id',
+    register: '/register',
     settings: '/settings',
-    signUp: '/sign-up',
 }
 
 export const buildRoute = {
