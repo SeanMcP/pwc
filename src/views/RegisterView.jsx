@@ -11,12 +11,18 @@ import {
     initialValues,
     registerValidationSchema,
 } from 'schemas/account'
-
-function handleSubmit(values) {
-    console.log('Values:', values)
-}
+import { useFirebase } from 'firebase/useFirebase'
 
 function RegisterView() {
+    const { auth } = useFirebase()
+
+    function handleSubmit(values) {
+        const { confirm, email, password } = values
+        if (email && password && confirm && password === confirm) {
+            auth.doCreateUserWithEmailAndPassword(email, password)
+        }
+    }
+
     return (
         <AccountViewContainer title="Register">
             <Formik
