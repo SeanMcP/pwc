@@ -1,4 +1,4 @@
-import app from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/auth'
 
 const config = {
@@ -10,29 +10,23 @@ const config = {
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 }
 
-class Firebase {
-    constructor() {
-        // Firebase is complainging about me calling this multiple times.
-        // Some issues on SO mention removing the initialization from
-        // your index.html file, but I don't have it there.
-        app.initializeApp(config)
+export const app = firebase.initializeApp(config)
 
-        this.auth = app.auth()
-    }
-
-    // *** Auth API ***
-    doCreateUserWithEmailAndPassword = (email, password) =>
-        this.auth.createUserWithEmailAndPassword(email, password)
-
-    doSignInWithEmailAndPassword = (email, password) =>
-        this.auth.signInWithEmailAndPassword(email, password)
-
-    doSignOut = () => this.auth.signOut()
-
-    doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email)
-
-    doPasswordUpdate = (password) =>
-        this.auth.currentUser.updatePassword(password)
+const appAuth = app.auth()
+export const auth = {
+    doCreateUserWithEmailAndPassword(email, password) {
+        appAuth.createUserWithEmailAndPassword(email, password)
+    },
+    doSignInWithEmailAndPassword(email, password) {
+        appAuth.signInWithEmailAndPassword(email, password)
+    },
+    doSignOut() {
+        appAuth.signOut()
+    },
+    doPasswordReset(email) {
+        appAuth.sendPasswordResetEmail(email)
+    },
+    doPasswordUpdate(password) {
+        appAuth.currentUser.updatePassword(password)
+    },
 }
-
-export default Firebase
