@@ -1,5 +1,6 @@
 import React from 'react'
 import { Formik } from 'formik'
+import { navigate } from '@reach/router'
 import { InputField, Form } from 'components/Form/Form'
 import AccountViewContainer from 'components/AccountViewContainer/AccountViewContainer'
 import Grid from 'components/Grid/Grid'
@@ -7,12 +8,25 @@ import Button from 'components/Button/Button'
 import AppLink from 'components/AppLink/AppLink'
 import ROUTES from 'constants/routes'
 import { FIELDS, initialValues, loginValidationSchema } from 'schemas/account'
-
-function handleSubmit(values) {
-    console.log('Values:', values)
-}
+import { useFirebase } from 'firebase/useFirebase'
+import useUser from 'store/useUser'
 
 function LoginView() {
+    const { auth } = useFirebase()
+    const [, setUser] = useUser()
+
+    function handleSubmit(values) {
+        const { email, password } = values
+        if (email && password) {
+            auth.signInWithEmailAndPassword(email, password)
+                .then((authUser) => {
+                    setUser(authUser)
+                    navigate(ROUTES.home)
+                })
+                .catch((error) => alert(error))
+        }
+    }
+
     return (
         <AccountViewContainer title="Login">
             <Formik
