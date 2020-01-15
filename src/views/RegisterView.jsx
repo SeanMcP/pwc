@@ -12,14 +12,22 @@ import {
     registerValidationSchema,
 } from 'schemas/account'
 import { useFirebase } from 'firebase/useFirebase'
+import useUser from 'store/useUser'
+import { navigate } from '@reach/router'
 
 function RegisterView() {
     const { auth } = useFirebase()
+    const [, setUser] = useUser()
 
     function handleSubmit(values) {
         const { confirm, email, password } = values
         if (email && password && confirm && password === confirm) {
-            auth.doCreateUserWithEmailAndPassword(email, password)
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((authUser) => {
+                    setUser(authUser)
+                    navigate(ROUTES.home)
+                })
+                .catch((error) => alert(error))
         }
     }
 
