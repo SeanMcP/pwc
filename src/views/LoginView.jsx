@@ -1,18 +1,32 @@
 import React from 'react'
 import { Formik } from 'formik'
+import { navigate } from '@reach/router'
 import { InputField, Form } from 'components/Form/Form'
 import AccountViewContainer from 'components/AccountViewContainer/AccountViewContainer'
 import Grid from 'components/Grid/Grid'
 import Button from 'components/Button/Button'
-import AppLink from 'components/AppLink/AppLink'
 import ROUTES from 'constants/routes'
 import { FIELDS, initialValues, loginValidationSchema } from 'schemas/account'
+import { useFirebase } from 'firebase/useFirebase'
+import useUser from 'store/useUser'
+import RegisterLoginLink from 'components/RegisterLoginLink/RegisterLoginLink'
 
-function handleSubmit(values) {
-    console.log('Values:', values)
-}
+function LoginView({ path }) {
+    const { auth } = useFirebase()
+    const [, setUser] = useUser()
 
-function LoginView() {
+    function handleSubmit(values) {
+        const { email, password } = values
+        if (email && password) {
+            auth.signInWithEmailAndPassword(email, password)
+                .then((authUser) => {
+                    setUser(authUser)
+                    navigate(ROUTES.home)
+                })
+                .catch((error) => alert(error))
+        }
+    }
+
     return (
         <AccountViewContainer title="Login">
             <Formik
@@ -49,10 +63,7 @@ function LoginView() {
                     </Form>
                 )}
             </Formik>
-            <p className="--text-center" style={{ marginTop: '2rem' }}>
-                Don't have an account?{' '}
-                <AppLink to={ROUTES.register}>Register!</AppLink>
-            </p>
+            <RegisterLoginLink path={path} />
         </AccountViewContainer>
     )
 }
