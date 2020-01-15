@@ -1,10 +1,10 @@
 import React from 'react'
 import { Formik } from 'formik'
+import { navigate } from '@reach/router'
 import { InputField, Form } from 'components/Form/Form'
 import AccountViewContainer from 'components/AccountViewContainer/AccountViewContainer'
 import Grid from 'components/Grid/Grid'
 import Button from 'components/Button/Button'
-import AppLink from 'components/AppLink/AppLink'
 import ROUTES from 'constants/routes'
 import {
     FIELDS,
@@ -13,9 +13,9 @@ import {
 } from 'schemas/account'
 import { useFirebase } from 'firebase/useFirebase'
 import useUser from 'store/useUser'
-import { navigate } from '@reach/router'
+import RegisterLoginLink from 'components/RegisterLoginLink/RegisterLoginLink'
 
-function RegisterView() {
+function RegisterView({ path }) {
     const { auth } = useFirebase()
     const [, setUser] = useUser()
 
@@ -72,10 +72,7 @@ function RegisterView() {
                     </Form>
                 )}
             </Formik>
-            <p className="--text-center" style={{ marginTop: '2rem' }}>
-                Already have an account?{' '}
-                <AppLink to={ROUTES.login}>Login!</AppLink>
-            </p>
+            <RegisterLoginLink path={path} />
         </AccountViewContainer>
     )
 }
