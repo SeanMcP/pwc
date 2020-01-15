@@ -15,18 +15,18 @@ export const app = firebase.initializeApp(config)
 const appAuth = app.auth()
 export const auth = {
     doCreateUserWithEmailAndPassword(email, password) {
-        appAuth.createUserWithEmailAndPassword(email, password)
+        return appAuth.createUserWithEmailAndPassword(email, password)
     },
     doSignInWithEmailAndPassword(email, password) {
-        appAuth.signInWithEmailAndPassword(email, password)
+        return appAuth.signInWithEmailAndPassword(email, password)
     },
     doSignOut() {
-        appAuth.signOut()
+        return appAuth.signOut()
     },
     doPasswordReset(email) {
-        appAuth.sendPasswordResetEmail(email)
+        return appAuth.sendPasswordResetEmail(email)
     },
     doPasswordUpdate(password) {
-        appAuth.currentUser.updatePassword(password)
+        return appAuth.currentUser.updatePassword(password)
     },
 }
