@@ -50,6 +50,7 @@ function LoginView({ path }) {
                             <Button
                                 disabled={!dirty || Object.keys(errors).length}
                                 primary
+                                type="submit"
                             >
                                 Login
                             </Button>

@@ -59,6 +59,7 @@ function RegisterView({ path }) {
                             <Button
                                 disabled={!dirty || Object.keys(errors).length}
                                 primary
+                                type="submit"
                             >
                                 Register
                             </Button>
