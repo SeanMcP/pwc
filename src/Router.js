@@ -9,7 +9,6 @@ import ItemView from 'views/ItemView'
 import ListView from 'views/ListView'
 import SelectTypeToAddView from 'views/SelectTypeToAddView'
 import SettingsView from 'views/SettingsView'
-import LoginView from 'views/LoginView'
 
 export default function() {
     return (
@@ -21,7 +20,6 @@ export default function() {
             <EditView path={ROUTES.edit} />
             <ListView path={ROUTES.list} />
             <SettingsView path={ROUTES.settings} />
-            <LoginView path={ROUTES.login} />
         </Router>
     )
 }
