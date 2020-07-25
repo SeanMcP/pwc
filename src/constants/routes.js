@@ -5,8 +5,6 @@ const ROUTES = {
     edit: '/e/:id',
     item: '/i/:id',
     list: '/list',
-    login: '/login',
-    register: '/register',
     settings: '/settings',
 }
 
