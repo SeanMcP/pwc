@@ -59,7 +59,19 @@ function useItems() {
             .then(getItems)
     }
 
-    return [items, { add: addItem, editById, recordPrayerForId }]
+    function toggleFavoriteById(id) {
+        return db.items
+            .where('id')
+            .equals(id)
+            .modify((item) => {
+                item.favorite = !item.favorite
+            })
+    }
+
+    return [
+        items,
+        { add: addItem, editById, recordPrayerForId, toggleFavoriteById },
+    ]
 }
 
 export default useItems
