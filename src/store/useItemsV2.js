@@ -1,4 +1,5 @@
 import React from 'react'
+import uuid from 'uuid/v4'
 import db from 'data/db'
 
 function useItems() {
@@ -9,7 +10,8 @@ function useItems() {
     }, [])
 
     function getItems() {
-        db.table('items')
+        return db
+            .table('items')
             .toArray()
             .then(setItems)
     }
@@ -18,39 +20,35 @@ function useItems() {
         favorite = false,
         name,
         notes = null,
-        prayerRecord = [],
+        lastPrayed = null,
+        prayerCount = 0,
         specialDate = null,
         type,
     }) {
-        db.table('items')
-            .add({
-                favorite,
-                name,
-                notes,
-                prayerRecord,
-                specialDate,
-                type,
-            })
-            .then(getItems)
+        return db.table('items').add({
+            favorite,
+            id: uuid(),
+            name,
+            notes,
+            lastPrayed,
+            prayerCount,
+            specialDate,
+            type,
+        })
     }
 
     function recordPrayerForId(id) {
-        db.items
+        return db.items
             .where('id')
             .equals(id)
             .modify((item) => {
-                const now = new Date().getTime()
-                if (item.prayerRecord) {
-                    item.prayerRecord.unshift(now)
-                } else {
-                    item.prayerRecord = [now]
-                }
+                item.lastPrayed = new Date().getTime()
+                item.prayerCount += 1
             })
-            .then(getItems)
     }
 
     function editById(id, updates) {
-        db.items
+        return db.items
             .where('id')
             .equals(id)
             .modify((item) => {
