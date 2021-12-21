@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import { navigate } from '@reach/router'
 
 import { useItems } from 'store/useItems'
+import useItemsV2 from 'store/useItemsV2'
 import ROUTES, { buildRoute } from 'constants/routes'
 import ViewContainer from 'components/ViewContainer/ViewContainer'
 import { Form, FormFooter } from 'components/Form/Form'
@@ -11,9 +12,11 @@ import * as ItemFields from 'components/Form/ItemFields'
 import Button from 'components/Button/Button'
 import { FIELDS, defaultValues, validationSchema } from 'schemas/item'
 import DevOnly from 'components/DevOnly/DevOnly'
+import { getSpecialDateFromDayAndMonth } from 'utils/date-utils'
 
 function EditView(props) {
     const [, { edit, get, remove }, __DEV__] = useItems()
+    const [, v2Actions] = useItemsV2()
 
     const data = get(props.id)
 
@@ -32,6 +35,12 @@ function EditView(props) {
         edit(props.id, {
             day,
             month,
+            name,
+            notes,
+        })
+
+        v2Actions.editById(props.id, {
+            specialDate: getSpecialDateFromDayAndMonth(day, month),
             name,
             notes,
         })

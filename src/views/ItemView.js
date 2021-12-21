@@ -10,6 +10,7 @@ import ViewContainer from 'components/ViewContainer/ViewContainer'
 import ICONS from 'constants/icons'
 import ROUTES, { buildRoute } from 'constants/routes'
 import { useItems } from 'store/useItems'
+import useItemsV2 from 'store/useItemsV2'
 
 const FORMATS = {
     date: 'MMM D',
@@ -44,6 +45,7 @@ function formatLastPrayed(date) {
 
 function ItemView({ id }) {
     const [, { get, recordPrayer, toggleFavorite }] = useItems()
+    const [, v2Actions] = useItemsV2()
     const data = get(id)
 
     return (
@@ -54,7 +56,10 @@ function ItemView({ id }) {
                     fill={Boolean(data.favorite)}
                     icon={ICONS.favorite}
                     label="Favorite"
-                    onClick={() => toggleFavorite(id)}
+                    onClick={() => {
+                        toggleFavorite(id)
+                        v2Actions.toggleFavoriteById(id)
+                    }}
                     role="switch"
                 />,
                 <LinkButton

@@ -9,11 +9,14 @@ import Button from 'components/Button/Button'
 import ITEMS from 'constants/items'
 import * as ItemFields from 'components/Form/ItemFields'
 import { initialValues, validationSchema } from 'schemas/item'
+import useItemsV2 from 'store/useItemsV2'
+import { getSpecialDateFromDayAndMonth } from 'utils/date-utils'
 
 function AddItemView({ type }) {
     const [, { add }] = useItems()
+    const [, v2Actions] = useItemsV2()
 
-    function onSubmit(values) {
+    async function onSubmit(values) {
         const { day, month, name, notes } = values
 
         add({
@@ -21,6 +24,13 @@ function AddItemView({ type }) {
             month,
             name,
             notes,
+            type,
+        })
+
+        await v2Actions.add({
+            name,
+            notes,
+            specialDate: getSpecialDateFromDayAndMonth(day, month),
             type,
         })
 
